@@ -37,6 +37,14 @@ class Main extends React.Component {
                         path="/about"
                         render={}
                     />
+                    <Route
+                        path="/projects/:category"
+                        render={}
+                    />
+                    <Route
+                        path="/projects/detail/:id"
+                        render={}
+                    />
                 </div>
                 <div className="main-footer layout-container">
                 </div>
