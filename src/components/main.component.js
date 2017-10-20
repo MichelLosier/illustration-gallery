@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import NavBar from './components/nav-bar.component'
+import NavBar from './nav-bar.component'
 
-import '../main.css';
+// import '../main.css';
 
 class Main extends React.Component {
     constructor(){
@@ -23,7 +23,7 @@ class Main extends React.Component {
         return(
             <div>
                 <div className="main-header layout-container">
-                    <div>
+                    <div class="header">
                         <h1>Michel Losier</h1>
                     </div>
                     <NavBar/>
@@ -35,15 +35,15 @@ class Main extends React.Component {
                     />
                     <Route
                         path="/about"
-                        render={}
+                        render={null}
                     />
                     <Route
                         path="/projects/:category"
-                        render={}
+                        render={null}
                     />
                     <Route
                         path="/projects/detail/:id"
-                        render={}
+                        render={null}
                     />
                 </div>
                 <div className="main-footer layout-container">
