@@ -30,7 +30,8 @@ div.main-header {
   flex-flow: wrap;
 }
 div.header {
-  flex-grow: 1
+	padding: 1rem;
+  flex-grow: 1;
 }
 div.main-nav {
   flex-grow: 7;
@@ -44,8 +45,9 @@ div.main-nav ul {
 	justify-content: space-around;
 }
 div.main-nav li {
-  line-height: 2rem;
+  line-height: 0;
 	display:inline-block;
+	padding: 1.5rem 1rem;
 }
 div.main-nav a {
 	padding:1rem;

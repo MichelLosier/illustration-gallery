@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
 import NavBar from './nav-bar.component'
+import Manage from './manage/manage.component';
 
 // import '../main.css';
 
@@ -44,6 +45,10 @@ class Main extends React.Component {
                     <Route
                         path="/projects/detail/:id"
                         render={null}
+                    />
+                    <Route
+                        path="/manage"
+                        component={Manage}
                     />
                 </div>
                 <div className="main-footer layout-container">
