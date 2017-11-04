@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import NavBar from './components/nav-bar.component'
+import NavBar from './nav-bar.component'
+import Manage from './manage/manage.component';
 
-import '../main.css';
+// import '../main.css';
 
 class Main extends React.Component {
     constructor(){
@@ -23,8 +24,10 @@ class Main extends React.Component {
         return(
             <div>
                 <div className="main-header layout-container">
-                    <div>
-                        <h1>Michel Losier</h1>
+                    <div class="header">
+                        <Link to={`/`}>
+                            <h1>Michel Losier</h1>
+                        </Link>
                     </div>
                     <NavBar/>
                 </div>
@@ -35,7 +38,19 @@ class Main extends React.Component {
                     />
                     <Route
                         path="/about"
-                        render={}
+                        render={null}
+                    />
+                    <Route
+                        path="/projects/:category"
+                        render={null}
+                    />
+                    <Route
+                        path="/projects/detail/:id"
+                        render={null}
+                    />
+                    <Route
+                        path="/manage"
+                        component={Manage}
                     />
                 </div>
                 <div className="main-footer layout-container">
