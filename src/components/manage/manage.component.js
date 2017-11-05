@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Route, Link} from 'react-router-dom'
+import ArtworkForm from '../forms/artwork-form.component';
 
 class Manage extends React.Component {
     constructor(){
@@ -16,6 +17,7 @@ class Manage extends React.Component {
                     exact path="/manage/"
                     render={null}
                 />
+                <ArtworkForm/>
             </div>
         )
     }

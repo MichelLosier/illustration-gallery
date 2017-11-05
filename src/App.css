@@ -14,6 +14,11 @@ h1 {
   text-align:center;
   margin: 0;
 }
+a {
+  color: #666;
+	cursor: pointer;
+	text-decoration:none;
+}
 .layout-container {
   margin: 0 auto;
   display: flex;
@@ -51,9 +56,6 @@ div.main-nav li {
 }
 div.main-nav a {
 	padding:1rem;
-	color: #666;
-	cursor: pointer;
-	text-decoration:none;
 }
 div.main-nav li:hover {
 	color: #e26e26;
@@ -64,4 +66,53 @@ div.main-nav a:hover {
 }
 div.main-nav a.active {
 	color: #e26e26;
+}
+
+/* FORMS */
+
+h3 {
+	text-align: center;
+}
+form {
+	padding:1rem;
+	transition: color 2s, border 2s;
+}
+
+.form-group {
+	padding:.5em 0;
+}
+label, input {
+	display:inline-block;
+}
+label {
+  text-align: right;
+	font: 1rem;
+	padding:.25rem 0;
+}
+input, textarea {
+	border:1px solid #666;
+	font-size:1rem;
+	padding: .5rem;
+	width: 75%;
+}
+
+textarea{
+	height: 8rem;
+	resize:none;
+}
+input[type='submit'] {
+	margin: .25rem;
+	margin-left: 0;
+	border: 1px solid #e26e26;
+	padding: .5rem;
+	background-color: white;
+	font-size:1rem;
+  align-self: center;
+  cursor: pointer;
+}
+input[type='submit']:hover{
+  border: 2px solid #e26e26;
+}
+.inline {
+	display: inline-block;
 }
