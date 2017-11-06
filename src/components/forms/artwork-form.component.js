@@ -9,10 +9,18 @@ class ArtworkForm extends React.Component {
         this.state = {
             fields: {
                 caption: '',
-                altText: ''
+                altText: '',
+                description: '',
+                previewImage:'', //listing views
+                normalImage:'', // gallery view
+                largeImage:'', // in detail view
             },
             fieldErrors: {
 
+            },
+            collections: {
+                tags:[],
+                projects:[]
             },
             selectedArtwork: null
         }
@@ -60,9 +68,33 @@ class ArtworkForm extends React.Component {
     render() {
         const fields = this.state.fields;
         return (
-            <div>
+            <div className="item-grow-2">
                 <h3>Create Artwork</h3>
                 <form onSubmit={this.handleFormSubmit}>
+                    <Field
+                        placeholder='URL to Image'
+                        name='normalImage'
+                        label='Gallery Image'
+                        value={fields.normalImage}
+                        onChange={this.handleInputChange}
+                        validate={false}
+                    />
+                    <Field
+                        placeholder='URL to Image'
+                        name='previewImage'
+                        label='Preview Image'
+                        value={fields.previewImage}
+                        onChange={this.handleInputChange}
+                        validate={false}
+                    />
+                    <Field
+                        placeholder='URL to Image'
+                        name='largeImage'
+                        label='Hi-Res Detail Image'
+                        value={fields.largeImage}
+                        onChange={this.handleInputChange}
+                        validate={false}
+                    />
                     <Field
                         placeholder='Caption'
                         name='caption'
@@ -78,6 +110,14 @@ class ArtworkForm extends React.Component {
                         value={fields.altText}
                         onChange={this.handleInputChange}
                         validate={false}
+                    />
+                    <Field
+                        placeholder='narrative about the artwork'
+                        name='description'
+                        label='Long Description'
+                        value={fields.description}
+                        onChange={this.handleInputChange}
+                        validate={false}                   
                     />
 
                     <input type='submit' disabled={this.validate()} />
