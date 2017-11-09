@@ -38,7 +38,11 @@ class ArtworkForm extends React.Component {
             people: people.concat(person),
             fields: {
                 caption: '',
-                altText: ''
+                altText: '',
+                description: '',
+                previewImage:'', //listing views
+                normalImage:'', // gallery view
+                largeImage:'', // in detail view
             },
         });
     };
