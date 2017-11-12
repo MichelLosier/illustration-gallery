@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Field from './field.component';
+import ArtworkService from '../../services/artwork.service'
+import ImageForm from './image-form.component';
 
 class ArtworkForm extends React.Component {
     constructor(){
@@ -22,6 +24,7 @@ class ArtworkForm extends React.Component {
                 tags:[],
                 projects:[]
             },
+            selectedImage: 'LARGE_IMAGE',
             selectedArtwork: null
         }
     }
@@ -72,59 +75,53 @@ class ArtworkForm extends React.Component {
     render() {
         const fields = this.state.fields;
         return (
-            <div className="item-grow-2">
+            <div className="min-width-40 width-6">
                 <h3>Create Artwork</h3>
                 <form onSubmit={this.handleFormSubmit}>
-                    <Field
-                        placeholder='URL to Image'
-                        name='normalImage'
-                        label='Gallery Image'
-                        value={fields.normalImage}
-                        onChange={this.handleInputChange}
-                        validate={false}
-                    />
-                    <Field
-                        placeholder='URL to Image'
-                        name='previewImage'
-                        label='Preview Image'
-                        value={fields.previewImage}
-                        onChange={this.handleInputChange}
-                        validate={false}
-                    />
-                    <Field
-                        placeholder='URL to Image'
-                        name='largeImage'
-                        label='Hi-Res Detail Image'
-                        value={fields.largeImage}
-                        onChange={this.handleInputChange}
-                        validate={false}
-                    />
-                    <Field
-                        placeholder='Caption'
-                        name='caption'
-                        label='Caption'
-                        value={fields.caption}
-                        onChange={this.handleInputChange}
-                        validate={false}
-                    />
-                    <Field
-                        placeholder='alt-text description'
-                        name='altText'
-                        label='Alt-Text'
-                        value={fields.altText}
-                        onChange={this.handleInputChange}
-                        validate={false}
-                    />
-                    <Field
-                        placeholder='narrative about the artwork'
-                        name='description'
-                        label='Long Description'
-                        value={fields.description}
-                        onChange={this.handleInputChange}
-                        validate={false}                   
-                    />
+                    <div class="padded-group">
+                        <ImageForm
+                            altText={this.state.altText}
+                            url={null}
+                        >
+                            <Field
+                                placeholder='URL to Image'
+                                name='largeImage'
+                                label='Hi-Res Detail Image'
+                                value={fields.largeImage}
+                                onChange={this.handleInputChange}
+                                validate={false}
+                            />
+                            <Field
+                                placeholder='alt-text description'
+                                name='altText'
+                                label='Alt-Text'
+                                value={fields.altText}
+                                onChange={this.handleInputChange}
+                                validate={false}
+                            />
+                        </ImageForm>
 
-                    <input type='submit' disabled={this.validate()} />
+                        <Field
+                            placeholder='Caption'
+                            name='caption'
+                            label='Caption'
+                            value={fields.caption}
+                            onChange={this.handleInputChange}
+                            validate={false}
+                        />
+
+                        <Field
+                            placeholder='narrative about the artwork'
+                            name='description'
+                            label='Long Description'
+                            value={fields.description}
+                            onChange={this.handleInputChange}
+                            validate={false}                   
+                        />
+                    </div>
+                    <div class="padded-group">
+                        <input type='submit' value="Submit" disabled={this.validate()} />
+                    </div>
                 </form>
             </div>
         )

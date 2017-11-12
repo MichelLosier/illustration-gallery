@@ -1,4 +1,4 @@
-export const defaultFetch = (request, callback) => {
+export const http = (request, callback) => {
     fetch(request).then((response) => {
         return response.json();
     }).then((data) => {

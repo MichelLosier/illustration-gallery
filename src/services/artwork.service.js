@@ -1,4 +1,4 @@
-import {defaultFetch} from './clientHelpers'
+import {http} from './clientHelpers'
 
 class ArtworkService {   
     constructor(){
@@ -6,7 +6,7 @@ class ArtworkService {
         this.baseHeaders = new Headers({
             'Content-Type': 'application/json'
         });
-        this.defaultFetch = defaultFetch;
+        this.http = http;
     }
 
     //GETS
@@ -15,21 +15,21 @@ class ArtworkService {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
     getArtworkByID(id, callback){
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
     getArtworkByProjectID(id, callback){
         const request = new Request(`${this.baseUrl}/project/${id}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
 
     //POSTS
@@ -39,7 +39,7 @@ class ArtworkService {
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
 
     //PATCH
@@ -49,17 +49,18 @@ class ArtworkService {
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
     // UPDATE MANY ARTWORKS
     // {artworks: [<artwork IDs], keys: {$push: {key: value}}}
+    //TODO move $push object to server
     updateArtworks(data, callback){
         const request = new Request(`${this.baseUrl}`, {
             method: 'PATCH',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
 
     //DELETE
@@ -68,7 +69,7 @@ class ArtworkService {
             method: 'DELETE',
             headers: this.baseHeaders,
         });
-        this.defaultFetch(request, callback);
+        this.http(request, callback);
     }
 
 }

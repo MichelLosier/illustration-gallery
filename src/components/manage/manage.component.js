@@ -11,13 +11,14 @@ class Manage extends React.Component {
 
     render(){
         return(
-            <div>
+            <div class="width-12">
                 <h2>Management</h2>
-                <Route
-                    exact path="/manage/"
-                    render={null}
-                />
-                <ArtworkForm/>
+                <div class="layout-container">
+                    <Route
+                        exact path="/manage/"
+                        component={ArtworkForm}
+                    />
+                </div>
             </div>
         )
     }
