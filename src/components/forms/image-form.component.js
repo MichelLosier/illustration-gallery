@@ -30,14 +30,18 @@ class ImageForm extends React.Component {
     render(){
         return(
             <div 
-                className="padded-group border width-12 gallery-fixed-height"
+                className="padded-group border width-12 gallery-fixed-height column-centered overlay-container"
                 onClick={this.handleClick}
             >
                 <Image
                     altText={this.props.altText}
                     url={this.props.url}
                 />
-                {this.state.showFields && this.props.children}
+                {this.state.showFields && 
+                    <div className="overlay column-centered">
+                        {this.props.children}
+                    </div>
+                }
             </div>
         )
     }

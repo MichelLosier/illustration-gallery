@@ -12,13 +12,11 @@ class Image extends React.Component{
 
     render(){
         return(
-            <div>
-                <img
-                    className="contained"
-                    src={this.props.url}
-                    alt={this.props.altText}
-                />
-            </div>
+            <img
+                className="contained"
+                src={this.props.url}
+                alt={this.props.altText}
+            />
         )
     }
 }

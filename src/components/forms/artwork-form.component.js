@@ -78,10 +78,10 @@ class ArtworkForm extends React.Component {
             <div className="min-width-40 width-6">
                 <h3>Create Artwork</h3>
                 <form onSubmit={this.handleFormSubmit}>
-                    <div class="padded-group">
+                    <div className="padded-group">
                         <ImageForm
                             altText={this.state.altText}
-                            url={null}
+                            url="https://s3-us-west-2.amazonaws.com/mlosier/Fireweed_logo.png"
                         >
                             <Field
                                 placeholder='URL to Image'
@@ -100,6 +100,8 @@ class ArtworkForm extends React.Component {
                                 validate={false}
                             />
                         </ImageForm>
+                    </div>
+                    <div className="padded-group">
 
                         <Field
                             placeholder='Caption'
@@ -119,7 +121,7 @@ class ArtworkForm extends React.Component {
                             validate={false}                   
                         />
                     </div>
-                    <div class="padded-group">
+                    <div className="padded-group">
                         <input type='submit' value="Submit" disabled={this.validate()} />
                     </div>
                 </form>
