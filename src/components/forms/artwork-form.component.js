@@ -11,11 +11,21 @@ class ArtworkForm extends React.Component {
         this.state = {
             fields: {
                 caption: '',
-                altText: '',
                 description: '',
-                previewImage:'', //listing views
-                normalImage:'', // gallery view
-                largeImage:'', // in detail view
+                images:{
+                    previewImage: { //listing views
+                        url:'',
+                        altText:''
+                    }, 
+                    normalImage:{ // gallery view
+                        url:'',
+                        altText:''
+                    }, 
+                    largeImage:{ // in detail view
+                        url:'',
+                        altText:''
+                    } 
+                }
             },
             fieldErrors: {
 
@@ -24,70 +34,98 @@ class ArtworkForm extends React.Component {
                 tags:[],
                 projects:[]
             },
-            selectedImage: 'LARGE_IMAGE',
-            selectedArtwork: null
+            selectedImage: 'largeImage',
+            artwork: null
         }
+    }
+
+    static propTypes = {
+        onSubmit: PropTypes.string,
+        artwork: PropTypes.object
     }
     
     handleFormSubmit = (evt) => {
-        const people = this.state.people;
-        const person = this.state.fields;
+        const s = this.state
+        const artwork = Object.assign({}, s.artwork, s.fields, s.collections) //merge form state into artwork object state
     
         evt.preventDefault();
     
         if (this.validate()) return;
-    
+
+        console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
         this.setState({
-            people: people.concat(person),
             fields: {
                 caption: '',
-                altText: '',
                 description: '',
-                previewImage:'', //listing views
-                normalImage:'', // gallery view
-                largeImage:'', // in detail view
+                images: {
+                    previewImage: { //listing views
+                        url:'',
+                        altText:''
+                    }, 
+                    normalImage:{ // gallery view
+                        url:'',
+                        altText:''
+                    }, 
+                    largeImage:{ // in detail view
+                        url:'',
+                        altText:''
+                    } 
+                }
             },
+            collections: {
+                tags:[],
+                projects:[]
+            },
+            artwork: null
         });
     };
     
     handleInputChange = ({ name, value, error }) => {
         const fields = this.state.fields;
         const fieldErrors = this.state.fieldErrors;
+        const selectedImage = this.state.selectedImage;
 
-        fields[name] = value;
-        fieldErrors[name] = error;
+        if (fields.images[selectedImage].hasOwnProperty(name)){
+            fields.images[selectedImage][name] = value;
+            fieldErrors[`${selectedImage}${name}`] = error;
+        } else {
+            fields[name] = value;
+            fieldErrors[name] = error;
+        }  
 
         this.setState({ fields, fieldErrors });
     };
+
+    handleImageSelect = (image) => {
+        this.setState({selectedImage: image});
+    }
     
     validate = () => {
-        const person = this.state.fields;
+        const artwork = this.state.fields;
         const fieldErrors = this.state.fieldErrors;
         const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k]);
-
-        if (!person.name) return true;
-        if (!person.email) return true;
-        if (errMessages.length) return true;
 
         return false;
     };
     
     render() {
         const fields = this.state.fields;
+        const selectedImage = this.state.selectedImage;
         return (
             <div className="min-width-40 width-6">
                 <h3>Create Artwork</h3>
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="padded-group">
                         <ImageForm
-                            altText={this.state.altText}
+                            onImageSelect={this.handleImageSelect}
+                            altText={fields.images[selectedImage].altText}
                             url="https://s3-us-west-2.amazonaws.com/mlosier/Fireweed_logo.png"
                         >
                             <Field
                                 placeholder='URL to Image'
-                                name='largeImage'
+                                name='url'
                                 label='Hi-Res Detail Image'
-                                value={fields.largeImage}
+                                value={fields.images[selectedImage].url}
                                 onChange={this.handleInputChange}
                                 validate={false}
                             />
@@ -95,7 +133,7 @@ class ArtworkForm extends React.Component {
                                 placeholder='alt-text description'
                                 name='altText'
                                 label='Alt-Text'
-                                value={fields.altText}
+                                value={fields.images[selectedImage].altText}
                                 onChange={this.handleInputChange}
                                 validate={false}
                             />

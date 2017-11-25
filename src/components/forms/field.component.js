@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+//TODO
+//Optional textarea element depending on prop
+//Styling controlled by form-group class 
+//.form-group textarea
+
 class Field extends React.Component {
     constructor(props){
         super(props)

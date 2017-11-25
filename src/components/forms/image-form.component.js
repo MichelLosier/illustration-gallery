@@ -10,6 +10,7 @@ class ImageForm extends React.Component {
             showFields: false
         }
     }
+    
     componentWillMount(){
         if (!this.props.url){
             this.setState({
@@ -17,6 +18,7 @@ class ImageForm extends React.Component {
             });
         }
     }
+    
     handleClick = () => {
         if(this.props.url && !this.state.showFields){
             this.setState((prevState) => {

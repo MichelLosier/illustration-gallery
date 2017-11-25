@@ -11,9 +11,9 @@ class Manage extends React.Component {
 
     render(){
         return(
-            <div class="width-12">
+            <div className="width-12">
                 <h2>Management</h2>
-                <div class="layout-container">
+                <div className="layout-container">
                     <Route
                         exact path="/manage/"
                         component={ArtworkForm}
