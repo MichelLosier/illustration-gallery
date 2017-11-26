@@ -22,7 +22,7 @@ class ArtworkForm extends React.Component {
                         altText:''
                     }, 
                     largeImage:{ // in detail view
-                        url:'',
+                        url:'https://s3-us-west-2.amazonaws.com/mlosier/Fireweed_logo.png',
                         altText:''
                     } 
                 }
@@ -85,7 +85,7 @@ class ArtworkForm extends React.Component {
         const fieldErrors = this.state.fieldErrors;
         const selectedImage = this.state.selectedImage;
 
-        if (fields.images[selectedImage].hasOwnProperty(name)){
+        if (name in fields.images[selectedImage]){
             fields.images[selectedImage][name] = value;
             fieldErrors[`${selectedImage}${name}`] = error;
         } else {
@@ -117,27 +117,11 @@ class ArtworkForm extends React.Component {
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="padded-group">
                         <ImageForm
+                            onInputChange={this.handleInputChange}
                             onImageSelect={this.handleImageSelect}
-                            altText={fields.images[selectedImage].altText}
-                            url="https://s3-us-west-2.amazonaws.com/mlosier/Fireweed_logo.png"
-                        >
-                            <Field
-                                placeholder='URL to Image'
-                                name='url'
-                                label='Hi-Res Detail Image'
-                                value={fields.images[selectedImage].url}
-                                onChange={this.handleInputChange}
-                                validate={false}
-                            />
-                            <Field
-                                placeholder='alt-text description'
-                                name='altText'
-                                label='Alt-Text'
-                                value={fields.images[selectedImage].altText}
-                                onChange={this.handleInputChange}
-                                validate={false}
-                            />
-                        </ImageForm>
+                            images={fields.images}
+                            selectedImage={selectedImage}
+                        />
                     </div>
                     <div className="padded-group">
 
