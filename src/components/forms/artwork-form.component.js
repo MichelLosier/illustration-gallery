@@ -37,13 +37,19 @@ class ArtworkForm extends React.Component {
             selectedImage: 'largeImage',
             artwork: null
         }
+        this.imageFormLabelMap = {
+            previewImage: 'Preview Image',
+            normalImage: 'Gallery Image',
+            largeImage: 'Hi-Res Detail Image'
+        }
     }
+
 
     static propTypes = {
         onSubmit: PropTypes.string,
         artwork: PropTypes.object
     }
-    
+
     handleFormSubmit = (evt) => {
         const s = this.state
         const artwork = Object.assign({}, s.artwork, s.fields, s.collections) //merge form state into artwork object state
@@ -121,6 +127,7 @@ class ArtworkForm extends React.Component {
                             onImageSelect={this.handleImageSelect}
                             images={fields.images}
                             selectedImage={selectedImage}
+                            labelMap={this.imageFormLabelMap}
                         />
                     </div>
                     <div className="padded-group">

@@ -15,16 +15,25 @@ class ImageForm extends React.Component {
     
     componentWillMount(){
         const p = this.props;
-        if (!p.images[p.selectedImage].url){
+        const image = p.images[p.selectedImage];
+        if (!image.url.length > 0 ){
             this.setState({
                 showFields: true
             });
         }
     }
+
+    componentWillReceiveProps(nextProps){
+        const showFields = (nextProps.images[nextProps.selectedImage].url.length > 0)?
+            false:true;
+        this.setState({
+            showFields: showFields
+        })
+    }
     
     handleEditClick = () => {
         const p = this.props;
-        if(p.images[p.selectedImage].url && !this.state.showFields){
+        if((!p.images[p.selectedImage].url.length > 0) && !this.state.showFields){
             this.setState((prevState) => {
                 return {
                     showFields: !prevState.showFields
@@ -64,7 +73,7 @@ class ImageForm extends React.Component {
                     <a 
                         onClick={this.handleImageSelection}
                         id={key}
-                    >{key}</a>
+                    >{this.props.labelMap[key]}</a>
                 </li>
             )
         });
@@ -103,13 +112,13 @@ class ImageForm extends React.Component {
                             />
                         </div>
                     }
-                    {this.state.showFields && 
+                    {(this.state.showFields)&& 
                         <div className="overlay column-centered">
                             <div className = "padded-group">
                                 <Field
                                     placeholder='URL to Image'
                                     name='url'
-                                    label='Hi-Res Detail Image'
+                                    label={this.props.labelMap[selectedImage]}
                                     value={images[selectedImage].url}
                                     onChange={this.props.onInputChange}
                                     validate={false}
