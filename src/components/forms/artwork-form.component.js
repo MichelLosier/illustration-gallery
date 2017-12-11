@@ -5,6 +5,7 @@ import Field from './field.component';
 import ArtworkService from '../../services/artwork.service'
 import ImageForm from './image-form.component';
 
+const Artwork$ = new ArtworkService();
 class ArtworkForm extends React.Component {
     constructor(){
         super()
@@ -59,30 +60,32 @@ class ArtworkForm extends React.Component {
         if (this.validate()) return;
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
-        this.setState({
-            fields: {
-                caption: '',
-                description: '',
-                images: {
-                    previewImage: { //listing views
-                        url:'',
-                        altText:''
-                    }, 
-                    normalImage:{ // gallery view
-                        url:'',
-                        altText:''
-                    }, 
-                    largeImage:{ // in detail view
-                        url:'',
-                        altText:''
-                    } 
-                }
-            },
-            collections: {
-                tags:[],
-                projects:[]
-            },
-            artwork: null
+        Artwork$.createArtwork(artwork, (data) => {
+            this.setState({
+                fields: {
+                    caption: '',
+                    description: '',
+                    images: {
+                        previewImage: { //listing views
+                            url:'',
+                            altText:''
+                        }, 
+                        normalImage:{ // gallery view
+                            url:'',
+                            altText:''
+                        }, 
+                        largeImage:{ // in detail view
+                            url:'',
+                            altText:''
+                        } 
+                    }
+                },
+                collections: {
+                    tags:[],
+                    projects:[]
+                },
+                artwork: null
+            });
         });
     };
     

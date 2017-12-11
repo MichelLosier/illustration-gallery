@@ -33,13 +33,11 @@ class ImageForm extends React.Component {
     
     handleEditClick = () => {
         const p = this.props;
-        if((!p.images[p.selectedImage].url.length > 0) && !this.state.showFields){
-            this.setState((prevState) => {
-                return {
-                    showFields: !prevState.showFields
-                }
-            });
-        }
+        this.setState((prevState) => {
+            return {
+                showFields: true
+            }
+        });
     }
 
     handleCancelClick = () => {
