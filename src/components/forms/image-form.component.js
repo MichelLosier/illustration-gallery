@@ -24,11 +24,7 @@ class ImageForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const showFields = (nextProps.images[nextProps.selectedImage].url.length > 0)?
-            false:true;
-        this.setState({
-            showFields: showFields
-        })
+
     }
     
     handleEditClick = () => {
@@ -40,7 +36,7 @@ class ImageForm extends React.Component {
         });
     }
 
-    handleCancelClick = () => {
+    handleDoneClick = () => {
         this.setState(
             {
                 showFields: false,
@@ -63,6 +59,12 @@ class ImageForm extends React.Component {
     handleImageSelection = (evt) => {
         evt.preventDefault();
         this.props.onImageSelect(evt.target.id);
+        const showFields = (this.props.images[evt.target.id].url.length > 0)?
+            false:true;
+        this.setState({
+            showFields: showFields,
+            showButtons: false
+         })
     }
     imageLinks = () => {
         const images = Object.keys(this.props.images).map((key) => {
@@ -70,6 +72,7 @@ class ImageForm extends React.Component {
                 <li key={key}> 
                     <a 
                         onClick={this.handleImageSelection}
+                        className={(this.props.selectedImage == key)? "active" : null}
                         id={key}
                     >{this.props.labelMap[key]}</a>
                 </li>
@@ -133,8 +136,8 @@ class ImageForm extends React.Component {
                             <div className="padded-group">
                                 <input 
                                     type='button' 
-                                    value="cancel" 
-                                    onClick={this.handleCancelClick}
+                                    value="Done" 
+                                    onClick={this.handleDoneClick}
                                 />
                             </div>
                         </div>
