@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Field from './field.component';
-import ArtworkService from '../../services/artwork.service'
+import CollectionField from './collection-field.component';
+import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
 
 const Artwork$ = new ArtworkService();
@@ -108,6 +109,24 @@ class ArtworkForm extends React.Component {
     handleImageSelect = (image) => {
         this.setState({selectedImage: image});
     }
+
+    handleCollectionChange = ({name, value, action}) => {
+        this.setState((prevState) => {
+            console.log(`${name}, ${action}, ${value}`)
+            const newState = Object.assign({}, prevState);
+            const collection = prevState.collections[name]
+            if (action == 'ADD' && collection.indexOf(value) < 0){
+               newState.collections[name] = [
+                    ...collection, value
+                ]
+            } else if ( action == 'DELETE') {
+                newState.collections[name] = collection.filter((item)=>{
+                    return item !== value
+                })
+            }
+            return newState;
+        })
+    }
     
     validate = () => {
         const artwork = this.state.fields;
@@ -151,6 +170,16 @@ class ArtworkForm extends React.Component {
                             value={fields.description}
                             onChange={this.handleInputChange}
                             validate={false}                   
+                        />
+                    </div>
+                    <div className="padded-group">
+                        <CollectionField
+                            collection={this.state.collections.tags}
+                            placeHolder='add new tag'
+                            name='tags'
+                            validate={null}
+                            onChange={this.handleCollectionChange}
+                            label='Tags'
                         />
                     </div>
                     <div className="padded-group">

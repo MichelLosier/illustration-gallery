@@ -24,7 +24,13 @@ class ImageForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-
+        const p = this.props;
+        const image = p.images[p.selectedImage];
+        if (!image.url.length > 0 ){
+            this.setState({
+                showFields: true
+            });
+        }
     }
     
     handleEditClick = () => {

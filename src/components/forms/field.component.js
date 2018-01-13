@@ -48,6 +48,7 @@ class Field extends React.Component {
                     value={this.state.value}
                     onChange={this.onChange}
                 />
+                {this.props.children}
                  <span style={{ color: 'red' }}>{ this.state.error }</span>
             </div>
         );
