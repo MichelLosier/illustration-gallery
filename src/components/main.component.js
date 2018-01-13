@@ -24,9 +24,9 @@ class Main extends React.Component {
         return(
             <div>
                 <div className="main-header layout-container">
-                    <div class="header">
+                    <div className="header">
                         <Link to={`/`}>
-                            <h1>Michel Losier</h1>
+                            <h1>Gallery</h1>
                         </Link>
                     </div>
                     <NavBar/>
