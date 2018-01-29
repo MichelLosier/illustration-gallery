@@ -246,11 +246,13 @@ input[type='submit']:hover{
 .gallery-fixed-height{
 	height: 500px;
 }
-
+.preview-fixed-height{
+	height: 250px;
+}
 img.contained { 
 	display:block;
-	max-width:100%;
 	height:inherit; /*default*/
 	width: auto; 
 	margin: 0 auto;
 }
+
