@@ -3,7 +3,7 @@ import React from 'react';
 import {Route, Link} from 'react-router-dom'
 import ArtworkForm from '../forms/artwork-form.component';
 
-class Manage extends React.Component {
+class ArtworkManage extends React.Component {
     constructor(){
         super();
         this.state = {}
@@ -12,16 +12,13 @@ class Manage extends React.Component {
     render(){
         return(
             <div className="width-12">
-                <h2>Management</h2>
+                <h2>Manage Artwork</h2>
                 <div className="layout-container">
-                    <Route
-                        exact path="/manage/"
-                        component={ArtworkForm}
-                    />
+                    <ArtworkForm/>
                 </div>
             </div>
         )
     }
 }
 
-export default Manage;
+export default ArtworkManage;

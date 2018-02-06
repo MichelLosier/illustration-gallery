@@ -14,20 +14,20 @@ class NavBar extends React.Component {
                     <li>
                         <Link 
                             className="button hover-border"
-                            to={`/about`}
-                        >about</Link>
+                            to={`/artwork`}
+                        >Artwork</Link>
                     </li>
                     <li>
                         <Link 
                             className="button hover-border"
-                            to={`/projects/illustration`}
-                        >illustration</Link>
+                            to={`/projects`}
+                        >Projects</Link>
                     </li>
                     <li>
                         <Link 
                             className="button hover-border"
-                            to={`/projects/comics`}
-                        >comics</Link>
+                            to={`/config`}
+                        >Configuration</Link>
                     </li>
                 </ul>
             </div>
