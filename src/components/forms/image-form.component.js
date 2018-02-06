@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-import Field from './field.component'
-import Image from '../image.component'
+import Field from './field.component';
+import Image from '../image.component';
+import ImageUpload from './image-upload.component';
 //TODO
 class ImageForm extends React.Component {
     constructor(props){
@@ -121,6 +122,9 @@ class ImageForm extends React.Component {
                     }
                     {(this.state.showFields)&& 
                         <div className="overlay column-centered">
+                            <div className="padded-group">
+                                <ImageUpload/>
+                            </div>
                             <div className = "padded-group">
                                 <Field
                                     placeholder='URL to Image'
