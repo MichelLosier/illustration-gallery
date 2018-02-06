@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
 import NavBar from './nav-bar.component'
-import Manage from './manage/manage.component';
+import ArtworkManage from './views/artwork-manage.component';
 
 // import '../main.css';
 
@@ -26,7 +26,7 @@ class Main extends React.Component {
                 <div className="main-header layout-container">
                     <div className="header">
                         <Link to={`/`}>
-                            <h1>Gallery</h1>
+                            <h1>Manage Portfolio</h1>
                         </Link>
                     </div>
                     <NavBar/>
@@ -37,20 +37,8 @@ class Main extends React.Component {
                         render={(props) => this.feed(props)}
                     />
                     <Route
-                        path="/about"
-                        render={null}
-                    />
-                    <Route
-                        path="/projects/:category"
-                        render={null}
-                    />
-                    <Route
-                        path="/projects/detail/:id"
-                        render={null}
-                    />
-                    <Route
-                        path="/manage"
-                        component={Manage}
+                        path="/artwork/"
+                        component={ArtworkManage}
                     />
                 </div>
                 <div className="main-footer layout-container">
