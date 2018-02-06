@@ -194,8 +194,8 @@ form {
 	display: flex;
 }
 .form-group label {
+	padding: 0.5rem;
 	width: 25%;
-	margin-right: 1rem;
 	justify-content: center;
 }
 .form-group input[type='button']{
