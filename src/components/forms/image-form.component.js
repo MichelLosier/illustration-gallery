@@ -122,9 +122,9 @@ class ImageForm extends React.Component {
                     }
                     {(this.state.showFields)&& 
                         <div className="overlay column-centered">
-                            <div className="padded-group">
+                            {/* <div className="padded-group">
                                 <ImageUpload/>
-                            </div>
+                            </div> */}
                             <div className = "padded-group">
                                 <Field
                                     placeholder='URL to Image'

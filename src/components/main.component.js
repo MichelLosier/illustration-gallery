@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 
 import NavBar from './nav-bar.component'
 import ArtworkManage from './views/artwork-manage.component';
+import ProjectManage from './views/project-manage.component';
 
 // import '../main.css';
 
@@ -39,6 +40,10 @@ class Main extends React.Component {
                     <Route
                         path="/artwork/"
                         component={ArtworkManage}
+                    />
+                    <Route
+                        path="/projects/"
+                        component={ProjectManage}
                     />
                 </div>
                 <div className="main-footer layout-container">

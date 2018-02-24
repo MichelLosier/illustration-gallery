@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Field from './field.component';
 
-class CollectionField extends React.Component {
+
+class TagManage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -10,12 +11,11 @@ class CollectionField extends React.Component {
         }
     }
     static propTypes = {
-        collection: PropTypes.array,
         placeholder: PropTypes.string,
         name: PropTypes.string.isRequired,
         validate: PropTypes.func,
         onChange: PropTypes.func.isRequired,
-        label: PropTypes.string
+        label: PropTypes.string,
     }
 
     handleCollectionChange = (action) => {
@@ -91,4 +91,4 @@ class CollectionField extends React.Component {
     }
 }
 
-export default CollectionField
+export default TagManage
