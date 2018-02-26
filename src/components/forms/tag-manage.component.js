@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Field from './field.component';
 
-class CollectionField extends React.Component {
+
+class TagManage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -10,22 +11,21 @@ class CollectionField extends React.Component {
         }
     }
     static propTypes = {
-        collection: PropTypes.array,
         placeholder: PropTypes.string,
         name: PropTypes.string.isRequired,
         validate: PropTypes.func,
         onChange: PropTypes.func.isRequired,
-        label: PropTypes.string
+        label: PropTypes.string,
     }
 
     handleCollectionChange = (action) => {
         return (evt) => {
             this.props.onChange({
                 name: this.props.name,
-                value: (action == 'ADD')? this.state.field : evt.target.dataset.value,
+                value: (action == 'CREATE')? this.state.field : evt.target.dataset.value,
                 action: action
             });
-            if (action == 'ADD'){
+            if (action == 'CREATE'){
                 this.setState({
                     field: ''
                 })
@@ -79,7 +79,7 @@ class CollectionField extends React.Component {
                     <input
                         type='button'
                         value='Add'
-                        onClick={this.handleCollectionChange('ADD')}
+                        onClick={this.handleCollectionChange('CREATE')}
                     />
                 </Field>
 
@@ -91,4 +91,4 @@ class CollectionField extends React.Component {
     }
 }
 
-export default CollectionField
+export default TagManage

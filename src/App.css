@@ -256,3 +256,31 @@ img.contained {
 	margin: 0 auto;
 }
 
+.gallery-flex-container {
+    display:flex;
+    flex-wrap: wrap;
+	justify-content: space-evenly;
+    align-items:center;
+    height: 500px;
+    overflow-y: scroll;
+    border: 1px solid #666;
+	padding: 0 1rem;
+}
+
+.gallery-flex-container li {
+	margin: 1rem;
+	list-style: none;
+    border: 1px solid #666;
+    height: 150px;
+    flex-grow: 0;
+}
+
+.gallery-flex-container li:hover {
+	border: 1px solid #e26e26;
+	cursor: pointer;
+}
+
+/* li artwork-card {
+    height: 250px;
+    width: 250px
+} */

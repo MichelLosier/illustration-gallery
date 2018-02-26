@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Field from './field.component';
-import CollectionField from './collection-field.component';
+import TagManage from './tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
 
 const Artwork$ = new ArtworkService();
+
 class ArtworkForm extends React.Component {
     constructor(){
         super()
@@ -24,7 +25,7 @@ class ArtworkForm extends React.Component {
                         altText:''
                     }, 
                     largeImage:{ // in detail view
-                        url:'https://s3-us-west-2.amazonaws.com/mlosier/Fireweed_logo.png',
+                        url:'',
                         altText:''
                     } 
                 }
@@ -37,7 +38,8 @@ class ArtworkForm extends React.Component {
                 projects:[]
             },
             selectedImage: 'largeImage',
-            artwork: null
+            artwork: null,
+            actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
             previewImage: 'Preview Image',
@@ -62,6 +64,11 @@ class ArtworkForm extends React.Component {
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
         Artwork$.createArtwork(artwork, (data) => {
+            if (this.props.onFormSubmit){this.props.onFormSubmit({
+                    data: data, 
+                    action: this.state.actionType
+                })
+            };
             this.setState({
                 fields: {
                     caption: '',
@@ -115,7 +122,8 @@ class ArtworkForm extends React.Component {
             console.log(`${name}, ${action}, ${value}`)
             const newState = Object.assign({}, prevState);
             const collection = prevState.collections[name]
-            if (action == 'ADD' && collection.indexOf(value) < 0){
+
+            if (action == 'CREATE' && collection.indexOf(value) < 0){
                newState.collections[name] = [
                     ...collection, value
                 ]
@@ -173,7 +181,7 @@ class ArtworkForm extends React.Component {
                         />
                     </div>
                     <div className="padded-group">
-                        <CollectionField
+                        <TagManage
                             collection={this.state.collections.tags}
                             placeHolder='add new tag'
                             name='tags'
