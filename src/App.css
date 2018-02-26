@@ -271,7 +271,7 @@ img.contained {
 	margin: 1rem;
 	list-style: none;
     border: 1px solid #666;
-    width: 150px;
+    height: 150px;
     flex-grow: 0;
 }
 

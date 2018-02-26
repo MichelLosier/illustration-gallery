@@ -6,8 +6,10 @@ import TagManage from './tag-manage.component';
 import ProjectGalleryManage from './project-gallery-manage.component';
 
 import ProjectService from '../../services/project.service';
+import ArtworkService from '../../services/artwork.service';
 
 const Project$ = new ProjectService();
+const Artwork$ = new ArtworkService();
 
 class ProjectForm extends React.Component {
     constructor(){
@@ -28,6 +30,7 @@ class ProjectForm extends React.Component {
             },
             selectedProject: null,
             showGallery: false,
+            newArtworks: []
         }
 
     }
@@ -56,6 +59,12 @@ class ProjectForm extends React.Component {
 
         console.log(`Submitted Project: ${JSON.stringify(project)}`);
         Project$.createProject(project, (data) => {
+            if (s.newArtworks.length > 0) {
+                Artwork$.updateArtworks({
+                    artworks: [...s.newArtworks],
+                    keys: {$push: {projects: data._id}}
+                })
+            }
             this.setState({
                 fields: {
                     name: '',
@@ -69,6 +78,7 @@ class ProjectForm extends React.Component {
                 },
                 selectedProject: null,
                 showGallery: false,
+                newArtworks: []
             })
         })
 
@@ -94,6 +104,11 @@ class ProjectForm extends React.Component {
                newState.collections[name] = [
                     ...collection, value
                 ]
+                if(name == 'gallery'){ 
+                    newState.newArtworks = [
+                        ...prevState.newArtworks, value._id
+                    ]
+                }
             } else if (action == 'UPDATE') {
                 const i = newState.collections[name].findIndex((item) => {
                     return item._id == value._id
@@ -141,7 +156,7 @@ class ProjectForm extends React.Component {
                 </div>
                 {(this.state.showGallery) ? (
                     <ProjectGalleryManage
-                        gallery={this.state.gallery}
+                        gallery={this.state.collections.gallery}
                         onGalleryChange={this.handleCollectionChange}
                     />
                 ) : (

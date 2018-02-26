@@ -8,7 +8,8 @@ class ProjectGalleryManage extends React.Component {
     constructor(){
         super()
         this.state = {
-            addArtwork: false
+            addArtwork: false,
+            newArtwork: true
         }
     }
     handleArtworkChange = ({data, action}) => {

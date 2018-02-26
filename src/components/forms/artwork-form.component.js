@@ -64,7 +64,11 @@ class ArtworkForm extends React.Component {
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
         Artwork$.createArtwork(artwork, (data) => {
-            if (this.props.onFormSubmit){this.props.onFormSubmit(data, this.actionType)};
+            if (this.props.onFormSubmit){this.props.onFormSubmit({
+                    data: data, 
+                    action: this.state.actionType
+                })
+            };
             this.setState({
                 fields: {
                     caption: '',

@@ -26,7 +26,7 @@ class Gallery extends React.Component {
             <div 
                 className="gallery-flex-container"
             >
-                {this.galleryImages}
+                {this.galleryImages()}
             </div>
         )
     }
