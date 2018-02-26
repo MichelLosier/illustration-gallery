@@ -22,10 +22,10 @@ class TagManage extends React.Component {
         return (evt) => {
             this.props.onChange({
                 name: this.props.name,
-                value: (action == 'ADD')? this.state.field : evt.target.dataset.value,
+                value: (action == 'CREATE')? this.state.field : evt.target.dataset.value,
                 action: action
             });
-            if (action == 'ADD'){
+            if (action == 'CREATE'){
                 this.setState({
                     field: ''
                 })
@@ -79,7 +79,7 @@ class TagManage extends React.Component {
                     <input
                         type='button'
                         value='Add'
-                        onClick={this.handleCollectionChange('ADD')}
+                        onClick={this.handleCollectionChange('CREATE')}
                     />
                 </Field>
 

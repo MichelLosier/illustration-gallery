@@ -38,7 +38,8 @@ class ArtworkForm extends React.Component {
                 projects:[]
             },
             selectedImage: 'largeImage',
-            artwork: null
+            artwork: null,
+            actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
             previewImage: 'Preview Image',
@@ -63,6 +64,7 @@ class ArtworkForm extends React.Component {
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
         Artwork$.createArtwork(artwork, (data) => {
+            if (this.props.onFormSubmit){this.props.onFormSubmit(data, this.actionType)};
             this.setState({
                 fields: {
                     caption: '',
@@ -117,7 +119,7 @@ class ArtworkForm extends React.Component {
             const newState = Object.assign({}, prevState);
             const collection = prevState.collections[name]
 
-            if (action == 'ADD' && collection.indexOf(value) < 0){
+            if (action == 'CREATE' && collection.indexOf(value) < 0){
                newState.collections[name] = [
                     ...collection, value
                 ]

@@ -5,6 +5,10 @@ import Field from './field.component';
 import TagManage from './tag-manage.component';
 import ProjectGalleryManage from './project-gallery-manage.component';
 
+import ProjectService from '../../services/project.service';
+
+const Project$ = new ProjectService();
+
 class ProjectForm extends React.Component {
     constructor(){
         super()
@@ -23,8 +27,9 @@ class ProjectForm extends React.Component {
                 tags: []
             },
             selectedProject: null,
-            showGallery: false
+            showGallery: false,
         }
+
     }
 
     static propTypes = {
@@ -32,21 +37,88 @@ class ProjectForm extends React.Component {
         onSubmit: PropTypes.func
     }
 
+
     handleFormSubmit = (evt) => {
+        const s = this.state
+        const artworks = s.collections.gallery.map((artwork) => {
+            return artwork._id
+        });
+        const project = Object.assign({}, 
+            s.selectedProject, 
+            s.fields, 
+            s.collections.tags, 
+            {gallery: artworks}
+        ) //merge form state into project object state
+    
+        evt.preventDefault();
+    
+        if (this.validate()) return;
+
+        console.log(`Submitted Project: ${JSON.stringify(project)}`);
+        Project$.createProject(project, (data) => {
+            this.setState({
+                fields: {
+                    name: '',
+                    description: '',
+                    featuredImage: null,
+                    category: ''
+                },
+                collections: {
+                    gallery: [],
+                    tags: []
+                },
+                selectedProject: null,
+                showGallery: false,
+            })
+        })
 
     }
 
     handleInputChange = ({name, value, error}) => {
+        const fields = this.state.fields;
+        const fieldErrors = this.state.fieldErrors;
 
+        fields[name] = value;
+        fieldErrors[name] = error; 
+
+        this.setState({ fields, fieldErrors });
     }
 
     handleCollectionChange = ({name, value, action}) => {
+        this.setState((prevState) => {
+            console.log(`${name}, ${action}, ${value}`)
+            const newState = Object.assign({}, prevState);
+            const collection = prevState.collections[name]
 
+            if (action == 'CREATE' && collection.indexOf(value) < 0){
+               newState.collections[name] = [
+                    ...collection, value
+                ]
+            } else if (action == 'UPDATE') {
+                const i = newState.collections[name].findIndex((item) => {
+                    return item._id == value._id
+                });
+                return newState.collections[name][i] = value;
+            } else if ( action == 'DELETE') {
+                newState.collections[name] = collection.filter((item)=>{
+                    return item !== value
+                })
+            }
+            return newState;
+        })
     }
 
     handleFormTabClick = (bool) => {
         this.setState({showGallery: bool});
     }
+
+    validate = () => {
+        const project = this.state.fields;
+        const fieldErrors = this.state.fieldErrors;
+        const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k]);
+
+        return false;
+    };
 
     render() {
         const fields = this.state.fields;
@@ -58,17 +130,20 @@ class ProjectForm extends React.Component {
                         <li
                             onClick={() => {this.handleFormTabClick(false)}}
                         >
-                            Project Information
+                            <a>Project Information</a>
                         </li>
                         <li
                              onClick={() => {this.handleFormTabClick(true)}}
                         >
-                            Project Gallery
+                            <a>Project Gallery</a>
                         </li>
                     </ul>
                 </div>
                 {(this.state.showGallery) ? (
-                    <ProjectGalleryManage/>
+                    <ProjectGalleryManage
+                        gallery={this.state.gallery}
+                        onGalleryChange={this.handleCollectionChange}
+                    />
                 ) : (
                     <form onSubmit={this.handleFormSubmit}>
                         <div className="padded-group">
@@ -91,7 +166,7 @@ class ProjectForm extends React.Component {
                             <Field //change to dropdown selection
                                 placeholder='Category'
                                 name='category'
-                                label='category'
+                                label='Category'
                                 value={fields.category}
                                 onChange={this.handleInputChange}
                                 validate={false}
@@ -106,6 +181,9 @@ class ProjectForm extends React.Component {
                                 onChange={this.handleCollectionChange}
                                 label='Tags'
                             />
+                        </div>
+                        <div className="padded-group">
+                            <input type='submit' value="Submit" disabled={this.validate()} />
                         </div>
                     </form>
                 )}
