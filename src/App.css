@@ -1,7 +1,7 @@
 .App {
   	text-align: center;
   	font-family: helvetica, arial, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	color: #666;
 	font-weight:lighter;
 	background-color: #eee;
@@ -275,8 +275,11 @@ input[type='submit'], input[type='button'] {
 	border: 1px solid #e26e26;
 	padding: 1rem 2rem;
 	background-color: white;
-	font-size:1rem;
-  align-self: center;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: lighter;
+	color: #666;
+	font-size:1em;
+  	align-self: center;
 	cursor: pointer;
 }
 input[type='submit']:hover{
