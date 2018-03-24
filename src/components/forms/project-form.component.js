@@ -145,7 +145,7 @@ class ProjectForm extends React.Component {
         const fields = this.state.fields;
         return (
             <div className="min-width-40 width-6">
-                <h3>Create Project</h3>
+                
                 <FormTabs
                     tabMap={this.tabMap}
                     selectedKey={this.state.selectedTab}
@@ -158,6 +158,7 @@ class ProjectForm extends React.Component {
                     />
                 ) : (
                     <form className="border" onSubmit={this.handleFormSubmit}>
+                        <h3>Create Project</h3>
                         <div className="padded-group">
                             <Field
                                 placeholder='Project Name'

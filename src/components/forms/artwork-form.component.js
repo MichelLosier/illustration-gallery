@@ -149,10 +149,11 @@ class ArtworkForm extends React.Component {
         const selectedImage = this.state.selectedImage;
         return (
             <div className="min-width-40 width-6">
-                <h3>Create Artwork</h3>
+                
                 <form 
                     className="border"
                     onSubmit={this.handleFormSubmit}>
+                    <h3>Create Artwork</h3>
                     <div className="padded-group">
                         <ImageForm
                             onInputChange={this.handleInputChange}
