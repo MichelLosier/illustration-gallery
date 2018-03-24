@@ -1,9 +1,12 @@
 .App {
-  text-align: center;
-  font-family: helvetica, arial, sans-serif;
+  	text-align: center;
+  	font-family: helvetica, arial, sans-serif;
 	font-size: 12px;
 	color: #666;
 	font-weight:lighter;
+	background-color: #eee;
+	width: 100%;
+	height: 100%;
 }
 h1, h2, h3 {
 	letter-spacing: .1em;
@@ -28,12 +31,14 @@ a {
 .main-body{
   width: 75%;
   padding: 2rem;
+  background-color: #eee;
 }
 div.main-header {
   justify-content:flex-start;
   padding-top: 1rem;
 	flex-flow: wrap;
-	border-bottom: 1px solid #666
+	border-bottom: 1px solid #666;
+	background-color:white
 }
 div.header {
   flex-grow: 1;
@@ -42,18 +47,7 @@ div.main-nav {
   flex-grow: 7;
 }
 
-ul.link-list-x {
-	padding:0;
-	margin:0;
-	display:flex;
-	flex-flow: row nowrap;
-	justify-content: space-around;
-	align-items:center;
-}
 
-div.main-nav ul.link-list-x {
-
-}
 
 ul.flex-list-x {
 	padding: 1em;
@@ -91,13 +85,25 @@ div.delete {
 	cursor:pointer;
 }
 
+ul.link-list-x {
+	padding:0;
+	margin:0;
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items:center;
+}
+
+div.main-nav ul.link-list-x {
+
+}
 
 ul.link-list-x li {
 	height: 3rem;
 	display:inline-block;
 }
 
-ul.link-list-x a {
+ul.link-list-x a, ul.link-list-x p {
 	padding: 1rem;
 	display: inline-block;
 	box-sizing: border-box;
@@ -117,7 +123,46 @@ ul.link-list-x li:hover {
 
 ul.link-list-x a.active {
 	color: #e26e26;
+	border-bottom: .25rem solid #e26e26
 }
+
+
+/* tabs */
+ul.link-list-x.tabs {
+	justify-content: flex-start;
+	margin-bottom: -1px;
+	position: relative;
+	z-index:2;
+}
+
+ul.link-list-x.tabs li {
+	border: 1px solid #666;
+	background-color: #eee;
+	border-left: none;
+}
+ul.link-list-x.tabs li:hover {
+	color: #666;
+	border-bottom: 1px solid #666;
+	box-sizing: content-box
+}
+
+ul.link-list-x.tabs li.active {
+	border-bottom: 1px solid white;
+	background-color:rgb(255, 255, 255)
+}
+ul.link-list-x.tabs li.active:hover {
+	border-bottom:1px solid white;
+}
+
+ul.link-list-x.tabs li a:hover {
+	color: #666;
+}
+
+ul.link-list-x.tabs li:first-child {
+	border-left: 1px solid #666
+}
+
+
 
 /* Container width based on max 12 containers*/
 .component-container {
@@ -179,6 +224,7 @@ h3 {
 form {
 	padding:1rem;
 	transition: color 2s, border 2s;
+	background-color: white;
 }
 
 .padded-group {
@@ -255,7 +301,10 @@ img.contained {
 	width: auto; 
 	margin: 0 auto;
 }
-
+.module {
+	background-color:white;
+	padding: 2rem;
+}
 .gallery-flex-container {
     display:flex;
     flex-wrap: wrap;
@@ -263,7 +312,6 @@ img.contained {
     align-items:center;
     height: 500px;
     overflow-y: scroll;
-    border: 1px solid #666;
 	padding: 0 1rem;
 }
 

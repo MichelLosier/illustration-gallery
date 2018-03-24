@@ -42,9 +42,9 @@ class ArtworkForm extends React.Component {
             actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
-            previewImage: 'Preview Image',
-            normalImage: 'Gallery Image',
-            largeImage: 'Hi-Res Detail Image'
+            'largeImage': 'Hi-Res Detail Image',
+            'normalImage': 'Gallery Image',
+            'previewImage': 'Preview Image',
         }
     }
 
@@ -150,7 +150,9 @@ class ArtworkForm extends React.Component {
         return (
             <div className="min-width-40 width-6">
                 <h3>Create Artwork</h3>
-                <form onSubmit={this.handleFormSubmit}>
+                <form 
+                    className="border"
+                    onSubmit={this.handleFormSubmit}>
                     <div className="padded-group">
                         <ImageForm
                             onInputChange={this.handleInputChange}

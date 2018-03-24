@@ -27,7 +27,7 @@ class ProjectGalleryManage extends React.Component {
     }
     render() {
         return(
-            <div className="min-width-40 width-6">
+            <div className="min-width-40 width-6 border module">
                 {(this.state.addArtwork) ? (
                     <div>
                         Create or Select Existing
