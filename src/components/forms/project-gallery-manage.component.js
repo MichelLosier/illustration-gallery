@@ -9,9 +9,10 @@ class ProjectGalleryManage extends React.Component {
         super()
         this.state = {
             addArtwork: false,
-            newArtwork: true
+            viewGallery: true
         }
     }
+
     handleArtworkChange = ({data, action}) => {
         this.props.onGalleryChange({
             name: 'gallery',
@@ -20,26 +21,43 @@ class ProjectGalleryManage extends React.Component {
         });
     }
 
-    handleViewChange = (bool) => {
+    handleAddNew = (create) => {
         this.setState({
-            addArtwork: bool
+            addArtwork: true,
+            viewGallery: !create
         })
     }
-    render() {
+
+    handleCancel = () => {
+        this.setState({
+            addArtwork: false,
+            viewGallery: true
+        })
+    }
+
+    addArtworkButtons = () => {
         return(
-            <div className="min-width-40 width-6">
-                {(this.state.addArtwork) ? (
+            <div className='padded-group'>
+                <input 
+                    type="button"
+                    value="Create New"
+                    onClick={() => {this.handleAddNew(true)}}
+                />
+                <input 
+                    type="button"
+                    value="Add Existing"
+                    onClick={() => {this.handleAddNew(false)}}
+                />
+            </div>
+        )
+    }
+
+    render() {
+        const s = this.state;
+        return(
+            <div className="min-width-40 width-6 border module">
+                {(!s.viewGallery) ? (
                     <div>
-                        Create or Select Existing
-                        <div
-                            className='padded-group'
-                        >
-                            <input
-                                type="button"
-                                value="View Gallery"
-                                onClick={() => {this.handleViewChange(false)}}
-                            />
-                        </div>
                         <ArtworkForm
                             onFormSubmit={this.handleArtworkChange}
                         />
@@ -49,15 +67,7 @@ class ProjectGalleryManage extends React.Component {
                         <Gallery
                             artworks={this.props.gallery}
                         />
-                        <div
-                            className='padded-group'
-                        >
-                            <input
-                                type="button"
-                                value="Add New Artwork"
-                                onClick={() => {this.handleViewChange(true)}}
-                            />
-                        </div>
+                        {!s.addArtwork && this.addArtworkButtons()}
                     </div>
                 )}
             </div>

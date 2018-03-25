@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Field from './field.component';
 import TagManage from './tag-manage.component';
+import FormTabs from './form-tabs.component';
+
 import ProjectGalleryManage from './project-gallery-manage.component';
 
 import ProjectService from '../../services/project.service';
@@ -29,8 +31,12 @@ class ProjectForm extends React.Component {
                 tags: []
             },
             selectedProject: null,
-            showGallery: false,
+            selectedTab: 'INFO',
             newArtworks: []
+        }
+        this.tabMap = {
+            'INFO':'Project Information',
+            'GALLERY':'Gallery'
         }
 
     }
@@ -77,7 +83,7 @@ class ProjectForm extends React.Component {
                     tags: []
                 },
                 selectedProject: null,
-                showGallery: false,
+                selectedTab: 'INFO',
                 newArtworks: []
             })
         })
@@ -123,8 +129,8 @@ class ProjectForm extends React.Component {
         })
     }
 
-    handleFormTabClick = (bool) => {
-        this.setState({showGallery: bool});
+    handleFormTabClick = (key) => {
+        this.setState({selectedTab: key});
     }
 
     validate = () => {
@@ -139,28 +145,20 @@ class ProjectForm extends React.Component {
         const fields = this.state.fields;
         return (
             <div className="min-width-40 width-6">
-                <h3>Create Project</h3>
-                <div>
-                    <ul className="link-list-x">
-                        <li
-                            onClick={() => {this.handleFormTabClick(false)}}
-                        >
-                            <a>Project Information</a>
-                        </li>
-                        <li
-                             onClick={() => {this.handleFormTabClick(true)}}
-                        >
-                            <a>Project Gallery</a>
-                        </li>
-                    </ul>
-                </div>
-                {(this.state.showGallery) ? (
+                
+                <FormTabs
+                    tabMap={this.tabMap}
+                    selectedKey={this.state.selectedTab}
+                    onSelection={this.handleFormTabClick}
+                />
+                {(this.state.selectedTab == 'GALLERY') ? (
                     <ProjectGalleryManage
                         gallery={this.state.collections.gallery}
                         onGalleryChange={this.handleCollectionChange}
                     />
                 ) : (
-                    <form onSubmit={this.handleFormSubmit}>
+                    <form className="border" onSubmit={this.handleFormSubmit}>
+                        <h3>Create Project</h3>
                         <div className="padded-group">
                             <Field
                                 placeholder='Project Name'

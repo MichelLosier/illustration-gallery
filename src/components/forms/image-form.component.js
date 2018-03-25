@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Field from './field.component';
+import FormTabs from './form-tabs.component';
 import Image from '../image.component';
 import ImageUpload from './image-upload.component';
 //TODO
@@ -63,33 +64,14 @@ class ImageForm extends React.Component {
             }
         }
     }
-    handleImageSelection = (evt) => {
-        evt.preventDefault();
-        this.props.onImageSelect(evt.target.id);
-        const showFields = (this.props.images[evt.target.id].url.length > 0)?
+    handleImageSelection = (key) => {
+        this.props.onImageSelect(key);
+        const showFields = (this.props.images[key].url.length > 0)?
             false:true;
         this.setState({
             showFields: showFields,
             showButtons: false
          })
-    }
-    imageLinks = () => {
-        const images = Object.keys(this.props.images).map((key) => {
-            return(
-                <li key={key}> 
-                    <a 
-                        onClick={this.handleImageSelection}
-                        className={(this.props.selectedImage == key)? "active" : null}
-                        id={key}
-                    >{this.props.labelMap[key]}</a>
-                </li>
-            )
-        });
-        return(
-            <ul className="link-list-x">
-                {images}
-            </ul>
-        )
     }
 
     render(){
@@ -97,9 +79,11 @@ class ImageForm extends React.Component {
         const images = this.props.images
         return(
             <div className="width-12 column-centered">
-                <div>
-                    {this.imageLinks()}
-                </div>
+                <FormTabs
+                    tabMap={this.props.labelMap}
+                    selectedKey={this.props.selectedImage}
+                    onSelection={this.handleImageSelection}
+                />
                 <div 
                     className="border padded-group gallery-fixed-height column-centered overlay-container"
                     onMouseEnter={this.handleMouse(true)}

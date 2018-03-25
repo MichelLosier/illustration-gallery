@@ -24,7 +24,7 @@ class Gallery extends React.Component {
     render() {
         return(
             <div 
-                className="gallery-flex-container"
+                className="gallery-flex-container border"
             >
                 {this.galleryImages()}
             </div>
