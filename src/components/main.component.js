@@ -11,6 +11,20 @@ class Main extends React.Component {
     constructor(){
         super();
         this.state = {}
+        this.linkMap = {
+            artwork: {
+                label:'Artwork',
+                path:'/artwork'
+            },
+            projects: {
+                label:'Projects',
+                path: '/projects'
+            },
+            config: {
+                label:'Configuration',
+                path:'/config'
+            }
+        }
     }
 
     feed(props){
@@ -30,7 +44,9 @@ class Main extends React.Component {
                             <h1>Manage Portfolio</h1>
                         </Link>
                     </div>
-                    <NavBar/>
+                    <NavBar
+                        linkMap={this.linkMap}
+                    />
                 </div>
                 <div className="main-body layout-container">
                     <Route

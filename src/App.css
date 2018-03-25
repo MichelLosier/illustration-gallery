@@ -109,21 +109,25 @@ ul.link-list-x a, ul.link-list-x p {
 	box-sizing: border-box;
 }
 
-ul.link-list-x a:hover {
+ul.link-list-x.nav a:hover {
 	cursor: pointer;
 	color: #e26e26;
 }
 
-ul.link-list-x li:hover {
+ul.link-list-x.nav li:hover {
 	cursor: pointer;
 	color: #e26e26;
 	border-bottom: .25rem solid #e26e26;
 	box-sizing: border-box;
 }
 
-ul.link-list-x a.active {
+ul.link-list-x.nav li.active {
+	border-bottom: .25rem solid #e26e26;
+	box-sizing: border-box;
+}
+
+ul.link-list-x.nav li.active a{
 	color: #e26e26;
-	border-bottom: .25rem solid #e26e26
 }
 
 
