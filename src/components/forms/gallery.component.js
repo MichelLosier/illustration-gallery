@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from '../image.component';
+import ArtworkCard from '../artwork-card.component';
 
 class Gallery extends React.Component {
     constructor(){
@@ -11,9 +11,8 @@ class Gallery extends React.Component {
         const images = this.props.artworks.map((artwork) => {
             return(
                 <li>
-                    <Image
-                        url={artwork.images.previewImage.url}
-                        altText={artwork.images.previewImage.altText}
+                    <ArtworkCard
+                        artwork={artwork}
                     />
                 </li>
             )

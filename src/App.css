@@ -319,20 +319,43 @@ img.contained {
     align-items:center;
     height: 500px;
     overflow-y: scroll;
-	padding: 0 1rem;
+	padding: 1rem;
 }
 
 .gallery-flex-container li {
-	margin: 1rem;
 	list-style: none;
-    border: 1px solid #666;
-    height: 150px;
+    
     flex-grow: 0;
 }
 
 .gallery-flex-container li:hover {
+
+}
+
+.artwork-card {
+	position:relative;
+	border: 1px solid #666;
+	margin: 1rem;
+	height: 250px;
+}
+
+.artwork-card:hover {
 	border: 1px solid #e26e26;
 	cursor: pointer;
+}
+
+.artwork-card div.options {
+	color:#e26e26;
+	position:absolute;
+	top:0;
+	height:100%;
+	width:100%;
+	background:rgba(256,256,256, 0.95);
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+    flex-direction:column;
 }
 
 /* li artwork-card {
