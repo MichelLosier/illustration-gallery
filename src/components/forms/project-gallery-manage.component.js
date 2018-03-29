@@ -9,7 +9,8 @@ class ProjectGalleryManage extends React.Component {
         super()
         this.state = {
             addArtwork: false,
-            viewGallery: true
+            viewGallery: true,
+            selectedArtwork: false
         }
     }
 
@@ -32,6 +33,17 @@ class ProjectGalleryManage extends React.Component {
         this.setState({
             addArtwork: false,
             viewGallery: true
+        })
+    }
+
+    handleArtworkSelection = (id) => {
+        const artwork = this.props.gallery.filter((artwork) =>{
+            if((artwork._id == id) && (this.state.selectedArtwork._id != id)){
+                return artwork
+            }
+        })
+        this.setState({
+            selectedArtwork: (artwork.length != 0) ? artwork[0] : false
         })
     }
 
@@ -66,6 +78,8 @@ class ProjectGalleryManage extends React.Component {
                     <div>
                         <Gallery
                             artworks={this.props.gallery}
+                            selectedArtwork={s.selectedArtwork}
+                            onArtworkSelection={this.handleArtworkSelection}
                         />
                         {!s.addArtwork && this.addArtworkButtons()}
                     </div>
