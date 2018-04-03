@@ -144,7 +144,7 @@ class ProjectForm extends React.Component {
     render() {
         const fields = this.state.fields;
         return (
-            <div className="min-width-40 width-6">
+            <div className="min-width-40 width-2">
                 
                 <FormTabs
                     tabMap={this.tabMap}

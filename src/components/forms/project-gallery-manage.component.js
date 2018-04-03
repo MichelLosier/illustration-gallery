@@ -67,7 +67,7 @@ class ProjectGalleryManage extends React.Component {
     render() {
         const s = this.state;
         return(
-            <div className="min-width-40 width-6 border module">
+            <div className="border module">
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm
