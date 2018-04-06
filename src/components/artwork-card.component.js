@@ -19,6 +19,7 @@ class ArtworkCard extends React.Component {
             showDetail: true
         })
     }
+    
 
     handleMouseLeave = () => {
         this.setState({
@@ -39,12 +40,7 @@ class ArtworkCard extends React.Component {
                     altText={artwork.images.previewImage.altText}
                 />
                 {this.state.showDetail &&
-                    <div
-                        className="options"
-                    >
-                        {artwork.caption}
-                        <input type="button" value="edit"/>
-                    </div>
+                    this.props.children
                 }
             </div>
         )

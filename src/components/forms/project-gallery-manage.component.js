@@ -25,7 +25,14 @@ class ProjectGalleryManage extends React.Component {
     handleAddNew = (create) => {
         this.setState({
             addArtwork: true,
-            viewGallery: !create
+            viewGallery: !create,
+            selectedArtwork: false
+        })
+    }
+
+    handleEditReq = () =>{
+        this.setState({
+            viewGallery: false
         })
     }
 
@@ -38,7 +45,7 @@ class ProjectGalleryManage extends React.Component {
 
     handleArtworkSelection = (id) => {
         const artwork = this.props.gallery.filter((artwork) =>{
-            if((artwork._id == id) && (this.state.selectedArtwork._id != id)){
+            if(artwork._id == id){
                 return artwork
             }
         })
@@ -66,11 +73,13 @@ class ProjectGalleryManage extends React.Component {
 
     render() {
         const s = this.state;
+        
         return(
             <div className="border module">
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm
+                            selectedArtwork={this.state.selectedArtwork}
                             onFormSubmit={this.handleArtworkChange}
                         />
                     </div>
@@ -80,6 +89,7 @@ class ProjectGalleryManage extends React.Component {
                             artworks={this.props.gallery}
                             selectedArtwork={s.selectedArtwork}
                             onArtworkSelection={this.handleArtworkSelection}
+                            onEditReq={this.handleEditReq}
                         />
                         {!s.addArtwork && this.addArtworkButtons()}
                     </div>

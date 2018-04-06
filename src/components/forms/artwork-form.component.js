@@ -5,6 +5,7 @@ import Field from './field.component';
 import TagManage from './tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
+import artworkCardComponent from '../artwork-card.component';
 
 const Artwork$ = new ArtworkService();
 
@@ -13,7 +14,7 @@ class ArtworkForm extends React.Component {
         super()
         this.state = {
             fields: {
-                caption: '',
+                caption:  '',
                 description: '',
                 images:{
                     previewImage: { //listing views
@@ -51,9 +52,42 @@ class ArtworkForm extends React.Component {
 
     static propTypes = {
         onSubmit: PropTypes.string,
-        artwork: PropTypes.object
+        artwork: PropTypes.object || PropTypes.boolean
     }
 
+    componentDidMount = () => {
+        if(this.props.selectedArtwork){
+            this.setFieldsToArtwork(this.props.selectedArtwork)
+        }
+    }
+
+    setFieldsToArtwork = (artwork) => {
+        this.setState({
+            fields: {
+                caption: artwork.caption,
+                description: artwork.description,
+                images:{
+                    previewImage: { //listing views
+                        url: artwork.images.previewImage.url,
+                        altText: artwork.images.previewImage.altText
+                    }, 
+                    normalImage:{ // gallery view
+                        url: artwork.images.normalImage.url,
+                        altText: artwork.images.normalImage.altText
+                    }, 
+                    largeImage:{ // in detail view
+                        url: artwork.images.largeImage.url,
+                        altText: artwork.images.largeImage.altText
+                    } 
+                }
+            },
+            collections: {
+                tags:artwork.tags,
+                projects:artwork.projects
+            },
+            artwork: artwork
+        })
+    }
     handleFormSubmit = (evt) => {
         const s = this.state
         const artwork = Object.assign({}, s.artwork, s.fields, s.collections) //merge form state into artwork object state
@@ -149,7 +183,6 @@ class ArtworkForm extends React.Component {
         const selectedImage = this.state.selectedImage;
         return (
             <div className="min-width-40 width-6">
-                
                 <form 
                     className="border"
                     onSubmit={this.handleFormSubmit}>

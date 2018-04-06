@@ -5,8 +5,6 @@ import ArtworkCard from '../artwork-card.component';
 class Gallery extends React.Component {
     constructor(){
         super();
-        this.state = {
-        }
     }
 
     propTypes = {
@@ -18,7 +16,11 @@ class Gallery extends React.Component {
     handleArtworkClick = (id) => {
         this.props.onArtworkSelection(id)
     }
-    
+
+    handleEditClick = () =>{
+        this.props.onEditReq()
+    }
+
     galleryImages = () => {
         const images = this.props.artworks.map((artwork) => {
             let className = '';
@@ -32,9 +34,16 @@ class Gallery extends React.Component {
                     onClick={() => {this.handleArtworkClick(artwork._id)}}
                     className={className}
                 >
-                    <ArtworkCard
-                        artwork={artwork}
-                    />
+                    <ArtworkCard artwork={artwork}>
+                        <div className="options">
+                            {artwork.caption}
+                            <input 
+                                type="button" 
+                                value="edit"
+                                onClick={this.handleEditClick}
+                            />
+                        </div>
+                    </ArtworkCard>
                 </li>
             )
         })
