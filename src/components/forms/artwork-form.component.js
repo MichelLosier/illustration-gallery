@@ -39,7 +39,7 @@ class ArtworkForm extends React.Component {
                 projects:[]
             },
             selectedImage: 'largeImage',
-            artwork: null,
+            artwork: null, //Determines if New / Edit State
             actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
@@ -57,35 +57,52 @@ class ArtworkForm extends React.Component {
 
     componentDidMount = () => {
         if(this.props.selectedArtwork){
-            this.setFieldsToArtwork(this.props.selectedArtwork)
+            this.setFields(this.props.selectedArtwork)
         }
     }
 
-    setFieldsToArtwork = (artwork) => {
-        this.setState({
-            fields: {
-                caption: artwork.caption,
-                description: artwork.description,
-                images:{
-                    previewImage: { //listing views
-                        url: artwork.images.previewImage.url,
-                        altText: artwork.images.previewImage.altText
-                    }, 
-                    normalImage:{ // gallery view
-                        url: artwork.images.normalImage.url,
-                        altText: artwork.images.normalImage.altText
-                    }, 
-                    largeImage:{ // in detail view
-                        url: artwork.images.largeImage.url,
-                        altText: artwork.images.largeImage.altText
-                    } 
+    //@state is the state object to walk through to map new state object from
+    //@newValues object that contains new values that should be mapped from. 
+    //@useDefault if newValue doesn't exist use default value for type
+
+    deepMap = (state, newValues) => {
+        let newState = {}
+        Object.keys(state).forEach((key) => {
+            if(typeof newValues[key] === 'object'){
+                this.deepMap(state[key], newValues[key]);
+            }else if(newValues[key]){
+                newState[key] = newValues[key];
+            }else if(newValues.defaults){
+                const type = typeof state[key]
+                if(newValues.defaults[type]){
+                    newState[key] = newValues.defaults[type]
                 }
-            },
-            collections: {
-                tags:artwork.tags,
-                projects:artwork.projects
-            },
-            artwork: artwork
+            }
+            return;
+        })
+        return newState;
+    }
+
+
+
+    setFields = (artwork) => {
+        this.setState((prevState) => {
+            let newState = {}
+            if(artwork){
+                newState.fields = this.deepMap(prevState.fields, artwork);
+                newState.collections = this.deepMap(prevState.collections, artwork)
+                newState.artwork = artwork;
+            } else { //reset fields
+                newState.deepMap(prevState, {
+                    defaults:{
+                        string: '',
+                        array: []
+                    },
+                    artwork: null,
+                    selectedImage: 'largeImage'
+                })
+            }
+            return newState;
         })
     }
     handleFormSubmit = (evt) => {
@@ -103,31 +120,7 @@ class ArtworkForm extends React.Component {
                     action: this.state.actionType
                 })
             };
-            this.setState({
-                fields: {
-                    caption: '',
-                    description: '',
-                    images: {
-                        previewImage: { //listing views
-                            url:'',
-                            altText:''
-                        }, 
-                        normalImage:{ // gallery view
-                            url:'',
-                            altText:''
-                        }, 
-                        largeImage:{ // in detail view
-                            url:'',
-                            altText:''
-                        } 
-                    }
-                },
-                collections: {
-                    tags:[],
-                    projects:[]
-                },
-                artwork: null
-            });
+            this.setFields();
         });
     };
     
