@@ -25,7 +25,7 @@ router.delete('/projects/id/:_id', projectCtrl.deleteProject);
 
 //get artwork
 router.get('/artwork', artworkCtrl.listAll);
-router.get('/artwork/id/:_id', artworkCtrl.queryID);
+router.get('/artwork/:_id', artworkCtrl.queryID);
 router.get('/artwork/project/:_id', artworkCtrl.queryByProject);
 
 //post artwork
@@ -35,9 +35,9 @@ router.post('/artwork', artworkCtrl.createArtwork);
 router.patch('/artwork', artworkCtrl.updateArtworks);
 
 //patch artwork
-router.patch('/artwork/id/:_id', artworkCtrl.updateArtwork);
+router.patch('/artwork/:_id', artworkCtrl.updateArtwork);
 
 //delete artwork
-router.delete('/projects/id/:_id', artworkCtrl.deleteArtwork);
+router.delete('/projects/:_id', artworkCtrl.deleteArtwork);
 
 module.exports = router;

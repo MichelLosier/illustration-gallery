@@ -44,14 +44,19 @@ class ProjectGalleryManage extends React.Component {
     }
 
     handleArtworkSelection = (id) => {
-        const artwork = this.props.gallery.filter((artwork) =>{
+        this.setState({
+            selectedArtwork: id
+        })
+    }
+
+    getSelectedArtwork = () => {
+        const id = this.state.selectedArtwork;
+        const artworks = this.props.gallery.filter((artwork) =>{
             if(artwork._id == id){
                 return artwork
             }
         })
-        this.setState({
-            selectedArtwork: (artwork.length != 0) ? artwork[0] : false
-        })
+        return (artworks.length != 0) ? artworks[0] : false
     }
 
     addArtworkButtons = () => {
@@ -79,7 +84,7 @@ class ProjectGalleryManage extends React.Component {
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm
-                            selectedArtwork={this.state.selectedArtwork}
+                            selectedArtwork={this.getSelectedArtwork()}
                             onFormSubmit={this.handleArtworkChange}
                         />
                     </div>

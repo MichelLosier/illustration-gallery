@@ -73,7 +73,7 @@ ul.tags li {
 ul.tags li > div {
 	font-weight: normal;
 	display: inline-block;
-	margin: 0 1rem;
+	margin: 0 0.5rem;
 }
 
 div.delete {
@@ -83,6 +83,7 @@ div.delete {
 	border: 2px solid white;
 	height: 1rem;
 	cursor:pointer;
+	line-height: 1em;
 }
 
 ul.link-list-x {
@@ -344,7 +345,7 @@ img.contained {
 }
 
 .artwork-card div.options {
-	color:#e26e26;
+	color:#666;
 	position:absolute;
 	top:0;
 	height:100%;

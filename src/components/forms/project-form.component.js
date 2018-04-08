@@ -102,7 +102,7 @@ class ProjectForm extends React.Component {
 
     handleCollectionChange = ({name, value, action}) => {
         this.setState((prevState) => {
-            console.log(`${name}, ${action}, ${value}`)
+            console.log(`${name}, ${action}, ${JSON.stringify(value)}`)
             const newState = Object.assign({}, prevState);
             const collection = prevState.collections[name]
 
@@ -119,12 +119,13 @@ class ProjectForm extends React.Component {
                 const i = newState.collections[name].findIndex((item) => {
                     return item._id == value._id
                 });
-                return newState.collections[name][i] = value;
+                newState.collections[name][i] = value;
             } else if ( action == 'DELETE') {
                 newState.collections[name] = collection.filter((item)=>{
                     return item !== value
                 })
             }
+            console.log(`newState: ${JSON.stringify(newState)}`)
             return newState;
         })
     }

@@ -43,8 +43,8 @@ class ArtworkService {
     }
 
     //PATCH
-    updateArtwork(data, callback){
-        const request = new Request(`${this.baseUrl}`, {
+    updateArtwork(id, data, callback){
+        const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'PATCH',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
