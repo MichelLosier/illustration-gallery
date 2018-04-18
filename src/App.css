@@ -348,8 +348,8 @@ img.contained {
 	color:#666;
 	position:absolute;
 	top:0;
-	height:100%;
-	width:100%;
+	bottom:0;
+	padding: 1rem;
 	background:rgba(256,256,256, 0.95);
 	display: flex;
     align-items: center;
