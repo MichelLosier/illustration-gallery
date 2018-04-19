@@ -21,6 +21,11 @@ class Gallery extends React.Component {
         this.props.onEditReq()
     }
 
+    handleDeleteClick = (id) => {
+        console.log(`delete ${id}`)
+        this.props.onArtworkChange({data: id, action:'DELETE'});
+    }
+
     galleryImages = () => {
         const images = this.props.artworks.map((artwork) => {
             let className = '';
@@ -34,7 +39,14 @@ class Gallery extends React.Component {
                     onClick={() => {this.handleArtworkClick(artwork._id)}}
                     className={className}
                 >
+
                     <ArtworkCard artwork={artwork}>
+                        <div 
+                            className="delete card"
+                            onClick={() => {this.handleDeleteClick(artwork._id)}}
+                        >
+                            x
+                        </div>
                         <div className="options">
                             {artwork.caption}
                             <input 

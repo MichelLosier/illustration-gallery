@@ -86,6 +86,15 @@ div.delete {
 	line-height: 1em;
 }
 
+div.delete.card {
+	background-color: #e26e26;
+	color:white;
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	z-index:3;
+}
+
 ul.link-list-x {
 	padding:0;
 	margin:0;
@@ -349,13 +358,16 @@ img.contained {
 	position:absolute;
 	top:0;
 	bottom:0;
+	left:0;
+	right:0;
 	padding: 1rem;
 	background:rgba(256,256,256, 0.95);
 	display: flex;
     align-items: center;
     justify-content: space-around;
     text-align: left;
-    flex-direction:column;
+	flex-direction:column;
+	z-index:2;
 }
 
 /* li artwork-card {

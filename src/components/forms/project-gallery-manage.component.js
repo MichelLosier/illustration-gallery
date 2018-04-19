@@ -91,6 +91,7 @@ class ProjectGalleryManage extends React.Component {
                 ):(
                     <div>
                         <Gallery
+                            onArtworkChange={this.handleArtworkChange}
                             artworks={this.props.gallery}
                             selectedArtwork={s.selectedArtwork}
                             onArtworkSelection={this.handleArtworkSelection}

@@ -121,8 +121,13 @@ class ProjectForm extends React.Component {
                 });
                 newState.collections[name][i] = value;
             } else if ( action == 'DELETE') {
+                if( name == 'gallery'){
+                    newState.newArtworks = newState.newArtworks.filter((item) => {
+                        return item != value;
+                    })
+                }
                 newState.collections[name] = collection.filter((item)=>{
-                    return item !== value
+                    return (item != value) && (item._id != value);
                 })
             }
             console.log(`newState: ${JSON.stringify(newState)}`)
