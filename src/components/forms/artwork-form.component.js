@@ -7,6 +7,8 @@ import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
 import artworkCardComponent from '../artwork-card.component';
 
+import {deepMerge} from '../../helpers';
+
 const Artwork$ = new ArtworkService();
 
 class ArtworkForm extends React.Component {
@@ -60,40 +62,15 @@ class ArtworkForm extends React.Component {
         } 
     }
 
-    //@state is the state object to walk through to map new state object from
-    //@newValues object that contains new values that should be mapped from. 
-    //@useDefault if newValue doesn't exist use default value for type
-
-    deepMap = (state, newValues) => {
-        let newState = {}
-        Object.keys(state).forEach((key) => {
-            if(typeof newValues[key] === 'object' && Array.isArray(newValues[key]) === false){
-                if(newValues.defaults){newValues[key].defaults = newValues.defaults;}
-                newState[key] = this.deepMap(state[key], newValues[key]);
-            }else if(key in newValues){
-                newState[key] = newValues[key];
-            }else if('defaults' in newValues){
-                const type = (Array.isArray(state[key]) === true)? 'array' : typeof state[key];
-                if(type in newValues.defaults){
-                    newState[key] = newValues.defaults[type]
-                } else {
-                    newState[key] = this.deepMap(state[key], {defaults: newValues.defaults})
-                }
-            }
-            return;
-        })
-        return newState;
-    }
-
     setFields = (artwork) => {
         this.setState((prevState) => {
             let newState = {}
             if(artwork){
-                newState.fields = this.deepMap(prevState.fields, artwork);
-                newState.collections = this.deepMap(prevState.collections, artwork)
+                newState.fields = deepMerge(prevState.fields, artwork);
+                newState.collections = deepMerge(prevState.collections, artwork)
                 newState.actionType = 'UPDATE';
             } else { //reset fields
-                newState = this.deepMap(prevState, {
+                newState = this.deepMerge(prevState, {
                     defaults:{
                         string: '',
                         array: []
