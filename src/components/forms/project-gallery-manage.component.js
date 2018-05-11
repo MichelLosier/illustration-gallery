@@ -9,7 +9,8 @@ class ProjectGalleryManage extends React.Component {
         super()
         this.state = {
             addArtwork: false,
-            viewGallery: true
+            viewGallery: true,
+            selectedArtwork: false
         }
     }
 
@@ -24,7 +25,14 @@ class ProjectGalleryManage extends React.Component {
     handleAddNew = (create) => {
         this.setState({
             addArtwork: true,
-            viewGallery: !create
+            viewGallery: !create,
+            selectedArtwork: false
+        })
+    }
+
+    handleEditReq = () =>{
+        this.setState({
+            viewGallery: false
         })
     }
 
@@ -33,6 +41,22 @@ class ProjectGalleryManage extends React.Component {
             addArtwork: false,
             viewGallery: true
         })
+    }
+
+    handleArtworkSelection = (id) => {
+        this.setState({
+            selectedArtwork: id
+        })
+    }
+
+    getSelectedArtwork = () => {
+        const id = this.state.selectedArtwork;
+        const artworks = this.props.gallery.filter((artwork) =>{
+            if(artwork._id == id){
+                return artwork
+            }
+        })
+        return (artworks.length != 0) ? artworks[0] : false
     }
 
     addArtworkButtons = () => {
@@ -54,18 +78,24 @@ class ProjectGalleryManage extends React.Component {
 
     render() {
         const s = this.state;
+        
         return(
-            <div className="min-width-40 width-6 border module">
+            <div className="border module">
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm
+                            selectedArtwork={this.getSelectedArtwork()}
                             onFormSubmit={this.handleArtworkChange}
                         />
                     </div>
                 ):(
                     <div>
                         <Gallery
+                            onArtworkChange={this.handleArtworkChange}
                             artworks={this.props.gallery}
+                            selectedArtwork={s.selectedArtwork}
+                            onArtworkSelection={this.handleArtworkSelection}
+                            onEditReq={this.handleEditReq}
                         />
                         {!s.addArtwork && this.addArtworkButtons()}
                     </div>

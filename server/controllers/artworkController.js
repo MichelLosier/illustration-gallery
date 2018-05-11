@@ -32,7 +32,7 @@ exports.createArtwork = function(req, res, next){
 
 //update artwork
 exports.updateArtwork = function(req, res, next){
-	Artwork.findOneAndUpdate({_id: req.params.id}, req.body, function(err, artwork) {
+	Artwork.findOneAndUpdate({_id: req.params._id}, req.body, {new:true},function(err, artwork) {
 		if(err) return console.error(err);
 		res.status(200).json(artwork);
 	});

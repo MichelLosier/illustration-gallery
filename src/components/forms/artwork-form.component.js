@@ -5,6 +5,9 @@ import Field from './field.component';
 import TagManage from './tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
+import artworkCardComponent from '../artwork-card.component';
+
+import {deepMerge} from '../../helpers';
 
 const Artwork$ = new ArtworkService();
 
@@ -13,7 +16,7 @@ class ArtworkForm extends React.Component {
         super()
         this.state = {
             fields: {
-                caption: '',
+                caption:  '',
                 description: '',
                 images:{
                     previewImage: { //listing views
@@ -38,7 +41,6 @@ class ArtworkForm extends React.Component {
                 projects:[]
             },
             selectedImage: 'largeImage',
-            artwork: null,
             actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
@@ -51,8 +53,46 @@ class ArtworkForm extends React.Component {
 
     static propTypes = {
         onSubmit: PropTypes.string,
-        artwork: PropTypes.object
+        artwork: PropTypes.object || PropTypes.boolean
     }
+
+    componentDidMount = () => {
+        if(this.props.selectedArtwork){
+            this.setFields(this.props.selectedArtwork)
+        } 
+    }
+
+    setFields = (artwork) => {
+        this.setState((prevState) => {
+            let newState = {}
+            if(artwork){
+                newState.fields = deepMerge(prevState.fields, artwork);
+                newState.collections = deepMerge(prevState.collections, artwork)
+                newState.actionType = 'UPDATE';
+            } else { //reset fields
+                newState = this.deepMerge(prevState, {
+                    defaults:{
+                        string: '',
+                        array: []
+                    },
+                    actionType: 'CREATE',
+                    selectedImage: 'largeImage'
+                })
+            }
+            return newState;
+        })
+    }
+    
+    formSubmitCallback = (data) => {
+        if (this.props.onFormSubmit){
+            this.props.onFormSubmit({
+                data: data, 
+                action: this.state.actionType
+            });
+        };
+        this.setFields();
+    };
+ 
 
     handleFormSubmit = (evt) => {
         const s = this.state
@@ -63,38 +103,11 @@ class ArtworkForm extends React.Component {
         if (this.validate()) return;
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
-        Artwork$.createArtwork(artwork, (data) => {
-            if (this.props.onFormSubmit){this.props.onFormSubmit({
-                    data: data, 
-                    action: this.state.actionType
-                })
-            };
-            this.setState({
-                fields: {
-                    caption: '',
-                    description: '',
-                    images: {
-                        previewImage: { //listing views
-                            url:'',
-                            altText:''
-                        }, 
-                        normalImage:{ // gallery view
-                            url:'',
-                            altText:''
-                        }, 
-                        largeImage:{ // in detail view
-                            url:'',
-                            altText:''
-                        } 
-                    }
-                },
-                collections: {
-                    tags:[],
-                    projects:[]
-                },
-                artwork: null
-            });
-        });
+        if(s.actionType === 'CREATE'){
+            Artwork$.createArtwork(artwork, this.formSubmitCallback);
+        } else {
+            Artwork$.updateArtwork(this.props.selectedArtwork._id, artwork, this.formSubmitCallback);
+        }
     };
     
     handleInputChange = ({ name, value, error }) => {
@@ -149,11 +162,11 @@ class ArtworkForm extends React.Component {
         const selectedImage = this.state.selectedImage;
         return (
             <div className="min-width-40 width-6">
-                
                 <form 
                     className="border"
                     onSubmit={this.handleFormSubmit}>
-                    <h3>Create Artwork</h3>
+                    <h3>{(this.state.actionType === 'CREATE')? 'Create New' : 'Update'} Artwork
+                    </h3>
                     <div className="padded-group">
                         <ImageForm
                             onInputChange={this.handleInputChange}

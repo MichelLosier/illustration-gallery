@@ -73,7 +73,7 @@ ul.tags li {
 ul.tags li > div {
 	font-weight: normal;
 	display: inline-block;
-	margin: 0 1rem;
+	margin: 0 0.5rem;
 }
 
 div.delete {
@@ -83,6 +83,16 @@ div.delete {
 	border: 2px solid white;
 	height: 1rem;
 	cursor:pointer;
+	line-height: 1em;
+}
+
+div.delete.card {
+	background-color: #e26e26;
+	color:white;
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	z-index:3;
 }
 
 ul.link-list-x {
@@ -319,20 +329,45 @@ img.contained {
     align-items:center;
     height: 500px;
     overflow-y: scroll;
-	padding: 0 1rem;
+	padding: 1rem;
 }
 
 .gallery-flex-container li {
 	margin: 1rem;
+	border: 1px solid #666;
 	list-style: none;
-    border: 1px solid #666;
-    height: 150px;
     flex-grow: 0;
 }
 
 .gallery-flex-container li:hover {
 	border: 1px solid #e26e26;
 	cursor: pointer;
+}
+
+.gallery-flex-container li.selected {
+	border: 1px solid #e26e26;
+}
+
+.artwork-card {
+	position:relative;
+	height: 250px;
+}
+
+.artwork-card div.options {
+	color:#666;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	padding: 1rem;
+	background:rgba(256,256,256, 0.95);
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+	flex-direction:column;
+	z-index:2;
 }
 
 /* li artwork-card {
