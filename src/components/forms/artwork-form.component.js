@@ -70,7 +70,7 @@ class ArtworkForm extends React.Component {
                 newState.collections = deepMerge(prevState.collections, artwork)
                 newState.actionType = 'UPDATE';
             } else { //reset fields
-                newState = this.deepMerge(prevState, {
+                newState = deepMerge(prevState, {
                     defaults:{
                         string: '',
                         array: []
