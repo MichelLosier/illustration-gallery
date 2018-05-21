@@ -20,7 +20,7 @@ class FormTabs extends React.Component {
         return Object.keys(tabs).map((key) => {
             return(
                 <li 
-                    className={(this.props.selectedKey === key)? "active" : null}
+                    className={(this.props.selectedKey === key)? "selected" : null}
                     key={key}
                 >
                     <a
