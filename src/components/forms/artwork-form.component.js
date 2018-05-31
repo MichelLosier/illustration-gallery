@@ -161,7 +161,7 @@ class ArtworkForm extends React.Component {
         const fields = this.state.fields;
         const selectedImage = this.state.selectedImage;
         return (
-            <div className="min-width-40 width-6">
+            <div className="min-width-40">
                 <form 
                     className="border"
                     onSubmit={this.handleFormSubmit}>

@@ -30,8 +30,15 @@ a {
 .layout-container {
   margin: 0 auto;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around; }
+  justify-content: space-around;
+  position: relative; }
+  .layout-container .col-1, .layout-container .col-3 {
+    display: flex;
+    justify-content: space-around; }
+  .layout-container .col-1 {
+    flex: 1; }
+  .layout-container .col-3 {
+    flex: 3; }
 
 /* Container width based on max 12 containers*/
 .component-container {
@@ -53,6 +60,9 @@ a {
 
 .width-3 {
   flex-basis: 25%; }
+
+.width-2 {
+  flex-basis: 16.66%; }
 
 .item-grow-2 {
   flex-grow: 2; }
@@ -90,10 +100,10 @@ a {
 
 .module {
   background-color: white;
-  padding: 2rem; }
+  padding: 2rem;
+  height: fit-content; }
 
 .main-body {
-  padding: 2rem;
   background-color: #eee; }
 
 .main-header {
@@ -109,6 +119,11 @@ a {
 .main-nav {
   flex-grow: 7; }
 
+.float-menu {
+  position: sticky;
+  top: 0;
+  left: 0; }
+
 .flex-list-x ul {
   padding: 1em;
   margin: 0;
@@ -119,6 +134,15 @@ a {
 
 .flex-list-x li {
   display: inline-block; }
+
+.flex-list-y {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  flex-wrap: nowrap; }
+  .flex-list-y li {
+    display: block; }
 
 .link-list-x {
   padding: 0;
