@@ -39,7 +39,7 @@ class NavBar extends React.Component {
         })
 
         return(
-            <ul className="link-list-x nav">
+            <ul className="flex-list-y nav-bar">
                 {links}
             </ul>
         )

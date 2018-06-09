@@ -80,7 +80,7 @@ class ProjectGalleryManage extends React.Component {
         const s = this.state;
         
         return(
-            <div className="border module">
+            <div className="fill-container module border-top">
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import NavBar from './nav-bar.component'
+import NavBar from './nav-bar/nav-bar.component'
 import ArtworkManage from './views/artwork-manage.component';
 import ProjectManage from './views/project-manage.component';
 
@@ -10,7 +10,9 @@ import ProjectManage from './views/project-manage.component';
 class Main extends React.Component {
     constructor(){
         super();
-        this.state = {}
+        this.state = {
+            context: ''
+        }
         this.linkMap = {
             artwork: {
                 label:'Artwork',
@@ -27,6 +29,10 @@ class Main extends React.Component {
         }
     }
 
+    setContext = (context) => {
+        this.setState({context: context});
+    }
+
     feed(props){
         return(
             <div>
@@ -38,29 +44,45 @@ class Main extends React.Component {
     render(){
         return(
             <div>
-                <div className="main-header layout-container">
-                    <div className="header">
-                        <Link to={`/`}>
-                            <h1>Manage Portfolio</h1>
-                        </Link>
-                    </div>
-                    <NavBar
-                        linkMap={this.linkMap}
-                    />
-                </div>
+
                 <div className="main-body layout-container">
-                    <Route
-                        exact path="/"
-                        render={(props) => this.feed(props)}
-                    />
-                    <Route
-                        path="/artwork/"
-                        component={ArtworkManage}
-                    />
-                    <Route
-                        path="/projects/"
-                        component={ProjectManage}
-                    />
+                    <div className="col-1 border-right">
+                        <div>
+                            <Link to={`/`}>
+                                <h1>Manage Portfolio</h1>
+                            </Link>
+                        </div>
+                        <NavBar
+                            linkMap={this.linkMap}
+                        />
+                    </div>
+                    <div className="col-3">
+                        <div className="main-header">
+                            <div>
+                                    <h2>{this.state.context}</h2>
+                            </div>
+                        </div>
+                        <Route
+                            exact path="/"
+                            render={(props) => this.feed(props)}
+                        />
+                        <Route
+                            path="/artwork/"
+                            render={()=> {
+                                return(<ArtworkManage
+                                    getContext={this.setContext}
+                                />)
+                            }}
+                        />
+                        <Route
+                            path="/projects/"
+                            render={()=> {
+                                return(<ProjectManage
+                                    getContext={this.setContext}
+                                />)
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="main-footer layout-container">
                 </div>

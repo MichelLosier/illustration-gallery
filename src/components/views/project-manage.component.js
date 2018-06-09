@@ -10,17 +10,15 @@ class ProjectManage extends React.Component {
         this.state = {}
     }
 
+    componentDidMount(){
+        this.props.getContext('Manage Projects');
+    }
+
     render(){
         return(
             <div className="width-12">
-                <h2>Manage Projects</h2>
                 <div className="layout-container">
-                    <div className="col-1">
-                        <SideMenu/>
-                    </div>
-                    <div className="col-3">
-                        <ProjectForm/>
-                    </div>
+                    <ProjectForm/>
                 </div>
             </div>
         )

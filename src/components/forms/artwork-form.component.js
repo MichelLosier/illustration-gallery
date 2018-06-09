@@ -161,9 +161,9 @@ class ArtworkForm extends React.Component {
         const fields = this.state.fields;
         const selectedImage = this.state.selectedImage;
         return (
-            <div className="min-width-40">
+            <div className="min-width-40 width-12">
                 <form 
-                    className="border"
+                    className="fill-container"
                     onSubmit={this.handleFormSubmit}>
                     <h3>{(this.state.actionType === 'CREATE')? 'Create New' : 'Update'} Artwork
                     </h3>

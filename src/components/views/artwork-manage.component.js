@@ -9,10 +9,13 @@ class ArtworkManage extends React.Component {
         this.state = {}
     }
 
+    componentDidMount(){
+        this.props.getContext("Manage Artwork");
+    }
+
     render(){
         return(
             <div className="width-12">
-                <h2>Manage Artwork</h2>
                 <div className="layout-container">
                     <ArtworkForm/>
                 </div>

@@ -15,6 +15,7 @@ h3 {
   font-weight: lighter; }
 
 h1 {
+  padding: 1rem;
   font-size: 1.5rem;
   text-align: center;
   margin: 0; }
@@ -34,8 +35,10 @@ a {
   position: relative; }
   .layout-container .col-1, .layout-container .col-3 {
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-around;
+    flex-direction: column; }
   .layout-container .col-1 {
+    max-width: 300px;
     flex: 1; }
   .layout-container .col-3 {
     flex: 3; }
@@ -73,6 +76,10 @@ a {
 .min-width-40 {
   min-width: 40rem; }
 
+.fill-container {
+  width: 100%;
+  height: 100%; }
+
 .column-centered {
   display: flex;
   flex-direction: column;
@@ -95,6 +102,12 @@ a {
 .border {
   border: 1px solid #666; }
 
+.border-top {
+  border-top: 1px solid #666; }
+
+.border-right {
+  border-right: 1px solid #666; }
+
 .inline {
   display: inline-block; }
 
@@ -107,14 +120,12 @@ a {
   background-color: #eee; }
 
 .main-header {
-  justify-content: flex-start;
-  padding-top: 1rem;
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
   flex-flow: wrap;
   border-bottom: 1px solid #666;
   background-color: white; }
-
-.header {
-  flex-grow: 1; }
 
 .main-nav {
   flex-grow: 7; }
@@ -194,6 +205,9 @@ a {
         background-color: white; }
         .link-list-x.tabs li.selected:hover {
           border-bottom: 1px solid white; }
+    .link-list-x.tabs.shared-edge li {
+      border-left: none;
+      border-top: none; }
 
 ul.tags li {
   margin: 0 1rem;
@@ -332,3 +346,27 @@ input[type='button'] {
   input[type='button']:hover {
     border: 1px solid #fe8438;
     color: #fe8438; }
+
+.nav-bar {
+  background-color: #eee;
+  color: #666;
+  height: 100%; }
+  .nav-bar li {
+    border-bottom: 1px solid #666; }
+    .nav-bar li:hover {
+      background-color: #e26e26; }
+    .nav-bar li.active {
+      background-color: #e26e26; }
+      .nav-bar li.active a {
+        color: white; }
+    .nav-bar li:first-child {
+      border-top: 1px solid #666; }
+    .nav-bar li:last-child {
+      border-bottom: none; }
+  .nav-bar a {
+    padding: 1rem;
+    display: block;
+    color: #666;
+    font-size: 1.15rem; }
+    .nav-bar a:hover {
+      color: white; }

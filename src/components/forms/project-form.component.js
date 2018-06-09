@@ -150,10 +150,11 @@ class ProjectForm extends React.Component {
     render() {
         const fields = this.state.fields;
         return (
-            <div className="min-width-40">
+            <div className="min-width-40 width-12">
                 
                 <FormTabs
                     tabMap={this.tabMap}
+                    sharesEdges={true}
                     selectedKey={this.state.selectedTab}
                     onSelection={this.handleFormTabClick}
                 />
@@ -163,7 +164,7 @@ class ProjectForm extends React.Component {
                         onGalleryChange={this.handleCollectionChange}
                     />
                 ) : (
-                    <form className="border" onSubmit={this.handleFormSubmit}>
+                    <form className="border-top fill-container" onSubmit={this.handleFormSubmit}>
                         <h3>Create Project</h3>
                         <div className="padded-group">
                             <Field
