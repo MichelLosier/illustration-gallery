@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Field from './field.component';
+import TextField from './text-field/text-field.component';
 
 
 class TagManage extends React.Component {
@@ -68,7 +68,7 @@ class TagManage extends React.Component {
     render(){
         return(
             <div>
-                <Field
+                <TextField
                     placeholder={this.props.placeholder}
                     name={this.props.name}
                     label={this.props.label}
@@ -81,7 +81,7 @@ class TagManage extends React.Component {
                         value='Add'
                         onClick={this.handleCollectionChange('CREATE')}
                     />
-                </Field>
+                </TextField>
 
                 <div className="padded-group">
                     {this.collectionList()}

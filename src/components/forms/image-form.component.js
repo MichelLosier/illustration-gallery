@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Field from './field.component';
-import FormTabs from './form-tabs.component';
+import TextField from './text-field/text-field.component';
+import FormTabs from './form-tabs/form-tabs.component';
 import Image from '../image.component';
 import ImageUpload from './image-upload.component';
 //TODO
@@ -110,7 +110,7 @@ class ImageForm extends React.Component {
                                 <ImageUpload/>
                             </div> */}
                             <div className = "padded-group">
-                                <Field
+                                <TextField
                                     placeholder='URL to Image'
                                     name='url'
                                     label={this.props.labelMap[selectedImage]}
@@ -118,7 +118,7 @@ class ImageForm extends React.Component {
                                     onChange={this.props.onInputChange}
                                     validate={false}
                                 />
-                                <Field
+                                <TextField
                                     placeholder='alt-text description'
                                     name='altText'
                                     label='Alt-Text'

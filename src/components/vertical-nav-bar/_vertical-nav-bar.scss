@@ -1,10 +1,18 @@
 @import '../../stylesheets/variables';
 
-.nav-bar {
+.vertical-nav-bar {
     background-color: $color-background-grey;
     color: $color-primary-grey;
     height: 100%;
+    ul {
+        margin:0;
+        padding:0;
+        display: flex;
+        flex-flow: column;
+        flex-wrap: nowrap;
+    }
     li {
+        display: block;
         border-bottom: 1px solid $color-primary-grey;
         &:hover{
             background-color: $color-secondary-orange;
@@ -19,7 +27,7 @@
             border-top:1px solid $color-primary-grey;
         }
         &:last-child{
-            border-bottom: none;
+            //border-bottom: none;
         }
     }
     

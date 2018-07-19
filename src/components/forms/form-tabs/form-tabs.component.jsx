@@ -32,9 +32,9 @@ class FormTabs extends React.Component {
     }
 
     classes = () => {
-        let classes = "link-list-x tabs";
-        if(this.props.sharesEdges){
-            return `${classes} shared-edge`;
+        let classes = "form-tabs";
+        if(this.props.classes){
+            return `${classes} ${this.props.classes}`;
         }
         return classes;
         

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Field from './field.component';
+import TextField from './text-field/text-field.component';
 import TagManage from './tag-manage.component';
-import FormTabs from './form-tabs.component';
+import FormTabs from './form-tabs/form-tabs.component';
 
 import ProjectGalleryManage from './project-gallery-manage.component';
 
@@ -154,7 +154,6 @@ class ProjectForm extends React.Component {
                 
                 <FormTabs
                     tabMap={this.tabMap}
-                    sharesEdges={true}
                     selectedKey={this.state.selectedTab}
                     onSelection={this.handleFormTabClick}
                 />
@@ -167,7 +166,7 @@ class ProjectForm extends React.Component {
                     <form className="border-top fill-container" onSubmit={this.handleFormSubmit}>
                         <h3>Create Project</h3>
                         <div className="padded-group">
-                            <Field
+                            <TextField
                                 placeholder='Project Name'
                                 name='name'
                                 label='Name'
@@ -175,7 +174,7 @@ class ProjectForm extends React.Component {
                                 onChange={this.handleInputChange}
                                 validate={false}
                             />
-                            <Field
+                            <TextField
                                 placeholder='Description'
                                 name='description'
                                 label='Description'
@@ -183,7 +182,7 @@ class ProjectForm extends React.Component {
                                 onChange={this.handleInputChange}
                                 validate={false}
                             />
-                            <Field //change to dropdown selection
+                            <TextField //change to dropdown selection
                                 placeholder='Category'
                                 name='category'
                                 label='Category'

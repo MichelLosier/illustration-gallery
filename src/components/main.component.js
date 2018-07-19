@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import NavBar from './nav-bar/nav-bar.component'
+import VerticalNavBar from './vertical-nav-bar/vertical-nav-bar.component'
 import ArtworkManage from './views/artwork-manage.component';
 import ProjectManage from './views/project-manage.component';
 
@@ -52,7 +52,7 @@ class Main extends React.Component {
                                 <h1>Manage Portfolio</h1>
                             </Link>
                         </div>
-                        <NavBar
+                        <VerticalNavBar
                             linkMap={this.linkMap}
                         />
                     </div>

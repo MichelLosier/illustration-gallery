@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Field from './field.component';
+import TextField from './text-field/text-field.component';
 import TagManage from './tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
 import ImageForm from './image-form.component';
-import artworkCardComponent from '../artwork-card.component';
+import ArtworkCard from '../artwork-card.component';
 
 import {deepMerge} from '../../helpers';
 
@@ -178,7 +178,7 @@ class ArtworkForm extends React.Component {
                     </div>
                     <div className="padded-group">
 
-                        <Field
+                        <TextField
                             placeholder='Caption'
                             name='caption'
                             label='Caption'
@@ -187,7 +187,7 @@ class ArtworkForm extends React.Component {
                             validate={false}
                         />
 
-                        <Field
+                        <TextField
                             placeholder='narrative about the artwork'
                             name='description'
                             label='Long Description'

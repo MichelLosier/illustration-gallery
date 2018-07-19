@@ -347,26 +347,99 @@ input[type='button'] {
     border: 1px solid #fe8438;
     color: #fe8438; }
 
-.nav-bar {
+.vertical-nav-bar {
   background-color: #eee;
   color: #666;
   height: 100%; }
-  .nav-bar li {
+  .vertical-nav-bar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap; }
+  .vertical-nav-bar li {
+    display: block;
     border-bottom: 1px solid #666; }
-    .nav-bar li:hover {
+    .vertical-nav-bar li:hover {
       background-color: #e26e26; }
-    .nav-bar li.active {
+    .vertical-nav-bar li.active {
       background-color: #e26e26; }
-      .nav-bar li.active a {
+      .vertical-nav-bar li.active a {
         color: white; }
-    .nav-bar li:first-child {
+    .vertical-nav-bar li:first-child {
       border-top: 1px solid #666; }
-    .nav-bar li:last-child {
-      border-bottom: none; }
-  .nav-bar a {
+  .vertical-nav-bar a {
     padding: 1rem;
     display: block;
     color: #666;
     font-size: 1.15rem; }
-    .nav-bar a:hover {
+    .vertical-nav-bar a:hover {
       color: white; }
+
+.text-field-group {
+  padding: .5em 0;
+  display: flex; }
+  .text-field-group input,
+  .text-field-group label {
+    padding: 0.5rem;
+    display: inline-block; }
+  .text-field-group label {
+    width: 25%;
+    justify-content: center;
+    text-align: right;
+    font: 1rem; }
+  .text-field-group input {
+    height: 1rem;
+    width: 50%;
+    border: 1px solid #666; }
+  .text-field-group input[type='button'] {
+    width: fit-content;
+    margin: 0 .25rem;
+    border: 1px solid #e26e26;
+    padding: 1rem 2rem;
+    background-color: white;
+    color: #666;
+    font-family: helvetica, arial, sans-serif;
+    font-weight: lighter;
+    font-size: 1em;
+    align-self: center;
+    line-height: 0;
+    cursor: pointer; }
+    .text-field-group input[type='button']:hover {
+      border: 1px solid #fe8438;
+      color: #fe8438; }
+
+.form-tabs {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 2; }
+  .form-tabs li {
+    height: 3rem;
+    display: inline-block;
+    border: 1px solid #666;
+    background-color: #eee;
+    border-left: none; }
+    .form-tabs li:hover {
+      cursor: pointer;
+      color: #666;
+      border-bottom: 1px solid #666;
+      box-sizing: content-box; }
+    .form-tabs li:first-child {
+      border-left: 1px solid #666; }
+    .form-tabs li a {
+      padding: 1rem;
+      display: inline-block;
+      box-sizing: border-box; }
+    .form-tabs li a:hover {
+      color: #666; }
+    .form-tabs li.selected {
+      border-bottom: 1px solid white;
+      background-color: white; }
+      .form-tabs li.selected:hover {
+        border-bottom: 1px solid white; }
