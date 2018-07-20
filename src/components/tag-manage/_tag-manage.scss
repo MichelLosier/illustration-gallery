@@ -1,0 +1,38 @@
+@import '../../stylesheets/variables';
+
+.tag-list{
+    padding: 1rem;
+    ul {
+		padding: 1em;
+		margin: 0;
+		display:flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	li {
+        display: inline-block;
+        margin: 0 1rem;
+        padding: 1rem 0;
+        color: white;
+        background-color: #e26e26;
+        border-radius: .3rem;
+        & > div {
+            font-weight: normal;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        & div.delete {
+            font-weight: normal;
+            width: 1rem;
+            border-radius: 50%;
+            border: 2px solid white;
+            height: 1rem;
+            cursor: pointer;
+            line-height: 1em;
+        }
+    }
+    
+
+}

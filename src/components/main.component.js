@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
 import VerticalNavBar from './vertical-nav-bar/vertical-nav-bar.component'
-import ArtworkManage from './views/artwork-manage.component';
-import ProjectManage from './views/project-manage.component';
+import ArtworkManage from './artwork-manage.component';
+import ProjectManage from './project-manage/project-manage.component';
 
 // import '../main.css';
 
@@ -44,24 +44,24 @@ class Main extends React.Component {
     render(){
         return(
             <div>
-
+                <div className="main-header">
+                    <div>
+                        <Link to={`/`}>
+                            <h1>Manage Portfolio</h1>
+                        </Link>
+                    </div>
+                    <div>
+                        <h2>{this.state.context}</h2>
+                    </div>
+                </div>
                 <div className="main-body layout-container">
+
                     <div className="col-1 border-right">
-                        <div>
-                            <Link to={`/`}>
-                                <h1>Manage Portfolio</h1>
-                            </Link>
-                        </div>
                         <VerticalNavBar
                             linkMap={this.linkMap}
                         />
                     </div>
                     <div className="col-3">
-                        <div className="main-header">
-                            <div>
-                                    <h2>{this.state.context}</h2>
-                            </div>
-                        </div>
                         <Route
                             exact path="/"
                             render={(props) => this.feed(props)}

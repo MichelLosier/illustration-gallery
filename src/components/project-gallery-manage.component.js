@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ArtworkService from '../../services/artwork.service';
+import ArtworkService from '../services/artwork.service';
 import ArtworkForm from './artwork-form.component';
 import Gallery from './gallery.component';
 

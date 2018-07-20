@@ -121,8 +121,7 @@ a {
 
 .main-header {
   display: flex;
-  padding: 1rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-flow: wrap;
   border-bottom: 1px solid #666;
   background-color: white; }
@@ -443,3 +442,48 @@ input[type='button'] {
       background-color: white; }
       .form-tabs li.selected:hover {
         border-bottom: 1px solid white; }
+
+.tag-list {
+  padding: 1rem; }
+  .tag-list ul {
+    padding: 1em;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center; }
+  .tag-list li {
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 1rem 0;
+    color: white;
+    background-color: #e26e26;
+    border-radius: .3rem; }
+    .tag-list li > div {
+      font-weight: normal;
+      display: inline-block;
+      margin: 0 0.5rem; }
+    .tag-list li div.delete {
+      font-weight: normal;
+      width: 1rem;
+      border-radius: 50%;
+      border: 2px solid white;
+      height: 1rem;
+      cursor: pointer;
+      line-height: 1em; }
+
+.project-form {
+  min-width: 40rem; }
+  .project-form form {
+    border: 1px solid #666; }
+  .project-form .padded-group {
+    padding: 1rem; }
+
+.project-manage-container {
+  flex-basis: 100%;
+  padding: 1rem; }
+  .project-manage-container .layout-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    position: relative; }

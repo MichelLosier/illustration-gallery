@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from './text-field/text-field.component';
-import TagManage from './tag-manage.component';
-import FormTabs from './form-tabs/form-tabs.component';
+import TextField from '../text-field/text-field.component';
+import TagManage from '../tag-manage/tag-manage.component';
+import FormTabs from '../form-tabs/form-tabs.component';
 
-import ProjectGalleryManage from './project-gallery-manage.component';
+import ProjectGalleryManage from '../project-gallery-manage.component';
 
 import ProjectService from '../../services/project.service';
 import ArtworkService from '../../services/artwork.service';
@@ -150,7 +150,7 @@ class ProjectForm extends React.Component {
     render() {
         const fields = this.state.fields;
         return (
-            <div className="min-width-40 width-12">
+            <div className="project-form">
                 
                 <FormTabs
                     tabMap={this.tabMap}
@@ -163,7 +163,7 @@ class ProjectForm extends React.Component {
                         onGalleryChange={this.handleCollectionChange}
                     />
                 ) : (
-                    <form className="border-top fill-container" onSubmit={this.handleFormSubmit}>
+                    <form onSubmit={this.handleFormSubmit}>
                         <h3>Create Project</h3>
                         <div className="padded-group">
                             <TextField

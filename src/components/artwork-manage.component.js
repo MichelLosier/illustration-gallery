@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Route, Link} from 'react-router-dom'
-import ArtworkForm from '../forms/artwork-form.component';
+import ArtworkForm from './artwork-form.component';
 
 class ArtworkManage extends React.Component {
     constructor(){

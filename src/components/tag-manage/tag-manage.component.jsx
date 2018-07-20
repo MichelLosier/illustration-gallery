@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from './text-field/text-field.component';
+import TextField from '../text-field/text-field.component';
 
 
 class TagManage extends React.Component {
@@ -44,7 +44,6 @@ class TagManage extends React.Component {
             return(
                 <li 
                     key={item}
-                    className="tags"
                 >
                     <div>
                         {item}
@@ -60,7 +59,7 @@ class TagManage extends React.Component {
             )
         })
         return(
-            <ul className="flex-list-x tags">
+            <ul>
                 {items}
             </ul>
         )
@@ -83,7 +82,7 @@ class TagManage extends React.Component {
                     />
                 </TextField>
 
-                <div className="padded-group">
+                <div className="tag-list">
                     {this.collectionList()}
                 </div>
             </div>

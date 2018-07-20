@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import TextField from './text-field/text-field.component';
 import FormTabs from './form-tabs/form-tabs.component';
-import Image from '../image.component';
+import Image from './image.component';
 import ImageUpload from './image-upload.component';
 //TODO
 class ImageForm extends React.Component {

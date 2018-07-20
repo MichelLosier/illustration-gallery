@@ -1,0 +1,12 @@
+@import '../../stylesheets/variables';
+
+.project-form{
+    min-width:40rem;
+
+    form{
+        border:1px solid $color-primary-grey;
+    }
+    .padded-group{
+        padding:1rem;
+    }
+}
