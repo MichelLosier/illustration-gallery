@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import VerticalNavBar from './vertical-nav-bar/vertical-nav-bar.component'
-import ArtworkManage from './artwork-manage.component';
+import VerticalNavBar from './vertical-nav-bar/vertical-nav-bar.component';
+import ArtworkManage from './artwork-manage/artwork-manage.component';
 import ProjectManage from './project-manage/project-manage.component';
 
 // import '../main.css';

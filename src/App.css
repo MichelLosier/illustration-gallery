@@ -487,3 +487,27 @@ input[type='button'] {
     display: flex;
     justify-content: space-around;
     position: relative; }
+
+.project-gallery-manage {
+  border: 1px solid #666;
+  background-color: white;
+  padding: 2rem;
+  height: fit-content; }
+  .project-gallery-manage .padded-group {
+    padding: 1rem; }
+
+.artwork-form {
+  min-width: 40rem; }
+  .artwork-form form {
+    border: 1px solid #666; }
+  .artwork-form .padded-group {
+    padding: 1rem; }
+
+.artwork-manage-container {
+  flex-basis: 100%;
+  padding: 1rem; }
+  .artwork-manage-container .layout-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    position: relative; }

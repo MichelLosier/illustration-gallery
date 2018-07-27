@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from './text-field/text-field.component';
-import TagManage from './tag-manage/tag-manage.component';
-import ArtworkService from '../services/artwork.service';
-import ImageForm from './image-form.component';
-import ArtworkCard from './artwork-card.component';
+import TextField from '../text-field/text-field.component';
+import TagManage from '../tag-manage/tag-manage.component';
+import ArtworkService from '../../services/artwork.service';
+import ImageForm from '../image-form.component';
+import ArtworkCard from '../artwork-card.component';
 
-import {deepMerge} from '../helpers';
+import {deepMerge} from '../../helpers';
 
 const Artwork$ = new ArtworkService();
 
@@ -161,9 +161,8 @@ class ArtworkForm extends React.Component {
         const fields = this.state.fields;
         const selectedImage = this.state.selectedImage;
         return (
-            <div className="min-width-40 width-12">
+            <div className="artwork-form">
                 <form 
-                    className="fill-container"
                     onSubmit={this.handleFormSubmit}>
                     <h3>{(this.state.actionType === 'CREATE')? 'Create New' : 'Update'} Artwork
                     </h3>

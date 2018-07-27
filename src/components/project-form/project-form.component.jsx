@@ -5,7 +5,7 @@ import TextField from '../text-field/text-field.component';
 import TagManage from '../tag-manage/tag-manage.component';
 import FormTabs from '../form-tabs/form-tabs.component';
 
-import ProjectGalleryManage from '../project-gallery-manage.component';
+import ProjectGalleryManage from '../project-gallery-manage/project-gallery-manage.component';
 
 import ProjectService from '../../services/project.service';
 import ArtworkService from '../../services/artwork.service';
