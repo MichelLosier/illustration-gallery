@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import ArtworkCard from './artwork-card.component';
+import ArtworkCard from '../artwork-card/artwork-card.component';
 
 class Gallery extends React.Component {
     constructor(){
@@ -64,9 +64,9 @@ class Gallery extends React.Component {
 
     render() {
         return(
-            <div className="fill-container">
+            <div className="gallery-container">
                 <ul 
-                    className="gallery-flex-container border"
+                    className="gallery"
                 >
                     {this.galleryImages()}
                 </ul>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from './image.component';
+import Image from './image/image.component';
 
 class ProjectCard extends React.Component {
     constructor(){

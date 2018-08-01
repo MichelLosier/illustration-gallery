@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from './text-field/text-field.component';
-import FormTabs from './form-tabs/form-tabs.component';
-import Image from './image.component';
-import ImageUpload from './image-upload.component';
+import TextField from '../text-field/text-field.component';
+import FormTabs from '../form-tabs/form-tabs.component';
+import Image from '../image/image.component';
+import ImageUpload from '../image-upload.component';
 //TODO
 class ImageForm extends React.Component {
     constructor(props){
@@ -78,14 +78,14 @@ class ImageForm extends React.Component {
         const selectedImage = this.props.selectedImage
         const images = this.props.images
         return(
-            <div className="width-12 column-centered">
+            <div className="image-form-container">
                 <FormTabs
                     tabMap={this.props.labelMap}
                     selectedKey={this.props.selectedImage}
                     onSelection={this.handleImageSelection}
                 />
                 <div 
-                    className="border padded-group gallery-fixed-height column-centered overlay-container"
+                    className="image-form"
                     onMouseEnter={this.handleMouse(true)}
                     onMouseLeave={this.handleMouse(false)}
                 >
@@ -95,7 +95,7 @@ class ImageForm extends React.Component {
                     />
                     {(!this.state.showFields && this.state.showButtons) &&
                         <div 
-                            className="overlay column-centered"
+                            className="transparent-form-overlay"
                         >
                             <input 
                                 type='button' 
@@ -105,7 +105,7 @@ class ImageForm extends React.Component {
                         </div>
                     }
                     {(this.state.showFields)&& 
-                        <div className="overlay column-centered">
+                        <div className="transparent-form-overlay">
                             {/* <div className="padded-group">
                                 <ImageUpload/>
                             </div> */}

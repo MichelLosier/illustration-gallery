@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import TextField from '../text-field/text-field.component';
 import TagManage from '../tag-manage/tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
-import ImageForm from '../image-form.component';
-import ArtworkCard from '../artwork-card.component';
+import ImageForm from '../image-form/image-form.component';
+import ArtworkCard from '../artwork-card/artwork-card.component';
 
 import {deepMerge} from '../../helpers';
 

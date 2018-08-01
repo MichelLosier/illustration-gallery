@@ -1,0 +1,49 @@
+@import '../../stylesheets/variables';
+
+.horizontal-nav-bar {	
+
+
+    ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+        list-style-type: none;
+        li {
+            padding: .5rem .5rem .25rem .5rem;
+            display: inline-block;
+            border-bottom: .25rem solid transparent;
+        
+            &:hover {
+                cursor: pointer;
+                color: $color-secondary-orange;
+                border-bottom: .25rem solid $color-secondary-orange;
+                box-sizing: border-box;
+            }
+            &.active {
+                border-bottom: .25rem solid $color-secondary-orange;
+                box-sizing: border-box;
+                a {
+                    color: $color-secondary-orange;
+                }
+            }
+        }
+    
+        a,
+        p {
+            padding: 1rem;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+    
+        a:hover{
+            cursor: pointer;
+            color: $color-secondary-orange;
+        }
+    }
+
+	
+
+}

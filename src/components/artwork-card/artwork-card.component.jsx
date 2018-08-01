@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Image from './image.component';
+import Image from '../image/image.component';
 
 class ArtworkCard extends React.Component {
     constructor(){
@@ -27,6 +27,14 @@ class ArtworkCard extends React.Component {
         })
     }
 
+    options = () => {
+        return(
+            <div>
+                {this.props.children}
+            </div>
+        )
+    }
+
     render() {
         const {artwork} = this.props
         return(
@@ -40,7 +48,7 @@ class ArtworkCard extends React.Component {
                     altText={artwork.images.previewImage.altText}
                 />
                 {this.state.showDetail &&
-                    this.props.children
+                    this.options()
                 }
             </div>
         )

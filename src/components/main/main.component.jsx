@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import VerticalNavBar from './vertical-nav-bar/vertical-nav-bar.component';
-import ArtworkManage from './artwork-manage/artwork-manage.component';
-import ProjectManage from './project-manage/project-manage.component';
+import HorizontalNavBar from '../horizontal-nav-bar/horizontal-nav-bar.component';
+import ArtworkManage from '../artwork-manage/artwork-manage.component';
+import ProjectManage from '../project-manage/project-manage.component';
 
 // import '../main.css';
 
@@ -43,25 +43,24 @@ class Main extends React.Component {
 
     render(){
         return(
-            <div>
-                <div className="main-header">
+            <div className="main">
+                <div className="header">
                     <div>
                         <Link to={`/`}>
                             <h1>Manage Portfolio</h1>
                         </Link>
                     </div>
-                    <div>
-                        <h2>{this.state.context}</h2>
-                    </div>
-                </div>
-                <div className="main-body layout-container">
-
-                    <div className="col-1 border-right">
-                        <VerticalNavBar
+                    <HorizontalNavBar
                             linkMap={this.linkMap}
                         />
-                    </div>
-                    <div className="col-3">
+
+                </div>
+                <div className="body">
+
+                    <div>
+                        <div>
+                            <h2>{this.state.context}</h2>
+                        </div>
                         <Route
                             exact path="/"
                             render={(props) => this.feed(props)}
@@ -84,7 +83,7 @@ class Main extends React.Component {
                         />
                     </div>
                 </div>
-                <div className="main-footer layout-container">
+                <div className="footer">
                 </div>
             </div>
         )
