@@ -56,32 +56,29 @@ class Main extends React.Component {
 
                 </div>
                 <div className="body">
-
-                    <div>
-                        <div>
-                            <h2>{this.state.context}</h2>
-                        </div>
-                        <Route
-                            exact path="/"
-                            render={(props) => this.feed(props)}
-                        />
-                        <Route
-                            path="/artwork/"
-                            render={()=> {
-                                return(<ArtworkManage
-                                    getContext={this.setContext}
-                                />)
-                            }}
-                        />
-                        <Route
-                            path="/projects/"
-                            render={()=> {
-                                return(<ProjectManage
-                                    getContext={this.setContext}
-                                />)
-                            }}
-                        />
+                    <div className="context-bar">
+                        <h2>{this.state.context}</h2>
                     </div>
+                    <Route
+                        exact path="/"
+                        render={(props) => this.feed(props)}
+                    />
+                    <Route
+                        path="/artwork/"
+                        render={()=> {
+                            return(<ArtworkManage
+                                getContext={this.setContext}
+                            />)
+                        }}
+                    />
+                    <Route
+                        path="/projects/"
+                        render={()=> {
+                            return(<ProjectManage
+                                getContext={this.setContext}
+                            />)
+                        }}
+                    />
                 </div>
                 <div className="footer">
                 </div>

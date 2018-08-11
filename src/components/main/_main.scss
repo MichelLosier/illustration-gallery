@@ -14,8 +14,6 @@
     .body {
         background-color: $color-background-grey;
         margin: 0 auto;
-        display: flex;
-        justify-content:space-around;
         position:relative;
     
         .col-1, .col-3 {
@@ -31,6 +29,16 @@
     
         .col-3 {
             flex: 3;
+        }
+        .context-bar{
+            display: flex;
+            padding: 0.25rem;
+            color:$color-background-white;
+            background-color:$color-primary-grey;
+            width: 100%;
+            h2{
+                margin: 0.5rem;
+            }
         }
     }
 

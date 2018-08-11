@@ -1,0 +1,29 @@
+@import '../../stylesheets/variables';
+
+.project-selection {
+	width:100%;
+	margin: 0 auto;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+	ul{
+		width:80%;
+		margin:0;
+		padding:0;
+		display: flex;
+		flex-flow: column;
+		flex-wrap: nowrap;
+		border: 1px solid $color-primary-grey;
+		li {
+			border-bottom: $color-primary-grey;
+			display:block;
+			&.selected {
+				border-left: 3px solid $color-secondary-orange;
+			}
+			&:hover{
+				cursor: pointer;
+			}
+		}
+	}
+}

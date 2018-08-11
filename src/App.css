@@ -357,8 +357,6 @@ input[type='button'] {
 .main .body {
   background-color: #eee;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
   position: relative; }
   .main .body .col-1, .main .body .col-3 {
     display: flex;
@@ -369,6 +367,14 @@ input[type='button'] {
     flex: 1; }
   .main .body .col-3 {
     flex: 3; }
+  .main .body .context-bar {
+    display: flex;
+    padding: 0.25rem;
+    color: white;
+    background-color: #666;
+    width: 100%; }
+    .main .body .context-bar h2 {
+      margin: 0.5rem; }
 
 .horizontal-nav-bar ul {
   padding: 0;
@@ -549,6 +555,45 @@ input[type='button'] {
   height: fit-content; }
   .project-gallery-manage .padded-group {
     padding: 1rem; }
+
+.project-selection {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-around;
+  position: relative; }
+  .project-selection ul {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    border: 1px solid #666; }
+    .project-selection ul li {
+      border-bottom: #666;
+      display: block; }
+      .project-selection ul li.selected {
+        border-left: 3px solid #e26e26; }
+      .project-selection ul li:hover {
+        cursor: pointer; }
+
+.project-card {
+  display: flex;
+  height: 100px;
+  justify-content: flex-start;
+  background-color: white; }
+  .project-card div.project-description {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    width: 100%; }
+    .project-card div.project-description div.name {
+      font-size: 1.25rem; }
+  .project-card div.project-image {
+    height: inherit;
+    border-right: 1px solid #666; }
 
 .artwork-form {
   min-width: 40rem; }
