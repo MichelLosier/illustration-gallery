@@ -21,11 +21,23 @@ class ProjectManage extends React.Component {
         return(
             <div className="project-manage-container">
                 <div className="layout-container">
-                    {(this.state.selection)?(
-                        <ProjectSelection/>
-                    ):(
-                        <ProjectForm/>
-                    )}
+                    <Route
+                        exact path="/projects"
+                        render={()=>{
+                            return(
+                                <ProjectSelection/>
+                            )
+                        }}
+                    />
+                    <Route
+                        path="/projects/new"
+                        render={()=>{
+                            return(
+                                <ProjectForm/>
+                            )
+                        }}
+                    />
+                    
                 </div>
             </div>
         )

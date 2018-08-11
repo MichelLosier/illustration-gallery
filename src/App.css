@@ -569,15 +569,21 @@ input[type='button'] {
     padding: 0;
     display: flex;
     flex-flow: column;
-    flex-wrap: nowrap;
-    border: 1px solid #666; }
+    flex-wrap: nowrap; }
     .project-selection ul li {
-      border-bottom: #666;
+      border: 1px solid #666;
+      border-bottom: none;
       display: block; }
       .project-selection ul li.selected {
-        border-left: 3px solid #e26e26; }
+        border: 1px solid #e26e26; }
+        .project-selection ul li.selected + li {
+          border-top: none; }
+        .project-selection ul li.selected:last-child {
+          border-bottom: 1px solid #e26e26; }
       .project-selection ul li:hover {
         cursor: pointer; }
+      .project-selection ul li:last-child {
+        border-bottom: 1px solid #666; }
 
 .project-card {
   display: flex;
@@ -586,13 +592,17 @@ input[type='button'] {
   background-color: white; }
   .project-card div.project-description {
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding: 1rem;
     width: 100%; }
     .project-card div.project-description div.name {
       font-size: 1.25rem; }
   .project-card div.project-image {
-    height: inherit;
+    padding: 0.5rem;
+    max-height: inherit;
+    width: 200px;
+    max-width: 200px;
     border-right: 1px solid #666; }
 
 .artwork-form {
@@ -667,7 +677,9 @@ input[type='button'] {
 
 .image {
   display: block;
-  height: inherit;
+  max-width: height 100%;
+  max-height: 100%;
+  height: auto;
   /*default*/
   width: auto;
   margin: 0 auto; }
