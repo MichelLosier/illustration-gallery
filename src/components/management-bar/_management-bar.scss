@@ -1,0 +1,12 @@
+@import '../../stylesheets/variables';
+
+.management-bar{
+    display: flex;
+    padding: 0.25rem;
+    color:$color-background-white;
+    background-color:$color-primary-grey;
+    width: 100%;
+    h2{
+        margin: 0.5rem;
+    }
+}

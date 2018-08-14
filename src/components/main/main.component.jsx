@@ -56,9 +56,6 @@ class Main extends React.Component {
 
                 </div>
                 <div className="body">
-                    <div className="context-bar">
-                        <h2>{this.state.context}</h2>
-                    </div>
                     <Route
                         exact path="/"
                         render={(props) => this.feed(props)}
@@ -74,9 +71,7 @@ class Main extends React.Component {
                     <Route
                         path="/projects/"
                         render={()=> {
-                            return(<ProjectManage
-                                getContext={this.setContext}
-                            />)
+                            return(<ProjectManage/>)
                         }}
                     />
                 </div>

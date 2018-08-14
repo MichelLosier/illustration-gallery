@@ -357,7 +357,8 @@ input[type='button'] {
 .main .body {
   background-color: #eee;
   margin: 0 auto;
-  position: relative; }
+  position: relative;
+  min-height: 100vh; }
   .main .body .col-1, .main .body .col-3 {
     display: flex;
     justify-content: space-around;
@@ -434,6 +435,15 @@ input[type='button'] {
     font-size: 1.15rem; }
     .vertical-nav-bar a:hover {
       color: white; }
+
+.management-bar {
+  display: flex;
+  padding: 0.25rem;
+  color: white;
+  background-color: #666;
+  width: 100%; }
+  .management-bar h2 {
+    margin: 0.5rem; }
 
 .text-field-group {
   padding: .5em 0;
@@ -540,9 +550,9 @@ input[type='button'] {
     padding: 1rem; }
 
 .project-manage-container {
-  flex-basis: 100%;
-  padding: 1rem; }
+  flex-basis: 100%; }
   .project-manage-container .layout-container {
+    padding: 1rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
