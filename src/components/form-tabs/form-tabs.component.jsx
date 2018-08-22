@@ -31,10 +31,19 @@ class FormTabs extends React.Component {
         })
     }
 
+    classes = () => {
+        let classes = "form-tabs";
+        if(this.props.classes){
+            return `${classes} ${this.props.classes}`;
+        }
+        return classes;
+        
+    }
+
     render(){
         return(
             <div>
-                <ul className="link-list-x tabs">
+                <ul className={this.classes()}>
                     {this.tabItems(this.props.tabMap)}
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Route, Link} from 'react-router-dom'
-import ArtworkForm from '../forms/artwork-form.component';
+import ArtworkForm from '../artwork-form/artwork-form.component';
 
 class ArtworkManage extends React.Component {
     constructor(){
@@ -9,10 +9,13 @@ class ArtworkManage extends React.Component {
         this.state = {}
     }
 
+    componentDidMount(){
+        this.props.getContext("Manage Artwork");
+    }
+
     render(){
         return(
-            <div className="width-12">
-                <h2>Manage Artwork</h2>
+            <div className="artwork-manage-container">
                 <div className="layout-container">
                     <ArtworkForm/>
                 </div>

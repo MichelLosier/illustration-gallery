@@ -1,16 +1,18 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import NavBar from './nav-bar.component'
-import ArtworkManage from './views/artwork-manage.component';
-import ProjectManage from './views/project-manage.component';
+import HorizontalNavBar from '../horizontal-nav-bar/horizontal-nav-bar.component';
+import ArtworkManage from '../artwork-manage/artwork-manage.component';
+import ProjectManage from '../project-manage/project-manage.component';
 
 // import '../main.css';
 
 class Main extends React.Component {
     constructor(){
         super();
-        this.state = {}
+        this.state = {
+            context: ''
+        }
         this.linkMap = {
             artwork: {
                 label:'Artwork',
@@ -27,6 +29,10 @@ class Main extends React.Component {
         }
     }
 
+    setContext = (context) => {
+        this.setState({context: context});
+    }
+
     feed(props){
         return(
             <div>
@@ -37,32 +43,39 @@ class Main extends React.Component {
 
     render(){
         return(
-            <div>
-                <div className="main-header layout-container">
-                    <div className="header">
+            <div className="main">
+                <div className="header">
+                    <div>
                         <Link to={`/`}>
                             <h1>Manage Portfolio</h1>
                         </Link>
                     </div>
-                    <NavBar
-                        linkMap={this.linkMap}
-                    />
+                    <HorizontalNavBar
+                            linkMap={this.linkMap}
+                        />
+
                 </div>
-                <div className="main-body layout-container">
+                <div className="body">
                     <Route
                         exact path="/"
                         render={(props) => this.feed(props)}
                     />
                     <Route
                         path="/artwork/"
-                        component={ArtworkManage}
+                        render={()=> {
+                            return(<ArtworkManage
+                                getContext={this.setContext}
+                            />)
+                        }}
                     />
                     <Route
                         path="/projects/"
-                        component={ProjectManage}
+                        render={()=> {
+                            return(<ProjectManage/>)
+                        }}
                     />
                 </div>
-                <div className="main-footer layout-container">
+                <div className="footer">
                 </div>
             </div>
         )

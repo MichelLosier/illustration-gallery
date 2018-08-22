@@ -1,0 +1,45 @@
+@import '../../stylesheets/variables';
+
+.form-tabs{
+    padding:0;
+	margin:0;
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+    align-items:center;
+    margin-bottom: -1px;
+    position: relative;
+    z-index:2;
+
+	li {
+		height: 3rem;
+        display:inline-block;
+        border: 1px solid $color-primary-grey;
+        background-color: $color-background-grey;
+        border-left: none;
+		&:hover {
+			cursor: pointer;
+            color:$color-primary-grey;
+            border-bottom: 1px solid $color-primary-grey;
+            box-sizing: content-box
+        }
+        &:first-child{
+            border-left: 1px solid #666
+        }
+        a{
+            padding: 1rem;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        a:hover{
+            color:$color-primary-grey;
+        }
+        &.selected {
+            border-bottom: 1px solid $color-background-white;
+            background-color:$color-background-white;
+            &:hover {
+                border-bottom:1px solid $color-background-white;
+            }
+        }
+	}
+}

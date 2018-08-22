@@ -1,0 +1,12 @@
+@import '../../stylesheets/variables';
+
+.artwork-manage-container{
+    flex-basis: 100%;
+    padding: 1rem;
+    .layout-container{
+        margin: 0 auto;
+        display: flex;
+        justify-content:space-around;
+        position:relative;
+    }
+}

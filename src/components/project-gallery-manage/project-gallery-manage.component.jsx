@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ArtworkService from '../../services/artwork.service';
-import ArtworkForm from './artwork-form.component';
-import Gallery from './gallery.component';
+import ArtworkForm from '../artwork-form/artwork-form.component';
+import Gallery from '../gallery/gallery.component';
 
 class ProjectGalleryManage extends React.Component {
     constructor(){
@@ -80,7 +80,7 @@ class ProjectGalleryManage extends React.Component {
         const s = this.state;
         
         return(
-            <div className="border module">
+            <div className="project-gallery-manage">
                 {(!s.viewGallery) ? (
                     <div>
                         <ArtworkForm

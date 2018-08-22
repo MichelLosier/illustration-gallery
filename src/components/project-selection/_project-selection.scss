@@ -1,0 +1,38 @@
+@import '../../stylesheets/variables';
+
+.project-selection {
+	width:100%;
+	margin: 0 auto;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+	ul{
+		width:80%;
+		margin:0;
+		padding:0;
+		display: flex;
+		flex-flow: column;
+		flex-wrap: nowrap;
+		li {
+			border: 1px solid $color-primary-grey;
+			border-bottom: none;
+			display:block;
+			&.selected {
+				border: 1px solid $color-secondary-orange;
+				&+li{
+					border-top:none;
+				}
+				&:last-child{
+					border-bottom: 1px solid $color-secondary-orange;
+				}
+			}
+			&:hover{
+				cursor: pointer;
+			}
+			&:last-child{
+				border-bottom: 1px solid $color-primary-grey;
+			}
+		}
+	}
+}

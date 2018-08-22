@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 //Styling controlled by form-group class 
 //.form-group textarea
 
-class Field extends React.Component {
+class TextField extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -39,7 +39,7 @@ class Field extends React.Component {
 
     render() {
         return (
-            <div className="form-group">
+            <div className="text-field-group">
                 <label for={this.props.name}>
                     {this.props.label}
                 </label>
@@ -55,4 +55,4 @@ class Field extends React.Component {
     }
 }
 
-export default Field;
+export default TextField;

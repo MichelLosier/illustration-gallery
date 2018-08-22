@@ -13,7 +13,7 @@ class Image extends React.Component{
     render(){
         return(
             <img
-                className="contained"
+                className="image"
                 src={this.props.url}
                 alt={this.props.altText}
             />

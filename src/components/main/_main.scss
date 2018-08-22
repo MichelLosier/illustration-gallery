@@ -1,0 +1,49 @@
+@import '../../stylesheets/variables';
+
+.main {
+
+    .header {
+        display:flex;
+        align-items: center;
+        justify-content:space-between;
+        flex-flow: wrap;
+        border-bottom: 1px solid $color-primary-grey;
+        background-color:$color-background-white;
+    }
+
+    .body {
+        background-color: $color-background-grey;
+        margin: 0 auto;
+        position:relative;
+        min-height: 100vh;
+    
+        .col-1, .col-3 {
+            display: flex;
+            justify-content: space-around;
+            flex-direction:column;
+        }
+    
+        .col-1 {
+            max-width:300px;
+            flex: 1;
+        }
+    
+        .col-3 {
+            flex: 3;
+        }
+        .context-bar{
+            display: flex;
+            padding: 0.25rem;
+            color:$color-background-white;
+            background-color:$color-primary-grey;
+            width: 100%;
+            h2{
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    .footer {
+
+    }
+}

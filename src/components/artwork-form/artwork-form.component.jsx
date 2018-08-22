@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Field from './field.component';
-import TagManage from './tag-manage.component';
+import TextField from '../text-field/text-field.component';
+import TagManage from '../tag-manage/tag-manage.component';
 import ArtworkService from '../../services/artwork.service';
-import ImageForm from './image-form.component';
-import artworkCardComponent from '../artwork-card.component';
+import ImageForm from '../image-form/image-form.component';
+import ArtworkCard from '../artwork-card/artwork-card.component';
 
 import {deepMerge} from '../../helpers';
 
@@ -161,9 +161,8 @@ class ArtworkForm extends React.Component {
         const fields = this.state.fields;
         const selectedImage = this.state.selectedImage;
         return (
-            <div className="min-width-40 width-6">
+            <div className="artwork-form">
                 <form 
-                    className="border"
                     onSubmit={this.handleFormSubmit}>
                     <h3>{(this.state.actionType === 'CREATE')? 'Create New' : 'Update'} Artwork
                     </h3>
@@ -178,7 +177,7 @@ class ArtworkForm extends React.Component {
                     </div>
                     <div className="padded-group">
 
-                        <Field
+                        <TextField
                             placeholder='Caption'
                             name='caption'
                             label='Caption'
@@ -187,7 +186,7 @@ class ArtworkForm extends React.Component {
                             validate={false}
                         />
 
-                        <Field
+                        <TextField
                             placeholder='narrative about the artwork'
                             name='description'
                             label='Long Description'

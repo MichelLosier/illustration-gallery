@@ -1,0 +1,12 @@
+@import '../../stylesheets/variables';
+
+.project-gallery-manage {
+    border: 1px solid #666;
+    background-color:white;
+	padding: 2rem;
+    height: fit-content;
+    
+    .padded-group{
+        padding: 1rem;
+    }
+}

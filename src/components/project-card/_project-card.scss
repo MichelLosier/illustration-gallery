@@ -1,0 +1,25 @@
+@import '../../stylesheets/variables';
+
+.project-card{
+    display: flex;
+    height: 100px;
+    justify-content: flex-start;
+    background-color: $color-background-white;
+    div.project-description{
+        display: flex;
+        align-items:center;
+        justify-content: space-around;
+        padding: 1rem;
+        width:100%;
+        div.name{
+            font-size: 1.25rem;
+        }
+    }
+    div.project-image{
+        padding: 0.5rem;
+        max-height: inherit;
+        width: 200px;
+        max-width: 200px;
+        border-right: 1px solid $color-primary-grey;
+    }
+}

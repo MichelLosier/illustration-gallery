@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Route, Link } from 'react-router-dom';
 
-class NavBar extends React.Component {
+class VerticalNavBar extends React.Component {
     constructor(){
         super();
         this.state = {
@@ -39,7 +39,7 @@ class NavBar extends React.Component {
         })
 
         return(
-            <ul className="link-list-x nav">
+            <ul>
                 {links}
             </ul>
         )
@@ -47,11 +47,11 @@ class NavBar extends React.Component {
 
     render(){
         return(
-            <div className="main-nav">
+            <div className="vertical-nav-bar">
                 {this.linkList()}
             </div>
         )
     }
 }
 
-export default NavBar;
+export default VerticalNavBar;

@@ -1,0 +1,42 @@
+@import '../../stylesheets/variables';
+
+.text-field-group {
+	padding:.5em 0;
+    display: flex;
+
+    input,
+    label {
+        padding: 0.5rem;
+        display:inline-block;
+    }
+    label {
+		width: 25%;
+        justify-content: center;
+        text-align: right;
+        font: 1rem;
+	}
+	input {
+        height: 1rem;
+        width:50%;
+        border:1px solid $color-primary-grey;
+    }
+    input[type='button'] {
+        width: fit-content;
+        margin: 0 .25rem;
+        border: 1px solid $color-secondary-orange;
+        padding: 1rem 2rem;
+        background-color: $color-background-white;
+        color: $color-primary-grey;
+        font-family: $font-stack;
+        font-weight: lighter;
+        font-size:1em;
+        align-self: center;
+        line-height: 0;
+        cursor: pointer;
+        
+        &:hover{
+            border: 1px solid $color-secondary-orange-highlight;
+            color: $color-secondary-orange-highlight;
+        }
+    }
+}
