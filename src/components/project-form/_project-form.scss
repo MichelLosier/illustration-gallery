@@ -2,11 +2,17 @@
 
 .project-form{
     min-width:40rem;
-
+    &.full-width{
+        width:100%;
+    }
     form{
         border:1px solid $color-primary-grey;
     }
     .padded-group{
         padding:1rem;
+    }
+    .button-row{
+        display:flex;
+        justify-content: space-evenly;
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link, Redirect} from 'react-router-dom'
 
 import TextField from '../text-field/text-field.component';
 import TagManage from '../tag-manage/tag-manage.component';
@@ -149,8 +150,9 @@ class ProjectForm extends React.Component {
 
     render() {
         const fields = this.state.fields;
+        const formClasses = (this.state.selectedTab == "GALLERY") ? "project-form full-width" : "project-form"
         return (
-            <div className="project-form">
+            <div className={formClasses}>
                 
                 <FormTabs
                     tabMap={this.tabMap}
@@ -201,8 +203,11 @@ class ProjectForm extends React.Component {
                                 label='Tags'
                             />
                         </div>
-                        <div className="padded-group">
+                        <div className="padded-group button-row">
                             <input type='submit' value="Submit" disabled={this.validate()} />
+                            <Link to="/projects">
+                                <input type='button' value="Cancel" />
+                            </Link>
                         </div>
                     </form>
                 )}

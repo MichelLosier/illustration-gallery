@@ -20,6 +20,7 @@ class ManagementBar extends React.Component {
                 <div className="searchBar">
                 </div>
                 <div className="actions">
+                    {this.props.children}
                 </div>
             </div>
         )

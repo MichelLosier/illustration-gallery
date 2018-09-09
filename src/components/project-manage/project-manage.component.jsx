@@ -17,9 +17,17 @@ class ProjectManage extends React.Component {
     render(){
         return(
             <div className="project-manage-container">
-                 <ManagementBar
-                    viewTitle="Projects"
-                />
+                 <ManagementBar viewTitle="Projects">
+                    <Route
+                        exact path="/projects"
+                        render={()=>{
+                            return(
+                                <Link to={'/projects/new'}>+ Add Project</Link>
+                            )
+                        }}
+                    />
+                   
+                </ManagementBar>
                 <div className="layout-container">
                     <Route
                         exact path="/projects"
