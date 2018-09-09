@@ -441,9 +441,34 @@ input[type='button'] {
   padding: 0.25rem;
   color: white;
   background-color: #666;
-  width: 100%; }
+  justify-content: space-between; }
   .management-bar h2 {
     margin: 0.5rem; }
+  .management-bar .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+  .management-bar a,
+  .management-bar input[type='button'],
+  .management-bar input[type='submit'] {
+    display: inline-block;
+    width: fit-content;
+    margin: 0 .25rem;
+    border: 1px solid white;
+    padding: 1rem;
+    background-color: transparent;
+    color: white;
+    font-family: helvetica, arial, sans-serif;
+    font-weight: lighter;
+    font-size: 1em;
+    align-self: center;
+    line-height: 0;
+    cursor: pointer; }
+    .management-bar a:hover,
+    .management-bar input[type='button']:hover,
+    .management-bar input[type='submit']:hover {
+      border: 1px solid #fe8438;
+      color: #fe8438; }
 
 .text-field-group {
   padding: .5em 0;
@@ -502,6 +527,7 @@ input[type='button'] {
     .form-tabs li:first-child {
       border-left: 1px solid #666; }
     .form-tabs li a {
+      min-width: 120px;
       padding: 1rem;
       display: inline-block;
       box-sizing: border-box; }
@@ -544,10 +570,15 @@ input[type='button'] {
 
 .project-form {
   min-width: 40rem; }
+  .project-form.full-width {
+    width: 100%; }
   .project-form form {
     border: 1px solid #666; }
   .project-form .padded-group {
     padding: 1rem; }
+  .project-form .button-row {
+    display: flex;
+    justify-content: space-evenly; }
 
 .project-manage-container {
   flex-basis: 100%; }

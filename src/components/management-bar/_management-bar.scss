@@ -5,8 +5,35 @@
     padding: 0.25rem;
     color:$color-background-white;
     background-color:$color-primary-grey;
-    width: 100%;
+    justify-content: space-between;
     h2{
         margin: 0.5rem;
+    }
+    .actions{
+        display:flex;
+        align-items:center;
+        justify-content: space-around;
+    }
+    a,
+    input[type='button'],
+    input[type='submit']{
+        display:inline-block;
+        width: fit-content;
+        margin: 0 .25rem;
+        border: 1px solid $color-background-white;
+        padding: 1rem;
+        background-color: transparent;
+        color: $color-background-white;
+        font-family: $font-stack;
+        font-weight: lighter;
+        font-size:1em;
+        align-self: center;
+        line-height: 0;
+        cursor: pointer;
+        
+        &:hover{
+            border: 1px solid $color-secondary-orange-highlight;
+            color: $color-secondary-orange-highlight;
+        }
     }
 }
