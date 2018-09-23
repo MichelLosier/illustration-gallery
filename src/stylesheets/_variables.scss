@@ -4,3 +4,24 @@ $color-secondary-orange: #e26e26;
 $color-secondary-orange-highlight: #fe8438;
 $color-background-grey: #eee;
 $color-background-white: white;
+
+@keyframes slide-in {
+    from {
+        margin-left:100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%
+    }
+}
+

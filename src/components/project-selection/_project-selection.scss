@@ -6,7 +6,8 @@
     display: -ms-flexbox;
     display: flex;
     justify-content: space-around;
-    position: relative;
+	position: relative;
+	animation: 2s fade-in;
 	ul{
 		width:80%;
 		margin:0;
@@ -36,3 +37,4 @@
 		}
 	}
 }
+

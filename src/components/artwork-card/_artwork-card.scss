@@ -1,7 +1,11 @@
 @import '../../stylesheets/variables';
 
 .artwork-card {
+    display:flex;
+    align-items:center;
     position:relative;
+    padding: 1rem;
+    background-color:$color-background-white;
     height: 250px;
     
 }
