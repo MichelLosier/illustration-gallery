@@ -32,7 +32,8 @@ class ProjectSelection extends React.Component {
         const {projects, selectedProject} = this.state;
 
         return projects.map((project) => {
-            let className = (selectedProject  == project._id) ? 'selected' : '';
+            let selected = (selectedProject == project._id) 
+            let className = (selected) ? 'selected' : '';
             return( 
                 <li
                     id={project._id}
@@ -41,6 +42,7 @@ class ProjectSelection extends React.Component {
                     className={className}
                 >
                     <ProjectCard
+                        selected={selected}
                         project={project}
                     />
                 </li>

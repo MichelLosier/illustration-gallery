@@ -2,11 +2,15 @@
 
 .project-card{
     display: flex;
-    height: 100px;
+    height: 75px;
     justify-content: flex-start;
     background-color: $color-background-white;
-    div.project-description{
+    &.selected{
+        height:fit-content;
+    }
+    div.project-information{
         display: flex;
+        flex-direction: column;
         align-items:center;
         justify-content: space-around;
         padding: 1rem;
@@ -14,8 +18,33 @@
         div.name{
             font-size: 1.25rem;
         }
+        div.full-description {
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: space-around;
+            div.description{
+                border-top: 1px  solid $color-background-grey;
+                border-bottom: 1px  solid $color-background-grey;
+                padding:0.5rem;
+                margin:0.5rem;
+            }
+            div.details{
+                display:flex;
+                justify-content: space-around;
+                font-size: .75rem;
+                padding: 0.5rem;
+                div {
+                    padding: 0.5rem;
+                }
+            }
+        }
     }
     div.project-image{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
         padding: 0.5rem;
         max-height: inherit;
         width: 200px;

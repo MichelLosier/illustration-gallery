@@ -628,18 +628,42 @@ input[type='button'] {
 
 .project-card {
   display: flex;
-  height: 100px;
+  height: 75px;
   justify-content: flex-start;
   background-color: white; }
-  .project-card div.project-description {
+  .project-card.selected {
+    height: fit-content; }
+  .project-card div.project-information {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 1rem;
     width: 100%; }
-    .project-card div.project-description div.name {
+    .project-card div.project-information div.name {
       font-size: 1.25rem; }
+    .project-card div.project-information div.full-description {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around; }
+      .project-card div.project-information div.full-description div.description {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem;
+        margin: 0.5rem; }
+      .project-card div.project-information div.full-description div.details {
+        display: flex;
+        justify-content: space-around;
+        font-size: .75rem;
+        padding: 0.5rem; }
+        .project-card div.project-information div.full-description div.details div {
+          padding: 0.5rem; }
   .project-card div.project-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0.5rem;
     max-height: inherit;
     width: 200px;
@@ -718,7 +742,7 @@ input[type='button'] {
 
 .image {
   display: block;
-  max-width: height 100%;
+  max-width: 100%;
   max-height: 100%;
   height: auto;
   /*default*/
