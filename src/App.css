@@ -796,7 +796,9 @@ input[type='button'] {
     .project-selection ul li {
       border: 1px solid #666;
       border-bottom: none;
-      display: block; }
+      display: flex;
+      justify-content: space-between;
+      background: white; }
       .project-selection ul li.selected {
         border: 1px solid #e26e26; }
         .project-selection ul li.selected + li {
@@ -807,6 +809,8 @@ input[type='button'] {
         cursor: pointer; }
       .project-selection ul li:last-child {
         border-bottom: 1px solid #666; }
+      .project-selection ul li .card-container {
+        flex-grow: 3; }
 
 @keyframes slide-in {
   from {
@@ -849,8 +853,9 @@ input[type='button'] {
       .project-card div.project-information div.full-description div.description {
         border-top: 1px solid #eee;
         border-bottom: 1px solid #eee;
-        padding: 0.5rem;
+        padding: 1rem;
         margin: 0.5rem;
+        max-width: 500px;
         max-height: 150px;
         word-wrap: normal;
         overflow-y: scroll; }

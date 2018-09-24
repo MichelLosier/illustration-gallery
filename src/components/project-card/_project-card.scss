@@ -33,8 +33,9 @@
             div.description{
                 border-top: 1px  solid $color-background-grey;
                 border-bottom: 1px  solid $color-background-grey;
-                padding:0.5rem;
+                padding:1rem;
                 margin:0.5rem;
+                max-width:500px;
                 max-height:150px;
                 word-wrap: normal;
                 overflow-y: scroll;

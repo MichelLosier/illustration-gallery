@@ -18,7 +18,9 @@
 		li {
 			border: 1px solid $color-primary-grey;
 			border-bottom: none;
-			display:block;
+			display:flex;
+			justify-content: space-between;
+			background: $color-background-white;
 			&.selected {
 				border: 1px solid $color-secondary-orange;
 				&+li{
@@ -33,6 +35,9 @@
 			}
 			&:last-child{
 				border-bottom: 1px solid $color-primary-grey;
+			}
+			.card-container{
+				flex-grow:3;
 			}
 		}
 	}

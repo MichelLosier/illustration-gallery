@@ -41,10 +41,12 @@ class ProjectSelection extends React.Component {
                     onClick={()=>{this.handleProjectClick(project._id)}}
                     className={className}
                 >
-                    <ProjectCard
-                        selected={selected}
-                        project={project}
-                    />
+                    <div className="card-container">
+                        <ProjectCard
+                            selected={selected}
+                            project={project}
+                        />
+                    </div>
                 </li>
             )
         })
