@@ -1,6 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import Image from '../image/image.component';
+
 
 class ProjectCard extends React.Component {
     constructor(){
@@ -13,11 +15,16 @@ class ProjectCard extends React.Component {
         return(
             <div className="full-description">
                 <div className="description">{project.description}</div>
-                <div className="details">
-                    <div>Category: {project.category}</div>
-                    <div>Created: {project.dateAdded}</div>
-                    <div>{`Artworks: ${project.gallery.length}`}</div>
-                </div>
+            </div>
+        )
+    }
+
+    actions = () => {
+        return(
+            <div className="actions">
+                <Link to={`/projects/${this.props.project._id}`}>
+                    <input type='button' value="Edit" />
+                </Link>
             </div>
         )
     }
@@ -41,6 +48,12 @@ class ProjectCard extends React.Component {
                         {project.name}
                     </div>
                     {selected && this.fullDescription()}
+                    <div className="details">
+                        <div>Category: {project.category}</div>
+                        <div>Created: {project.dateAdded}</div>
+                        <div>{`Artworks: ${project.gallery.length}`}</div>
+                    </div>
+                    {selected && this.actions()}
                 </div>
  
             </div>

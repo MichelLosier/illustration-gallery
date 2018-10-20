@@ -9,8 +9,8 @@ class ProjectSelection extends React.Component {
     constructor(){
         super();
         this.state = {
-            selectedProject: null,
-            projects: []
+            projects: [],
+            selectedProject: null
         }
     }
 
@@ -25,11 +25,12 @@ class ProjectSelection extends React.Component {
     }
 
     handleProjectClick = (id) => {
-        this.setState({selectedProject: id});
+        this.setState({selectedProject: id})
     }
 
+
     projects = () => {
-        const {projects, selectedProject} = this.state;
+        const {selectedProject, projects} = this.state;
 
         return projects.map((project) => {
             let selected = (selectedProject == project._id) 

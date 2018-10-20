@@ -6,13 +6,22 @@
     justify-content: flex-start;
     background-color: $color-background-white;
     &.selected{
-        height: 200px;
+        height: 225px;
         animation: 1s expand-to-content;
         div.name {
             margin-bottom: 0.5rem;
         }
         div.full-description {
             animation: 2s fade-in-delay;
+        }
+        div.actions{
+            display:flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            animation: 2s fade-in-delay;
+            input[type="button"]{
+                padding:1rem;
+            }
         }
     }
     div.project-information{
@@ -25,6 +34,16 @@
         div.name{
             font-size: 1.25rem;
         }
+        div.details{
+            display:flex;
+            justify-content: space-around;
+            font-size: .75rem;
+            padding: 0.5rem;
+            div {
+                padding: 0.5rem;
+            }
+        }
+
         div.full-description {
             display: flex;
             flex-direction:column;
@@ -39,15 +58,6 @@
                 max-height:150px;
                 word-wrap: normal;
                 overflow-y: scroll;
-            }
-            div.details{
-                display:flex;
-                justify-content: space-around;
-                font-size: .75rem;
-                padding: 0.5rem;
-                div {
-                    padding: 0.5rem;
-                }
             }
         }
     }

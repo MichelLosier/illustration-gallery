@@ -17,24 +17,15 @@
 		flex-wrap: nowrap;
 		li {
 			border: 1px solid $color-primary-grey;
-			border-bottom: none;
 			display:flex;
 			justify-content: space-between;
 			background: $color-background-white;
+			margin: .25rem 0px;
 			&.selected {
 				border: 1px solid $color-secondary-orange;
-				&+li{
-					border-top:none;
-				}
-				&:last-child{
-					border-bottom: 1px solid $color-secondary-orange;
-				}
 			}
 			&:hover{
 				cursor: pointer;
-			}
-			&:last-child{
-				border-bottom: 1px solid $color-primary-grey;
 			}
 			.card-container{
 				flex-grow:3;

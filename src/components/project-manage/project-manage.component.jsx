@@ -10,8 +10,12 @@ class ProjectManage extends React.Component {
     constructor(){
         super();
         this.state = {
-            selection: true
+            selectedProject: null
         }
+    }
+
+    setSelectedProject = (id) => {
+        this.setState({selectedProject: id})
     }
 
     render(){
@@ -23,6 +27,14 @@ class ProjectManage extends React.Component {
                         render={()=>{
                             return(
                                 <Link to={'/projects/new'}>+ Add Project</Link>
+                            )
+                        }}
+                    />
+                    <Route
+                        exact path="/projects/:id"
+                        render={()=>{
+                            return(
+                                <Link to={'/projects/'}>Cancel</Link>
                             )
                         }}
                     />
@@ -38,10 +50,12 @@ class ProjectManage extends React.Component {
                         }}
                     />
                     <Route
-                        path="/projects/new"
+                        path="/projects/:id"
                         render={()=>{
                             return(
-                                <ProjectForm/>
+                                <ProjectForm
+                                    selectedProject={this.state.selectedProject}
+                                />
                             )
                         }}
                     />

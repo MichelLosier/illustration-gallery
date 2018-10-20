@@ -205,9 +205,6 @@ class ProjectForm extends React.Component {
                         </div>
                         <div className="padded-group button-row">
                             <input type='submit' value="Submit" disabled={this.validate()} />
-                            <Link to="/projects">
-                                <input type='button' value="Cancel" />
-                            </Link>
                         </div>
                     </form>
                 )}

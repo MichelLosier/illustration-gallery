@@ -795,20 +795,14 @@ input[type='button'] {
     flex-wrap: nowrap; }
     .project-selection ul li {
       border: 1px solid #666;
-      border-bottom: none;
       display: flex;
       justify-content: space-between;
-      background: white; }
+      background: white;
+      margin: .25rem 0px; }
       .project-selection ul li.selected {
         border: 1px solid #e26e26; }
-        .project-selection ul li.selected + li {
-          border-top: none; }
-        .project-selection ul li.selected:last-child {
-          border-bottom: 1px solid #e26e26; }
       .project-selection ul li:hover {
         cursor: pointer; }
-      .project-selection ul li:last-child {
-        border-bottom: 1px solid #666; }
       .project-selection ul li .card-container {
         flex-grow: 3; }
 
@@ -830,12 +824,19 @@ input[type='button'] {
   justify-content: flex-start;
   background-color: white; }
   .project-card.selected {
-    height: 200px;
+    height: 225px;
     animation: 1s expand-to-content; }
     .project-card.selected div.name {
       margin-bottom: 0.5rem; }
     .project-card.selected div.full-description {
       animation: 2s fade-in-delay; }
+    .project-card.selected div.actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem;
+      animation: 2s fade-in-delay; }
+      .project-card.selected div.actions input[type="button"] {
+        padding: 1rem; }
   .project-card div.project-information {
     display: flex;
     flex-direction: column;
@@ -845,6 +846,13 @@ input[type='button'] {
     width: 100%; }
     .project-card div.project-information div.name {
       font-size: 1.25rem; }
+    .project-card div.project-information div.details {
+      display: flex;
+      justify-content: space-around;
+      font-size: .75rem;
+      padding: 0.5rem; }
+      .project-card div.project-information div.details div {
+        padding: 0.5rem; }
     .project-card div.project-information div.full-description {
       display: flex;
       flex-direction: column;
@@ -859,13 +867,6 @@ input[type='button'] {
         max-height: 150px;
         word-wrap: normal;
         overflow-y: scroll; }
-      .project-card div.project-information div.full-description div.details {
-        display: flex;
-        justify-content: space-around;
-        font-size: .75rem;
-        padding: 0.5rem; }
-        .project-card div.project-information div.full-description div.details div {
-          padding: 0.5rem; }
   .project-card div.project-image {
     display: flex;
     flex-direction: column;
