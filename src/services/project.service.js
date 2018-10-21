@@ -6,59 +6,58 @@ class ProjectService {
         this.baseHeaders = new Headers({
             'Content-Type': 'application/json'
         });
-        this.http = http;
     }
 
     //GETS
-    getProjectAll(callback){
+    getProjectAll = () =>{
         const request = new Request(`${this.baseUrl}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
-    getProjectByID(id, callback){
+    getProjectByID = (id) =>{
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
-    getProjectsByCategory(category, callback){
+    getProjectsByCategory = (category) => {
         const request = new Request(`${this.baseUrl}/category/${category}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //POSTS
-    createProject(data, callback){
+    createProject = (data) => {
         const request = new Request(`${this.baseUrl}`, {
             method: 'POST',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //PATCH
-    updateProject(id, data, callback){
+    updateProject = (id, data) => {
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'PATCH',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //DELETE
-    deleteArtwork(id, callback){
+    deleteProject = (id) => {
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'DELETE',
             headers: this.baseHeaders,
         });
-        this.http(request, callback);
+        return http(request);
     }
 
 }

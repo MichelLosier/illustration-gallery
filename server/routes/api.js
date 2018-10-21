@@ -8,17 +8,18 @@ const artworkCtrl = require('../controllers/artworkController');
 
 //get projects
 router.get('/projects', projectCtrl.listAll);
-router.get('/projects/id/:_id', projectCtrl.queryID);
 router.get('/projects/category/:cat', projectCtrl.categoryListAll);
+router.get('/projects/:_id', projectCtrl.queryID);
+
 
 //post projects
 router.post('/projects', projectCtrl.createProject);
 
 //patch projects
-router.patch('/projects/id/:_id', projectCtrl.updateProject);
+router.patch('/projects/:_id', projectCtrl.updateProject);
 
 //delete projects
-router.delete('/projects/id/:_id', projectCtrl.deleteProject);
+router.delete('/projects/:_id', projectCtrl.deleteProject);
 
 
 //artwork collection
@@ -38,6 +39,6 @@ router.patch('/artwork', artworkCtrl.updateArtworks);
 router.patch('/artwork/:_id', artworkCtrl.updateArtwork);
 
 //delete artwork
-router.delete('/projects/:_id', artworkCtrl.deleteArtwork);
+router.delete('/artwork/:_id', artworkCtrl.deleteArtwork);
 
 module.exports = router;

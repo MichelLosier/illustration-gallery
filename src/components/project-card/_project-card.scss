@@ -2,11 +2,30 @@
 
 .project-card{
     display: flex;
-    height: 100px;
+    height: 75px;
     justify-content: flex-start;
     background-color: $color-background-white;
-    div.project-description{
+    &.selected{
+        height: 225px;
+        animation: 1s expand-to-content;
+        div.name {
+            margin-bottom: 0.5rem;
+        }
+        div.full-description {
+            animation: 2s fade-in-delay;
+        }
+        div.actions{
+            display:flex;
+            justify-content: space-around;
+            animation: 2s fade-in-delay;
+            input[type="button"]{
+                padding:1rem;
+            }
+        }
+    }
+    div.project-information{
         display: flex;
+        flex-direction: column;
         align-items:center;
         justify-content: space-around;
         padding: 1rem;
@@ -14,12 +33,66 @@
         div.name{
             font-size: 1.25rem;
         }
+        div.details{
+            display:flex;
+            justify-content: space-around;
+            font-size: .75rem;
+            padding: 0.5rem;
+            div {
+                padding: 0.5rem;
+            }
+        }
+
+        div.full-description {
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: space-around;
+            div.description{
+                border-top: 1px  solid $color-background-grey;
+                border-bottom: 1px  solid $color-background-grey;
+                padding:1rem;
+                margin:0.5rem;
+                max-width:500px;
+                max-height:150px;
+                word-wrap: normal;
+                overflow-y: scroll;
+            }
+        }
     }
     div.project-image{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
         padding: 0.5rem;
         max-height: inherit;
         width: 200px;
         max-width: 200px;
         border-right: 1px solid $color-primary-grey;
+    }
+}
+
+@keyframes expand-to-content {
+    from {
+        height:75px
+    }
+    
+    to {
+        height: 200px;
+    }
+}
+
+@keyframes fade-in-delay {
+    from {
+        opacity: 0%;
+    }
+    
+    50% {
+        opacity: 0%;
+    }
+
+    to {
+        opacity:100%;
     }
 }

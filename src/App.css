@@ -1,3 +1,15 @@
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .App {
   text-align: center;
   font-family: helvetica, arial, sans-serif;
@@ -27,6 +39,18 @@ a {
   color: #666;
   cursor: pointer;
   text-decoration: none; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .layout-container {
   margin: 0 auto;
@@ -208,6 +232,18 @@ a {
       border-left: none;
       border-top: none; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 ul.tags li {
   margin: 0 1rem;
   padding: 1rem 0;
@@ -290,6 +326,18 @@ img.contained {
   flex-direction: column;
   z-index: 2; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 form {
   padding: 1rem;
   transition: color 2s, border 2s;
@@ -346,6 +394,18 @@ input[type='button'] {
     border: 1px solid #fe8438;
     color: #fe8438; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .main .header {
   display: flex;
   align-items: center;
@@ -376,6 +436,18 @@ input[type='button'] {
     width: 100%; }
     .main .body .context-bar h2 {
       margin: 0.5rem; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .horizontal-nav-bar ul {
   padding: 0;
@@ -408,6 +480,18 @@ input[type='button'] {
     cursor: pointer;
     color: #e26e26; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .vertical-nav-bar {
   background-color: #eee;
   color: #666;
@@ -435,6 +519,18 @@ input[type='button'] {
     font-size: 1.15rem; }
     .vertical-nav-bar a:hover {
       color: white; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .management-bar {
   display: flex;
@@ -470,6 +566,18 @@ input[type='button'] {
       border: 1px solid #fe8438;
       color: #fe8438; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .text-field-group {
   padding: .5em 0;
   display: flex; }
@@ -502,6 +610,18 @@ input[type='button'] {
     .text-field-group input[type='button']:hover {
       border: 1px solid #fe8438;
       color: #fe8438; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .form-tabs {
   padding: 0;
@@ -539,6 +659,18 @@ input[type='button'] {
       .form-tabs li.selected:hover {
         border-bottom: 1px solid white; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .tag-list {
   padding: 1rem; }
   .tag-list ul {
@@ -568,8 +700,21 @@ input[type='button'] {
       cursor: pointer;
       line-height: 1em; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .project-form {
-  min-width: 40rem; }
+  min-width: 40rem;
+  animation: 1s fade-in; }
   .project-form.full-width {
     width: 100%; }
   .project-form form {
@@ -580,6 +725,18 @@ input[type='button'] {
     display: flex;
     justify-content: space-evenly; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .project-manage-container {
   flex-basis: 100%; }
   .project-manage-container .layout-container {
@@ -589,6 +746,18 @@ input[type='button'] {
     justify-content: space-around;
     position: relative; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .project-gallery-manage {
   border: 1px solid #666;
   background-color: white;
@@ -597,13 +766,26 @@ input[type='button'] {
   .project-gallery-manage .padded-group {
     padding: 1rem; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .project-selection {
   width: 100%;
   margin: 0 auto;
   display: -ms-flexbox;
   display: flex;
   justify-content: space-around;
-  position: relative; }
+  position: relative;
+  animation: 2s fade-in; }
   .project-selection ul {
     width: 80%;
     margin: 0;
@@ -613,38 +795,113 @@ input[type='button'] {
     flex-wrap: nowrap; }
     .project-selection ul li {
       border: 1px solid #666;
-      border-bottom: none;
-      display: block; }
+      display: flex;
+      justify-content: space-between;
+      background: white;
+      margin: .25rem 0px; }
       .project-selection ul li.selected {
         border: 1px solid #e26e26; }
-        .project-selection ul li.selected + li {
-          border-top: none; }
-        .project-selection ul li.selected:last-child {
-          border-bottom: 1px solid #e26e26; }
       .project-selection ul li:hover {
         cursor: pointer; }
-      .project-selection ul li:last-child {
-        border-bottom: 1px solid #666; }
+      .project-selection ul li .card-container {
+        flex-grow: 3; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .project-card {
   display: flex;
-  height: 100px;
+  height: 75px;
   justify-content: flex-start;
   background-color: white; }
-  .project-card div.project-description {
+  .project-card.selected {
+    height: 225px;
+    animation: 1s expand-to-content; }
+    .project-card.selected div.name {
+      margin-bottom: 0.5rem; }
+    .project-card.selected div.full-description {
+      animation: 2s fade-in-delay; }
+    .project-card.selected div.actions {
+      display: flex;
+      justify-content: space-around;
+      animation: 2s fade-in-delay; }
+      .project-card.selected div.actions input[type="button"] {
+        padding: 1rem; }
+  .project-card div.project-information {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 1rem;
     width: 100%; }
-    .project-card div.project-description div.name {
+    .project-card div.project-information div.name {
       font-size: 1.25rem; }
+    .project-card div.project-information div.details {
+      display: flex;
+      justify-content: space-around;
+      font-size: .75rem;
+      padding: 0.5rem; }
+      .project-card div.project-information div.details div {
+        padding: 0.5rem; }
+    .project-card div.project-information div.full-description {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around; }
+      .project-card div.project-information div.full-description div.description {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+        margin: 0.5rem;
+        max-width: 500px;
+        max-height: 150px;
+        word-wrap: normal;
+        overflow-y: scroll; }
   .project-card div.project-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0.5rem;
     max-height: inherit;
     width: 200px;
     max-width: 200px;
     border-right: 1px solid #666; }
+
+@keyframes expand-to-content {
+  from {
+    height: 75px; }
+  to {
+    height: 200px; } }
+
+@keyframes fade-in-delay {
+  from {
+    opacity: 0%; }
+  50% {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .artwork-form {
   min-width: 40rem; }
@@ -652,6 +909,18 @@ input[type='button'] {
     border: 1px solid #666; }
   .artwork-form .padded-group {
     padding: 1rem; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .artwork-manage-container {
   flex-basis: 100%;
@@ -661,6 +930,18 @@ input[type='button'] {
     display: flex;
     justify-content: space-around;
     position: relative; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .image-form-container {
   display: flex;
@@ -689,6 +970,18 @@ input[type='button'] {
   .image-form-container .padded-group {
     padding: 1rem; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .gallery-container {
   width: 100%;
   background-color: #eee; }
@@ -712,13 +1005,41 @@ input[type='button'] {
         border: 1px solid #e26e26;
         cursor: pointer; }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .artwork-card {
+  display: flex;
+  align-items: center;
   position: relative;
+  padding: 1rem;
+  background-color: white;
   height: 250px; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
 
 .image {
   display: block;
-  max-width: height 100%;
+  max-width: 100%;
   max-height: 100%;
   height: auto;
   /*default*/

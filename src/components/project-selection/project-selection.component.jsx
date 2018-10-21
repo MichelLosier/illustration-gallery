@@ -9,8 +9,8 @@ class ProjectSelection extends React.Component {
     constructor(){
         super();
         this.state = {
-            selectedProject: null,
-            projects: []
+            projects: [],
+            selectedProject: null
         }
     }
 
@@ -19,20 +19,32 @@ class ProjectSelection extends React.Component {
     }
 
     getProjects = () => {
-        project$.getProjectAll((data) => {
+        project$.getProjectAll().then((data) => {
            this.setState({projects: data});
         });
     }
 
     handleProjectClick = (id) => {
-        this.setState({selectedProject: id});
+        this.setState({selectedProject: id})
+    }
+
+    handleProjectDelete = (id) => {
+        project$.deleteProject(id).then(() => {
+            this.setState((prevState) => {
+                prevState.projects = prevState.projects.filter((project) => {
+                   return project._id != id
+                })
+                return prevState;
+            })
+        })
     }
 
     projects = () => {
-        const {projects, selectedProject} = this.state;
+        const {selectedProject, projects} = this.state;
 
         return projects.map((project) => {
-            let className = (selectedProject  == project._id) ? 'selected' : '';
+            let selected = (selectedProject == project._id) 
+            let className = (selected) ? 'selected' : '';
             return( 
                 <li
                     id={project._id}
@@ -40,9 +52,13 @@ class ProjectSelection extends React.Component {
                     onClick={()=>{this.handleProjectClick(project._id)}}
                     className={className}
                 >
-                    <ProjectCard
-                        project={project}
-                    />
+                    <div className="card-container">
+                        <ProjectCard
+                            selected={selected}
+                            project={project}
+                            handleDelete={this.handleProjectDelete}
+                        />
+                    </div>
                 </li>
             )
         })

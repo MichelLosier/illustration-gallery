@@ -1,8 +1,7 @@
-export const http = (request, callback) => {
-    fetch(request).then((response) => {
+export const http = (request) => {
+    return fetch(request).then((response) => {
         return response.json();
     }).then((data) => {
-        if(callback) callback(data);
         return data;
     })
     .catch((err) => {

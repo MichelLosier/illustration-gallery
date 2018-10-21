@@ -65,7 +65,7 @@ class ProjectForm extends React.Component {
         if (this.validate()) return;
 
         console.log(`Submitted Project: ${JSON.stringify(project)}`);
-        Project$.createProject(project, (data) => {
+        Project$.createProject(project).then((data) => {
             if (s.newArtworks.length > 0) {
                 Artwork$.updateArtworks({
                     artworks: [...s.newArtworks],
@@ -205,9 +205,6 @@ class ProjectForm extends React.Component {
                         </div>
                         <div className="padded-group button-row">
                             <input type='submit' value="Submit" disabled={this.validate()} />
-                            <Link to="/projects">
-                                <input type='button' value="Cancel" />
-                            </Link>
                         </div>
                     </form>
                 )}
