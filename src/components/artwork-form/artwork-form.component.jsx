@@ -104,9 +104,9 @@ class ArtworkForm extends React.Component {
 
         console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
         if(s.actionType === 'CREATE'){
-            Artwork$.createArtwork(artwork, this.formSubmitCallback);
+            Artwork$.createArtwork(artwork).then(this.formSubmitCallback);
         } else {
-            Artwork$.updateArtwork(this.props.selectedArtwork._id, artwork, this.formSubmitCallback);
+            Artwork$.updateArtwork(this.props.selectedArtwork._id, artwork).then(this.formSubmitCallback);
         }
     };
     

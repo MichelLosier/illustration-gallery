@@ -49,8 +49,8 @@ exports.updateProject = function(req, res, next){
 
 //delete project
 exports.deleteProject = function(req, res, next){
-	Project.findOneAndRemove({_id: req.params.id}, function(err){
-		if(err) return console.error(err);
-		res.status(200);
+	Project.findOneAndRemove({_id: req.params._id}, function(err, project){
+		if(err) return console.log(err);
+		res.status(200).json(project);
 	});
 };

@@ -833,7 +833,6 @@ input[type='button'] {
     .project-card.selected div.actions {
       display: flex;
       justify-content: space-around;
-      padding: 0.5rem;
       animation: 2s fade-in-delay; }
       .project-card.selected div.actions input[type="button"] {
         padding: 1rem; }

@@ -19,12 +19,16 @@ class ProjectCard extends React.Component {
         )
     }
 
+
+
     actions = () => {
+        const {project, handleDelete} = this.props;
         return(
             <div className="actions">
-                <Link to={`/projects/${this.props.project._id}`}>
+                <Link to={`/projects/${project._id}`}>
                     <input type='button' value="Edit" />
                 </Link>
+                <input type='button' value="Delete" onClick={() => {handleDelete(project._id)}} />
             </div>
         )
     }

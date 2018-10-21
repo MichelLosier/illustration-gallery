@@ -19,7 +19,7 @@ class ProjectSelection extends React.Component {
     }
 
     getProjects = () => {
-        project$.getProjectAll((data) => {
+        project$.getProjectAll().then((data) => {
            this.setState({projects: data});
         });
     }
@@ -28,6 +28,16 @@ class ProjectSelection extends React.Component {
         this.setState({selectedProject: id})
     }
 
+    handleProjectDelete = (id) => {
+        project$.deleteProject(id).then(() => {
+            this.setState((prevState) => {
+                prevState.projects = prevState.projects.filter((project) => {
+                   return project._id != id
+                })
+                return prevState;
+            })
+        })
+    }
 
     projects = () => {
         const {selectedProject, projects} = this.state;
@@ -46,6 +56,7 @@ class ProjectSelection extends React.Component {
                         <ProjectCard
                             selected={selected}
                             project={project}
+                            handleDelete={this.handleProjectDelete}
                         />
                     </div>
                 </li>

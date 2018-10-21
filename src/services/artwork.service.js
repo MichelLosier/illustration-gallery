@@ -6,70 +6,69 @@ class ArtworkService {
         this.baseHeaders = new Headers({
             'Content-Type': 'application/json'
         });
-        this.http = http;
     }
 
     //GETS
-    getArtworkAll(callback){
+    getArtworkAll = () => {
         const request = new Request(`${this.baseUrl}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
-    getArtworkByID(id, callback){
+    getArtworkByID = (id) => {
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
-    getArtworkByProjectID(id, callback){
+    getArtworkByProjectID = (id) => {
         const request = new Request(`${this.baseUrl}/project/${id}`, {
             method: 'GET',
             headers: this.baseHeaders
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //POSTS
-    createArtwork(data, callback){
+    createArtwork = (data) => {
         const request = new Request(`${this.baseUrl}`, {
             method: 'POST',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //PATCH
-    updateArtwork(id, data, callback){
+    updateArtwork = (id, data) => {
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'PATCH',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.http(request, callback);
+        return http(request);
     }
     // UPDATE MANY ARTWORKS
     // {artworks: [<artwork IDs], keys: {$push: {key: value}}}
     //TODO move $push object to server
-    updateArtworks(data, callback){
+    updateArtworks = (data) => {
         const request = new Request(`${this.baseUrl}`, {
             method: 'PATCH',
             headers: this.baseHeaders,
             body: JSON.stringify(data)
         });
-        this.http(request, callback);
+        return http(request);
     }
 
     //DELETE
-    deleteArtwork(id, callback){
+    deleteArtwork = (id) => {
         const request = new Request(`${this.baseUrl}/${id}`, {
             method: 'DELETE',
             headers: this.baseHeaders,
         });
-        this.http(request, callback);
+        return http(request);
     }
 
 }
