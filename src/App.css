@@ -829,11 +829,11 @@ input[type='button'] {
     .project-card.selected div.name {
       margin-bottom: 0.5rem; }
     .project-card.selected div.full-description {
-      animation: 2s fade-in-delay; }
+      animation: 1s fade-in-delay; }
     .project-card.selected div.actions {
       display: flex;
       justify-content: space-around;
-      animation: 2s fade-in-delay; }
+      animation: 1s fade-in-delay; }
       .project-card.selected div.actions input[type="button"] {
         padding: 1rem; }
   .project-card div.project-information {

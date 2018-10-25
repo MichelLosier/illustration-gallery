@@ -6,6 +6,7 @@ import ProjectSelection from '../project-selection/project-selection.component';
 
 import ManagementBar from '../management-bar/management-bar.component';
 
+
 class ProjectManage extends React.Component {
     constructor(){
         super();
@@ -14,8 +15,19 @@ class ProjectManage extends React.Component {
         }
     }
 
-    setSelectedProject = (id) => {
-        this.setState({selectedProject: id})
+    componentWillMount = () => {
+        let selectedProject = null;
+        const projectId = this.getProjectIdFromURLState();
+        if (projectId) {
+            selectedProject = projectId
+        }
+        this.setState({selectedProject: selectedProject})
+    }
+
+    getProjectIdFromURLState = () => {
+        const {urlParams} = this.props;
+        const project = (urlParams.id != /(new|)/) ? urlParams.id : null
+        return project;
     }
 
     render(){
@@ -54,7 +66,7 @@ class ProjectManage extends React.Component {
                         render={()=>{
                             return(
                                 <ProjectForm
-                                    selectedProject={this.state.selectedProject}
+                                    project={this.state.selectedProject}
                                 />
                             )
                         }}

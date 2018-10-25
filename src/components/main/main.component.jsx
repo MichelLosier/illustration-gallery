@@ -69,9 +69,11 @@ class Main extends React.Component {
                         }}
                     />
                     <Route
-                        path="/projects/"
-                        render={()=> {
-                            return(<ProjectManage/>)
+                        path="/projects/:id?"
+                        render={(props)=> {
+                            return(<ProjectManage
+                                urlParams={props.match.params}
+                            />)
                         }}
                     />
                 </div>
