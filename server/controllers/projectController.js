@@ -1,5 +1,5 @@
 const Project = require('../models/project');
-
+const Sync = require('./collectionSync');
 //get all projects
 exports.listAll = function(req, res, next){
 	Project.find()
@@ -34,8 +34,17 @@ exports.createProject = function(req, res, next){
 	var _project = new Project(req.body);
 	_project.save(function(err, project){
 		if(err) return console.error(err);
-		res.status(200).json(project);
-	});
+		return project;
+	}).populate('featuredImage gallery')
+	.exec(function(err, project){
+		if(err) return console.log(err)
+		Sync.syncArtworksToProject(project).exec(function(project){
+			res.status(200).json(project);
+		}).catch(function(err){
+			console.error(err)
+			res.status(500)
+		})
+	})
 };
 
 //update project

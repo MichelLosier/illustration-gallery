@@ -14,12 +14,8 @@ class ProjectGalleryManage extends React.Component {
         }
     }
 
-    handleArtworkChange = ({data, action}) => {
-        this.props.onGalleryChange({
-            name: 'gallery',
-            value: data,
-            action: action
-        });
+    handleArtworkChange = (value) => {
+        this.props.onGalleryChange(value);
     }
 
     handleAddNew = (create) => {

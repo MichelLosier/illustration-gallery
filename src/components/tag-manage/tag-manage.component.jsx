@@ -18,19 +18,15 @@ class TagManage extends React.Component {
         label: PropTypes.string,
     }
 
-    handleCollectionChange = (action) => {
-        return (evt) => {
-            this.props.onChange({
-                name: this.props.name,
-                value: (action == 'CREATE')? this.state.field : evt.target.dataset.value,
-                action: action
-            });
-            if (action == 'CREATE'){
-                this.setState({
-                    field: ''
-                })
-            }
-        }  
+    handleAddItem = () => {
+        const {field} = this.state
+        const {onChange, collection} = this.props;
+        if (collection.indexOf(field) == -1) {
+            onChange(field);
+        } else {
+            console.log('tag already exists')
+        }
+        this.setState({field:''});
     }
 
     onFieldChange = ({name, value, error}) => {
@@ -49,7 +45,7 @@ class TagManage extends React.Component {
                         {item}
                     </div>
                     <div
-                        onClick={this.handleCollectionChange('DELETE')}
+                        onClick={() => {this.props.onChange(item)}}
                         data-value={item}
                         className="delete"
                     >
@@ -78,7 +74,7 @@ class TagManage extends React.Component {
                     <input
                         type='button'
                         value='Add'
-                        onClick={this.handleCollectionChange('CREATE')}
+                        onClick={this.handleAddItem()}
                     />
                 </TextField>
 
