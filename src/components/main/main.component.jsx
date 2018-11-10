@@ -72,7 +72,7 @@ class Main extends React.Component {
                         path="/projects/:id?"
                         render={(props)=> {
                             return(<ProjectManage
-                                urlParams={props.match.params}
+                                selectedProject={props.match.params.id}
                             />)
                         }}
                     />

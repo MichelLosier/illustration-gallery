@@ -32,28 +32,35 @@ exports.queryID = function(req, res, next) {
 //create new project
 exports.createProject = function(req, res, next){
 	var _project = new Project(req.body);
-	_project.save(function(err, project){
-		if(err) return console.error(err);
-		return project;
-	}).populate('featuredImage gallery')
-	.exec(function(err, project){
-		if(err) return console.log(err)
-		Sync.syncArtworksToProject(project).exec(function(project){
-			res.status(200).json(project);
-		}).catch(function(err){
-			console.error(err)
-			res.status(500)
-		})
+
+	_project.save()
+	.then(function(project){
+		return Sync.syncArtworksToProject(_project);
+	}).then(function(updatedArtworks){
+		return _project.populate('featuredImage gallery');
+	}).then(function(populatedProject){
+		res.status(200).json(populatedProject);
+	}).catch(function(err){
+		console.error(err)
+		res.status(500)
 	})
 };
 
 //update project
 exports.updateProject = function(req, res, next){
-	Project.findOneAndUpdate({_id: req.params._id}, {$set: req.body}, {new: true}, function(err, project) {
-		if(err) return console.error(err);
-		console.log('returned from db: ' + JSON.stringify(project));
-		res.status(200).json(project);
-	});
+	let _project;
+	Project.findOneAndUpdate({_id: req.params._id}, {$set: req.body}, {new: true})
+	.then(function(project) {
+		_project = project;
+		return Sync.syncArtworksToProject(project);
+	}).then(function(updatedArtworks){
+		return Project.populate(_project, 'featuredImage gallery');
+	}).then(function(populatedProject){
+		res.status(200).json(populatedProject);
+	}).catch(function(err){
+		console.error(err)
+		res.status(500)
+	})
 };
 
 //delete project

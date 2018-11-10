@@ -1,20 +1,18 @@
 const Project = require('../models/project');
-const Artwork = require('../models/project');
+const Artwork = require('../models/artwork');
 
+
+//takes unpopulated project
 exports.syncArtworksToProject = (project) => {
-    const artworksToUpdate = project.gallery.filter((artwork) => {
-        return artwork.projects.indexOf(project._id) == -1;
-    })
-    return Artwork.updateMany({_id: {$in: artworksToUpdate}}, {$push: {projects: project_id}}, function(err, updatedArtworks){
-        if (err) return err;
-        
-        updatedArtworks.forEach(function(updatedArtwork){
-           const i = project.gallery.findIndex((artwork) => {
-                artwork._id == updatedArtwork._id
-           })
-
-           project.gallery[i] = updatedArtwork;
-        })
-        return project;
+    const query = {
+        _id: {$in: project.gallery}, 
+        projects: {$ne: project._id}
+    }
+    const update = { $push: {projects: project._id}}
+    
+    return Artwork.updateMany(query, update)
+    .then((updatedArtworks) => {
+        console.log(`updated Artworks: ${JSON.stringify(updatedArtworks)}`)
+        return updatedArtworks;
     })
 }

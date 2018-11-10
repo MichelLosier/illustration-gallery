@@ -10,25 +10,8 @@ import ManagementBar from '../management-bar/management-bar.component';
 class ProjectManage extends React.Component {
     constructor(){
         super();
-        this.state = {
-            selectedProject: null
-        }
     }
 
-    componentWillMount = () => {
-        let selectedProject = null;
-        const projectId = this.getProjectIdFromURLState();
-        if (projectId) {
-            selectedProject = projectId
-        }
-        this.setState({selectedProject: selectedProject})
-    }
-
-    getProjectIdFromURLState = () => {
-        const {urlParams} = this.props;
-        const project = (urlParams.id != /(new|)/) ? urlParams.id : null
-        return project;
-    }
 
     render(){
         return(
@@ -66,7 +49,7 @@ class ProjectManage extends React.Component {
                         render={()=>{
                             return(
                                 <ProjectForm
-                                    project={this.state.selectedProject}
+                                    project={this.props.selectedProject}
                                 />
                             )
                         }}

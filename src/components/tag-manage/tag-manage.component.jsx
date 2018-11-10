@@ -14,15 +14,15 @@ class TagManage extends React.Component {
         placeholder: PropTypes.string,
         name: PropTypes.string.isRequired,
         validate: PropTypes.func,
-        onChange: PropTypes.func.isRequired,
+        onTagChange: PropTypes.func.isRequired,
         label: PropTypes.string,
     }
 
     handleAddItem = () => {
         const {field} = this.state
-        const {onChange, collection} = this.props;
+        const {onTagChange, collection} = this.props;
         if (collection.indexOf(field) == -1) {
-            onChange(field);
+            onTagChange(field);
         } else {
             console.log('tag already exists')
         }
@@ -45,7 +45,7 @@ class TagManage extends React.Component {
                         {item}
                     </div>
                     <div
-                        onClick={() => {this.props.onChange(item)}}
+                        onClick={() => {this.props.onTagChange(item)}}
                         data-value={item}
                         className="delete"
                     >
@@ -74,7 +74,7 @@ class TagManage extends React.Component {
                     <input
                         type='button'
                         value='Add'
-                        onClick={this.handleAddItem()}
+                        onClick={this.handleAddItem}
                     />
                 </TextField>
 

@@ -52,9 +52,8 @@ class ProjectForm extends React.Component {
 
     componentWillMount = () => {
         const projectId = this.props.project;
-        console.log(`received projectid: ${projectId}`)
 
-        if(projectId){
+        if(projectId && projectId.match(/new/i) == null){
             project$.getProjectByID(projectId).then((project) => {
                 const populatedGallery  = project.gallery
 
@@ -77,13 +76,21 @@ class ProjectForm extends React.Component {
         if (this.validate()) return;
         console.log(`Submitting Project: ${JSON.stringify(project)}`);
 
-        project$.createProject(project).then((data) => {
-            this.setState({
-                project: this.defaultProject,
-                selectedTab: 'INFO',
+        if(this.props.project.match(/new/i) == null){
+            project$.updateProject(this.props.project, project).then((data) => {
+                if(data.status == 200){
+                    window.history.pushState('/projects');
+                    return;
+                }  
             })
-        })
-
+        } else {
+            project$.createProject(project).then((data) => {
+                this.setState({
+                    project: this.defaultProject,
+                    selectedTab: 'INFO',
+                })
+            })
+        }
     }
 
     handleInputChange = ({name, value, error}) => {
@@ -97,17 +104,17 @@ class ProjectForm extends React.Component {
 
     handleCollectionItemAddOrRemove = (name, value) => {
         this.setState((prevState) => {
-            const updatePayload = {};
+            const newState = Object.assign({}, prevState);
             const index = prevState.project[name].indexOf(value)
-
+            console.log(`field name: ${name}, value: ${value}`)
             if (index > -1) {
-                updatePayload[name] = prevState.project[name].filter((item) => {
+                newState.project[name] = prevState.project[name].filter((item) => {
                     item != value
                 })
             } else {
-                updatePayload[name] = [...prevState[name], value]
+                newState.project[name] = [...prevState.project[name], value]
             }
-            return updatePayload
+            return newState
         })
 
         
@@ -126,7 +133,7 @@ class ProjectForm extends React.Component {
     };
 
     render() {
-        const {project, selectedTab} = this.state;
+        const {project, selectedTab, populatedGallery} = this.state;
         const formClasses = (selectedTab == "GALLERY") ? "project-form full-width" : "project-form"
         return (
             <div className={formClasses}>
@@ -138,7 +145,7 @@ class ProjectForm extends React.Component {
                 />
                 {(this.state.selectedTab == 'GALLERY') ? (
                     <ProjectGalleryManage
-                        gallery={project.populatedGallery}
+                        gallery={populatedGallery}
                         onGalleryChange={(value) => {this.handleCollectionItemAddOrRemove('gallery', value)}}
                     />
                 ) : (
@@ -176,7 +183,7 @@ class ProjectForm extends React.Component {
                                 placeHolder='add new tag'
                                 name='tags'
                                 validate={null}
-                                onChange={(value) => {this.handleCollectionItemAddOrRemove('tags', value)}}
+                                onTagChange={(value) => {this.handleCollectionItemAddOrRemove('tags', value)}}
                                 label='Tags'
                             />
                         </div>

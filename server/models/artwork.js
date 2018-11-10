@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const artworkSchema = new Schema({
-	projects: [String],
+	projects: [{type: Schema.Types.ObjectId, ref: 'project'}],
 	dateAdded: { type: Date, default: Date.now },
 	caption: String,
 	description: String,
