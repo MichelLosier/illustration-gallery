@@ -83,12 +83,9 @@ class ArtworkForm extends React.Component {
         })
     }
     
-    formSubmitCallback = (data) => {
+    formSubmitCallback = (artwork) => {
         if (this.props.onFormSubmit){
-            this.props.onFormSubmit({
-                data: data, 
-                action: this.state.actionType
-            });
+            this.props.onFormSubmit(artwork);
         };
         this.setFields();
     };

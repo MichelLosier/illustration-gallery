@@ -40,7 +40,7 @@ exports.updateArtwork = function(req, res, next){
 
 //update multiple artworks by _id set
 exports.updateArtworks = function(req, res, next){ //TODO review params)
-	Artwork.updateMany({_id: {$in: req.body.artworks}}, req.body.keys, function(err, artworks){
+	Artwork.updateMany({_id: {$in: req.body.artworks}}, {$push: req.body.keys}, function(err, artworks){
 		if(err) return console.error(err);
 		res.status(200).json(artworks);
 	});
@@ -53,3 +53,4 @@ exports.deleteArtwork = function(req, res, next){
 		res.status(200);
 	});
 };
+

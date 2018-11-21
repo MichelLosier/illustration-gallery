@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ArtworkService from '../../services/artwork.service';
 import ArtworkForm from '../artwork-form/artwork-form.component';
@@ -14,12 +15,22 @@ class ProjectGalleryManage extends React.Component {
         }
     }
 
-    handleArtworkChange = ({data, action}) => {
-        this.props.onGalleryChange({
-            name: 'gallery',
-            value: data,
-            action: action
-        });
+    static propTypes = {
+        gallery: PropTypes.arrayOf(PropTypes.object),
+        //pass new or updated artwork object to handler
+        onArtworkChange: PropTypes.func,
+        //pass artwork id to handler
+        onArtworkDelete: PropTypes.func,
+    }
+
+    handleArtworkChange = (artwork) => {
+        this.props.onArtworkChange(artwork);
+    }
+
+    handleArtworkDelete = (artwork) => {
+        //trigger a prompt to confirm deletion 
+        //and whether to orphan
+        this.props.onArtworkDelete(artwork._id)
     }
 
     handleAddNew = (create) => {
@@ -30,16 +41,9 @@ class ProjectGalleryManage extends React.Component {
         })
     }
 
-    handleEditReq = () =>{
+    handleArtworkEdit = () =>{
         this.setState({
             viewGallery: false
-        })
-    }
-
-    handleCancel = () => {
-        this.setState({
-            addArtwork: false,
-            viewGallery: true
         })
     }
 
@@ -51,12 +55,10 @@ class ProjectGalleryManage extends React.Component {
 
     getSelectedArtwork = () => {
         const id = this.state.selectedArtwork;
-        const artworks = this.props.gallery.filter((artwork) =>{
-            if(artwork._id == id){
-                return artwork
-            }
+        const artwork = this.props.gallery.findIndex((artwork) =>{
+            return artwork._id == id
         })
-        return (artworks.length != 0) ? artworks[0] : false
+        return artwork;
     }
 
     addArtworkButtons = () => {
@@ -77,11 +79,11 @@ class ProjectGalleryManage extends React.Component {
     }
 
     render() {
-        const s = this.state;
-        
+        const {selectedArtwork, viewGallery, addArtwork} = this.state;
+        const {gallery} = this.props
         return(
             <div className="project-gallery-manage">
-                {(!s.viewGallery) ? (
+                {(!viewGallery) ? (
                     <div>
                         <ArtworkForm
                             selectedArtwork={this.getSelectedArtwork()}
@@ -91,13 +93,13 @@ class ProjectGalleryManage extends React.Component {
                 ):(
                     <div>
                         <Gallery
-                            onArtworkChange={this.handleArtworkChange}
-                            artworks={this.props.gallery}
-                            selectedArtwork={s.selectedArtwork}
+                            onArtworkDelete={this.onArtworkDelete}
+                            artworks={gallery}
+                            selectedArtwork={selectedArtwork}
                             onArtworkSelection={this.handleArtworkSelection}
-                            onEditReq={this.handleEditReq}
+                            onArtworkEdit={this.handleArtworkEdit}
                         />
-                        {!s.addArtwork && this.addArtworkButtons()}
+                        {!addArtwork && this.addArtworkButtons()}
                     </div>
                 )}
             </div>

@@ -6,17 +6,12 @@ import ProjectSelection from '../project-selection/project-selection.component';
 
 import ManagementBar from '../management-bar/management-bar.component';
 
+
 class ProjectManage extends React.Component {
     constructor(){
         super();
-        this.state = {
-            selectedProject: null
-        }
     }
 
-    setSelectedProject = (id) => {
-        this.setState({selectedProject: id})
-    }
 
     render(){
         return(
@@ -51,10 +46,10 @@ class ProjectManage extends React.Component {
                     />
                     <Route
                         path="/projects/:id"
-                        render={()=>{
+                        render={(props)=>{
                             return(
                                 <ProjectForm
-                                    selectedProject={this.state.selectedProject}
+                                    projectId={props.match.params.id}
                                 />
                             )
                         }}

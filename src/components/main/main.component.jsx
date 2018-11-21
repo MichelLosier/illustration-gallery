@@ -69,7 +69,7 @@ class Main extends React.Component {
                         }}
                     />
                     <Route
-                        path="/projects/"
+                        path="/projects/:id?"
                         render={()=> {
                             return(<ProjectManage/>)
                         }}
