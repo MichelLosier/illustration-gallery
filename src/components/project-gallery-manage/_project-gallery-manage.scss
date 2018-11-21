@@ -9,4 +9,33 @@
     .padded-group{
         padding: 1rem;
     }
+
+    .transparent-overlay-container {
+        padding:2rem 0rem;
+        width: 100vw;
+        height: 100vh;
+        top: 0px;
+        left: 0px;
+        z-index: 99;
+        position: absolute;
+        background:rgba(134,134,134, 0.77);
+        display:flex;
+        justify-content: center;
+
+        div.cancel{
+            font-size: 3rem;
+            font-weight: normal;
+            width: 3rem;
+            border-radius: 50%;
+            border: 3px solid white;
+            height: 3rem;
+            cursor: pointer;
+            line-height: 1em;
+            color:white;
+            position: absolute;
+            right: 30px;
+            top: 10px;
+            z-index:3;
+        }
+    }
 }

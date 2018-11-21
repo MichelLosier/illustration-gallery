@@ -32,6 +32,8 @@ class ProjectForm extends React.Component {
     }
 
     static propTypes = {
+        //handler to return submitted data
+        onSubmit: PropTypes.func,
         projectId: PropTypes.string,
     }
 
@@ -57,7 +59,7 @@ class ProjectForm extends React.Component {
 
     handleFormSubmit = (evt) => { 
         const {project} = this.state
-        const projectId = this.props.project
+        const projectId = this.props.projectId
         
         evt.preventDefault();
     
@@ -67,16 +69,28 @@ class ProjectForm extends React.Component {
         if(projectId.match(/new/i) == null){
             projectService.updateProject(projectId, project).then((data) => {
                 if(data.status == 200){
+                    if (this.props.onSubmit){
+                        this.props.onSubmit(data.body)
+                        return;
+                    }
+                    //if no submit handler then back to /projects
                     window.history.pushState('/projects');
                     return;
                 }  
             })
         } else {
             projectService.createProject(project).then((data) => {
-                this.setState({
-                    project: DEFAULT_PROJECT,
-                    selectedTab: 'INFO',
-                })
+                if(data.status == 200){
+                    if(this.props.onSubmit){
+                        this.props.onSubmit(data.body)
+                    }
+                    this.setState({
+                        project: DEFAULT_PROJECT,
+                        populatedGallery: [],
+                        selectedTab: 'INFO',
+                    })
+                }
+
             })
         }
     }

@@ -6,8 +6,10 @@
     flex-direction: column;
     justify-content: center;
     
+    
     .image-form {
         border:1px solid $color-primary-grey;
+        background-color: $color-background-white;
         padding: 1rem;
         height: 500px;
         display:flex;

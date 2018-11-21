@@ -2,9 +2,16 @@
 
 .artwork-form{
     min-width: 40rem;
-
-    form{
-        border:1px solid $color-primary-grey
+    animation: 1s fade-in;
+    &.full-width{
+        width:100%;
+    }
+    form{  
+        .artwork-fields{
+            background-color: $color-background-white;
+            border:1px solid $color-primary-grey;
+            border-top:none
+        }
     }
     .padded-group{
         padding:1rem;

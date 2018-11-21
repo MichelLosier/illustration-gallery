@@ -7,41 +7,21 @@ import ArtworkService from '../../services/artwork.service';
 import ImageForm from '../image-form/image-form.component';
 import ArtworkCard from '../artwork-card/artwork-card.component';
 
+import DEFAULT_ARTWORK from './defaultArtwork.model';
 import {deepMerge} from '../../helpers';
 
-const Artwork$ = new ArtworkService();
+const artworkService = new ArtworkService();
 
 class ArtworkForm extends React.Component {
     constructor(){
         super()
         this.state = {
-            fields: {
-                caption:  '',
-                description: '',
-                images:{
-                    previewImage: { //listing views
-                        url:'',
-                        altText:''
-                    }, 
-                    normalImage:{ // gallery view
-                        url:'',
-                        altText:''
-                    }, 
-                    largeImage:{ // in detail view
-                        url:'',
-                        altText:''
-                    } 
-                }
-            },
+            artwork: DEFAULT_ARTWORK,
             fieldErrors: {
 
             },
-            collections: {
-                tags:[],
-                projects:[]
-            },
+            populatedProjects:[],
             selectedImage: 'largeImage',
-            actionType: 'CREATE'
         }
         this.imageFormLabelMap = {
             'largeImage': 'Hi-Res Detail Image',
@@ -53,96 +33,104 @@ class ArtworkForm extends React.Component {
 
     static propTypes = {
         onSubmit: PropTypes.string,
-        artwork: PropTypes.object || PropTypes.boolean
+        artworkId: PropTypes.string
     }
 
-    componentDidMount = () => {
-        if(this.props.selectedArtwork){
-            this.setFields(this.props.selectedArtwork)
+    componentWillMount = () => {
+        const {artworkId} = this.props;
+
+        if(artworkId && artworkId.match(/new/i) == null){
+            artworkService.getArtworkByID(artworkId).then((artwork) => {
+                const populatedProjects = artwork.projects;
+
+                artwork.projects = artwork.projects.map((project) => {
+                    return project._id
+                })
+
+                this.setState({
+                    artwork: artwork,
+                    populatedProjects: populatedProjects,
+                })
+            })
         } 
     }
-
-    setFields = (artwork) => {
-        this.setState((prevState) => {
-            let newState = {}
-            if(artwork){
-                newState.fields = deepMerge(prevState.fields, artwork);
-                newState.collections = deepMerge(prevState.collections, artwork)
-                newState.actionType = 'UPDATE';
-            } else { //reset fields
-                newState = deepMerge(prevState, {
-                    defaults:{
-                        string: '',
-                        array: []
-                    },
-                    actionType: 'CREATE',
-                    selectedImage: 'largeImage'
-                })
-            }
-            return newState;
-        })
-    }
     
-    formSubmitCallback = (artwork) => {
-        if (this.props.onFormSubmit){
-            this.props.onFormSubmit(artwork);
-        };
-        this.setFields();
-    };
- 
-
     handleFormSubmit = (evt) => {
-        const s = this.state
-        const artwork = Object.assign({}, s.artwork, s.fields, s.collections) //merge form state into artwork object state
-    
+        const {artwork} = this.state
+        const artworkId = this.props.artworkId
+        
         evt.preventDefault();
     
         if (this.validate()) return;
 
-        console.log(`Submitted Artwork: ${JSON.stringify(artwork)}`);
-        if(s.actionType === 'CREATE'){
-            Artwork$.createArtwork(artwork).then(this.formSubmitCallback);
+        if(artworkId.match(/new/i) == null){
+            artworkService.updateArtwork(artworkId, artwork).then((data) => {
+                if(data.status == 200){
+                    if (this.props.onSubmit){
+                        this.props.onSubmit(data.body)
+                        return;
+                    }
+                    //if no submit handler then back to /artwork
+                    window.history.pushState('/artwork');
+                    return;
+                }  
+            })
         } else {
-            Artwork$.updateArtwork(this.props.selectedArtwork._id, artwork).then(this.formSubmitCallback);
+            artworkService.createArtwork(artwork).then((data) => {
+                if(data.status == 200){
+                    if(this.props.onSubmit){
+                        this.props.onSubmit(data.body)
+                    }
+                    this.setState({
+                        artwork: DEFAULT_ARTWORK,
+                        populatedProjects: [],
+                        selectedImage: 'largeImage',
+                    })
+                }
+
+            })
         }
     };
     
     handleInputChange = ({ name, value, error }) => {
-        const fields = this.state.fields;
-        const fieldErrors = this.state.fieldErrors;
-        const selectedImage = this.state.selectedImage;
+        this.setState((prevState) => {
+            const {artwork, fieldErrors, selectedImage} = this.prevState;
+            const updatedArtwork = Object.assign({}, artwork)
+            const updatedFieldErrors = Object.assign({}, fieldErrors)
 
-        if (name in fields.images[selectedImage]){
-            fields.images[selectedImage][name] = value;
-            fieldErrors[`${selectedImage}${name}`] = error;
-        } else {
-            fields[name] = value;
-            fieldErrors[name] = error;
-        }  
-
-        this.setState({ fields, fieldErrors });
+            if (name in artwork.images[selectedImage]){
+                updatedArtwork.images[selectedImage][name] = value;
+                updatedFieldErrors[`${selectedImage}${name}`] = error;
+            } else {
+                updatedArtwork[name] = value;
+                updatedFieldErrors[name] = error;
+            }
+            return {
+                artwork: updatedArtwork,
+                fieldErrors: updatedFieldErrors,
+            } 
+        })
     };
 
     handleImageSelect = (image) => {
         this.setState({selectedImage: image});
     }
 
-    handleCollectionChange = ({name, value, action}) => {
+    //only add or remove items from collection fields (like tags)
+    handleCollectionChange = (name, value) => {
         this.setState((prevState) => {
-            console.log(`${name}, ${action}, ${value}`)
             const newState = Object.assign({}, prevState);
-            const collection = prevState.collections[name]
+            const index = prevState.artwork[name].indexOf(value)
 
-            if (action == 'CREATE' && collection.indexOf(value) < 0){
-               newState.collections[name] = [
-                    ...collection, value
-                ]
-            } else if ( action == 'DELETE') {
-                newState.collections[name] = collection.filter((item)=>{
-                    return item !== value
+            if (index > -1) {
+                newState.artwork[name] = prevState.artwork[name].filter((item) => {
+                    return item != value
                 })
+                
+            } else {
+                newState.artwork[name] = [...prevState.artwork[name], value]
             }
-            return newState;
+            return newState
         })
     }
     
@@ -155,56 +143,55 @@ class ArtworkForm extends React.Component {
     };
     
     render() {
-        const fields = this.state.fields;
-        const selectedImage = this.state.selectedImage;
+        const {artwork, selectedImage} = this.state;
         return (
             <div className="artwork-form">
                 <form 
-                    onSubmit={this.handleFormSubmit}>
-                    <h3>{(this.state.actionType === 'CREATE')? 'Create New' : 'Update'} Artwork
-                    </h3>
-                    <div className="padded-group">
-                        <ImageForm
-                            onInputChange={this.handleInputChange}
-                            onImageSelect={this.handleImageSelect}
-                            images={fields.images}
-                            selectedImage={selectedImage}
-                            labelMap={this.imageFormLabelMap}
-                        />
-                    </div>
-                    <div className="padded-group">
+                    onSubmit={this.handleFormSubmit}
+                >
+                    <ImageForm
+                        onInputChange={this.handleInputChange}
+                        onImageSelect={this.handleImageSelect}
+                        images={artwork.images}
+                        selectedImage={selectedImage}
+                        labelMap={this.imageFormLabelMap}
+                    />
+                    <div className="artwork-fields">
+                        <div className="padded-group">
 
-                        <TextField
-                            placeholder='Caption'
-                            name='caption'
-                            label='Caption'
-                            value={fields.caption}
-                            onChange={this.handleInputChange}
-                            validate={false}
-                        />
+                            <TextField
+                                placeholder='Caption'
+                                name='caption'
+                                label='Caption'
+                                value={artwork.caption}
+                                onChange={this.handleInputChange}
+                                validate={false}
+                            />
 
-                        <TextField
-                            placeholder='narrative about the artwork'
-                            name='description'
-                            label='Long Description'
-                            value={fields.description}
-                            onChange={this.handleInputChange}
-                            validate={false}                   
-                        />
+                            <TextField
+                                placeholder='narrative about the artwork'
+                                name='description'
+                                label='Long Description'
+                                value={artwork.description}
+                                onChange={this.handleInputChange}
+                                validate={false}                   
+                            />
+                        </div>
+                        <div className="padded-group">
+                            <TagManage
+                                collection={artwork.tags}
+                                placeHolder='add new tag'
+                                name='tags'
+                                validate={null}
+                                onChange={this.handleCollectionChange}
+                                label='Tags'
+                            />
+                        </div>
+                        <div className="padded-group">
+                            <input type='submit' value="Submit" disabled={this.validate()} />
+                        </div>
                     </div>
-                    <div className="padded-group">
-                        <TagManage
-                            collection={this.state.collections.tags}
-                            placeHolder='add new tag'
-                            name='tags'
-                            validate={null}
-                            onChange={this.handleCollectionChange}
-                            label='Tags'
-                        />
-                    </div>
-                    <div className="padded-group">
-                        <input type='submit' value="Submit" disabled={this.validate()} />
-                    </div>
+
                 </form>
             </div>
         )
