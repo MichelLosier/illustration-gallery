@@ -85,7 +85,7 @@ class ArtworkForm extends React.Component {
     
     formSubmitCallback = (artwork) => {
         if (this.props.onFormSubmit){
-            this.props.onFormSubmit(artwork._id);
+            this.props.onFormSubmit(artwork);
         };
         this.setFields();
     };

@@ -8,9 +8,16 @@ class Gallery extends React.Component {
     }
 
     propTypes = {
-        artworks: PropTypes.object,
-        selectedArtwork: PropTypes.object,
-        onArtworkSelection: PropTypes.func
+        artworks: PropTypes.arrayOf(PropTypes.object),
+        //currently selected artwork by id
+        selectedArtwork: PropTypes.string,
+        //handle selection of an artwork
+        onArtworkSelection: PropTypes.func,
+        //handle requests to edit an artwork
+        onArtworkEdit: PropTypes.func,
+        //handle request to delete an artwork
+        onArtworkDelete: PropTypes.func,
+
     }
 
     handleArtworkClick = (id) => {
@@ -18,12 +25,11 @@ class Gallery extends React.Component {
     }
 
     handleEditClick = () =>{
-        this.props.onEditReq()
+        this.props.onArtworkEdit()
     }
 
     handleDeleteClick = (id) => {
-        console.log(`delete ${id}`)
-        this.props.onArtworkChange({data: id, action:'DELETE'});
+        this.props.onArtworkDelete(id);
     }
 
     galleryImages = () => {

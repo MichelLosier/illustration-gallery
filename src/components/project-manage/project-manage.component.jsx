@@ -46,10 +46,10 @@ class ProjectManage extends React.Component {
                     />
                     <Route
                         path="/projects/:id"
-                        render={()=>{
+                        render={(props)=>{
                             return(
                                 <ProjectForm
-                                    project={this.props.selectedProject}
+                                    projectId={props.match.params.id}
                                 />
                             )
                         }}

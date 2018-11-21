@@ -11,22 +11,16 @@ import ProjectGalleryManage from '../project-gallery-manage/project-gallery-mana
 import ProjectService from '../../services/project.service';
 import ArtworkService from '../../services/artwork.service';
 
-const project$ = new ProjectService();
-const artwork$ = new ArtworkService();
+import DEFAULT_PROJECT from './defaultProject.model';
+
+const projectService = new ProjectService();
 
 class ProjectForm extends React.Component {
     constructor(){
         super()
         this.state = {
             fieldErrors: {},
-            project: {
-                name: '',
-                description: '',
-                featuredImage: null,
-                category: '',
-                tags: [],
-                gallery: []
-            },
+            project: DEFAULT_PROJECT,
             selectedTab: 'INFO',
             populatedGallery: [],
         }
@@ -34,27 +28,19 @@ class ProjectForm extends React.Component {
             'INFO':'Project Information',
             'GALLERY':'Gallery'
         }
-        this.defaultProject = {
-            name: '',
-            description: '',
-            featuredImage: null,
-            category: '',
-            tags: [],
-            gallery: []
-        }
+
     }
 
     static propTypes = {
-        project: PropTypes.object,
-        onSubmit: PropTypes.func
+        projectId: PropTypes.string,
     }
 
 
     componentWillMount = () => {
-        const projectId = this.props.project;
+        const {projectId} = this.props;
 
         if(projectId && projectId.match(/new/i) == null){
-            project$.getProjectByID(projectId).then((project) => {
+            projectService.getProjectByID(projectId).then((project) => {
                 const populatedGallery  = project.gallery
 
                 project.gallery = project.gallery.map((artwork) => {
@@ -71,22 +57,24 @@ class ProjectForm extends React.Component {
 
     handleFormSubmit = (evt) => { 
         const {project} = this.state
+        const projectId = this.props.project
+        
         evt.preventDefault();
     
         if (this.validate()) return;
         console.log(`Submitting Project: ${JSON.stringify(project)}`);
 
-        if(this.props.project.match(/new/i) == null){
-            project$.updateProject(this.props.project, project).then((data) => {
+        if(projectId.match(/new/i) == null){
+            projectService.updateProject(projectId, project).then((data) => {
                 if(data.status == 200){
                     window.history.pushState('/projects');
                     return;
                 }  
             })
         } else {
-            project$.createProject(project).then((data) => {
+            projectService.createProject(project).then((data) => {
                 this.setState({
-                    project: this.defaultProject,
+                    project: DEFAULT_PROJECT,
                     selectedTab: 'INFO',
                 })
             })
@@ -99,25 +87,61 @@ class ProjectForm extends React.Component {
             prevState.fieldErrors[name] = error;
             return prevState;
         })
-
     }
 
-    handleCollectionItemAddOrRemove = (name, value) => {
+    //only add or remove items from collection fields (like tags)
+    handleCollectionChange = (name, value) => {
         this.setState((prevState) => {
             const newState = Object.assign({}, prevState);
             const index = prevState.project[name].indexOf(value)
-            console.log(`field name: ${name}, value: ${value}`)
+
             if (index > -1) {
                 newState.project[name] = prevState.project[name].filter((item) => {
-                    item != value
+                    return item != value
                 })
+                
             } else {
                 newState.project[name] = [...prevState.project[name], value]
             }
             return newState
         })
+    }
 
-        
+    handleArtworkChange = (artworkUpdate) => {
+        this.setState((prevState) => {
+            const project = Object.assign({}, prevState.project);
+            const populatedGallery = [...prevState.populatedGallery]
+
+            const index = project.gallery.findIndex((artwork) => {
+                return artworkUpdate._id == artwork._id
+            })
+
+            if (index > -1) {
+                populatedGallery[index] = artworkUpdate;
+            } else {
+                project.gallery.push(artworkUpdate._id);
+                populatedGallery.push(artworkUpdate);
+            }
+
+            return {project: project, populatedGallery: populatedGallery}
+        })
+    }
+
+    handleArtworkDelete = (id) => {
+        this.setState((prevState) => {
+            const project = Object.assign({}, prevState.project);
+            const populatedGallery = [...prevState.populatedGallery];
+
+            project.gallery.filter((artwork) => {
+                return artwork._id != id
+            })
+
+            populatedGallery.filter((artwork) => {
+                return artwork._id != id
+            })
+
+            return {project: project, populatedGallery: populatedGallery}
+        })
     }
 
     handleFormTabClick = (key) => {
@@ -146,7 +170,8 @@ class ProjectForm extends React.Component {
                 {(this.state.selectedTab == 'GALLERY') ? (
                     <ProjectGalleryManage
                         gallery={populatedGallery}
-                        onGalleryChange={(value) => {this.handleCollectionItemAddOrRemove('gallery', value)}}
+                        onArtworkChange={this.handleArtworkChange}
+                        onArtworkDelete={this.handleArtworkDelete}
                     />
                 ) : (
                     <form onSubmit={this.handleFormSubmit}>
@@ -183,7 +208,7 @@ class ProjectForm extends React.Component {
                                 placeHolder='add new tag'
                                 name='tags'
                                 validate={null}
-                                onTagChange={(value) => {this.handleCollectionItemAddOrRemove('tags', value)}}
+                                onTagChange={(value) => {this.handleCollectionChange('tags', value)}}
                                 label='Tags'
                             />
                         </div>
