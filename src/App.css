@@ -759,10 +759,13 @@ input[type='button'] {
   height: fit-content; }
   .project-gallery-manage .padded-group {
     padding: 1rem; }
+  .project-gallery-manage .gallery-container {
+    border: 1px solid #666;
+    height: 500px; }
   .project-gallery-manage .transparent-overlay-container {
     padding: 2rem 0rem;
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
     top: 0px;
     left: 0px;
     z-index: 99;
@@ -967,6 +970,18 @@ input[type='button'] {
   to {
     opacity: 100%; } }
 
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
 .image-form-container {
   display: flex;
   flex-basis: 100%;
@@ -1007,26 +1022,27 @@ input[type='button'] {
   to {
     opacity: 100%; } }
 
-.gallery-container {
+.gallery {
   width: 100%;
+  height: inherit;
   background-color: #eee; }
-  .gallery-container .gallery {
+  .gallery ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    height: 500px;
-    overflow-y: scroll;
+    height: inherit;
+    overflow-y: auto;
     padding: 1rem;
-    border: 1px solid #666; }
-    .gallery-container .gallery li {
+    margin: 0; }
+    .gallery ul li {
       margin: 1rem;
       border: 1px solid #666;
       list-style: none;
       flex-grow: 0; }
-      .gallery-container .gallery li.selected {
+      .gallery ul li.selected {
         border: 1px solid #e26e26; }
-      .gallery-container .gallery li:hover {
+      .gallery ul li:hover {
         border: 1px solid #e26e26;
         cursor: pointer; }
 

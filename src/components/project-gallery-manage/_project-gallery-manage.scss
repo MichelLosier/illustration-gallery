@@ -10,10 +10,15 @@
         padding: 1rem;
     }
 
+    .gallery-container{
+        border: 1px solid $color-primary-grey;
+        height: 500px;
+    }
+
     .transparent-overlay-container {
         padding:2rem 0rem;
         width: 100vw;
-        height: 100vh;
+        height: fit-content;
         top: 0px;
         left: 0px;
         z-index: 99;
