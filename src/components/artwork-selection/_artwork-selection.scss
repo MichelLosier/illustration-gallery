@@ -1,0 +1,11 @@
+@import '../../stylesheets/variables';
+
+.artwork-selection {
+    width:100%;
+	margin: 0 auto;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+	position: relative;
+	animation: 2s fade-in;
+}

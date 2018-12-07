@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Route, Link} from 'react-router-dom'
 import ArtworkForm from '../artwork-form/artwork-form.component';
+import ArtworkSelection from '../artwork-selection/artwork-selection.component';
 
 import ManagementBar from '../management-bar/management-bar.component';
 
@@ -37,7 +38,7 @@ class ArtworkManage extends React.Component {
                         exact path="/artwork"
                         render={()=>{
                             return(
-                                null//artwork selection
+                                <ArtworkSelection/>
                             )
                         }}
                     />

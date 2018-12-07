@@ -3,7 +3,7 @@ import React from 'react';
 import ProjectCard from '../project-card/project-card.component';
 import ProjectService from '../../services/project.service';
 
-const project$ = new ProjectService();
+const projectService = new ProjectService();
 
 class ProjectSelection extends React.Component {
     constructor(){
@@ -19,7 +19,7 @@ class ProjectSelection extends React.Component {
     }
 
     getProjects = () => {
-        project$.getProjectAll().then((data) => {
+        projectService.getProjectAll().then((data) => {
            this.setState({projects: data});
         });
     }
@@ -29,7 +29,7 @@ class ProjectSelection extends React.Component {
     }
 
     handleProjectDelete = (id) => {
-        project$.deleteProject(id).then(() => {
+        projectService.deleteProject(id).then(() => {
             this.setState((prevState) => {
                 prevState.projects = prevState.projects.filter((project) => {
                    return project._id != id
