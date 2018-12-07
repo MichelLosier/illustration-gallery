@@ -24,8 +24,8 @@ class Gallery extends React.Component {
         this.props.onArtworkSelection(id)
     }
 
-    handleEditClick = () =>{
-        this.props.onArtworkEdit()
+    handleEditClick = (id) =>{
+        this.props.onArtworkEdit(id)
     }
 
     handleDeleteClick = (id) => {
@@ -58,7 +58,7 @@ class Gallery extends React.Component {
                             <input 
                                 type="button" 
                                 value="edit"
-                                onClick={this.handleEditClick}
+                                onClick={()=>{this.handleEditClick(artwork._id)}}
                             />
                         </div>
                     </ArtworkCard>
@@ -70,10 +70,8 @@ class Gallery extends React.Component {
 
     render() {
         return(
-            <div className="gallery-container">
-                <ul 
-                    className="gallery"
-                >
+            <div className="gallery">
+                <ul>
                     {this.galleryImages()}
                 </ul>
             </div>

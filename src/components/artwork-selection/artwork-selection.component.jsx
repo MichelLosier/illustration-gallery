@@ -11,12 +11,12 @@ class ArtworkSelection extends React.Component {
         super();
         this.state = {
             artworks: [],
-            selectedArtwork: null
+            selectedArtwork: null,
         }
     }
 
     componentDidMount(){
-        this.getArtworks()
+        this.getArtworks();
     }
 
     getArtworks = () => {
@@ -25,20 +25,31 @@ class ArtworkSelection extends React.Component {
         })
     }
 
-    handleArtworkSelection = (id) => {
+    handleArtworkClick = (id) => {
         this.setState({selectedArtwork: id})
     }
 
+    handleArtworkDelete = (id) => {
+        artworkService.deleteArtwork(id).then(() => {
+            this.setState((prevState) => {
+                prevState.artworks = prevState.artworks.filter((artwork) => {
+                    return artwork._id != id;
+                })
+                return prevState;
+            })
+        })
+    }
+
     render(){
-        const {artworks, selectedArtwork} = this.state;
+        const {selectedArtwork, artworks} = this.state;
+
         return(
             <div className="artwork-selection">
                 <Gallery
                     artworks={artworks}
                     selectedArtwork={selectedArtwork}
-                    onArtworkSelection={this.handleArtworkSelection}
-                    onArtworkEdit={null}
-                    onArtworkDelete={null}
+                    onArtworkSelection={this.handleArtworkClick}
+                    onArtworkDelete={this.handleArtworkDelete}
                 />
             </div>
         )

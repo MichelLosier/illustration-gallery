@@ -1,6 +1,7 @@
 import React from 'react';
-
 import {Route, Link} from 'react-router-dom'
+
+import ArtworkSelection from '../artwork-selection/artwork-selection.component';
 import ArtworkForm from '../artwork-form/artwork-form.component';
 import ArtworkSelection from '../artwork-selection/artwork-selection.component';
 
