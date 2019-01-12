@@ -50,6 +50,7 @@ class ArtworkSelection extends React.Component {
                     selectedArtwork={selectedArtwork}
                     onArtworkSelection={this.handleArtworkClick}
                     onArtworkDelete={this.handleArtworkDelete}
+                    isEmbedded={false}
                 />
             </div>
         )

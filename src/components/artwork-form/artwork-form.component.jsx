@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link, Redirect} from 'react-router-dom'
 
 import TextField from '../text-field/text-field.component';
 import TagManage from '../tag-manage/tag-manage.component';
@@ -17,11 +18,10 @@ class ArtworkForm extends React.Component {
         super()
         this.state = {
             artwork: DEFAULT_ARTWORK,
-            fieldErrors: {
-
-            },
+            fieldErrors: {},
             populatedProjects:[],
             selectedImage: 'largeImage',
+            toArtwork: false
         }
         this.imageFormLabelMap = {
             'largeImage': 'Hi-Res Detail Image',
@@ -43,10 +43,11 @@ class ArtworkForm extends React.Component {
             artworkService.getArtworkByID(artworkId).then((artwork) => {
                 const populatedProjects = artwork.projects;
 
-                artwork.projects = artwork.projects.map((project) => {
-                    return project._id
-                })
-
+                if(artwork.projects.length > 0){
+                    artwork.projects = artwork.projects.map((project) => {
+                        return project._id
+                    })
+                }
                 this.setState({
                     artwork: artwork,
                     populatedProjects: populatedProjects,
@@ -65,19 +66,19 @@ class ArtworkForm extends React.Component {
 
         if(artworkId.match(/new/i) == null){
             artworkService.updateArtwork(artworkId, artwork).then((data) => {
-                if(data.status == 200){
+                if(data){
                     if (this.props.onSubmit){
                         this.props.onSubmit(data.body)
                         return;
                     }
                     //if no submit handler then back to /artwork
-                    window.history.pushState('/artwork');
+                    this.setState({toArtwork: true})
                     return;
                 }  
             })
         } else {
             artworkService.createArtwork(artwork).then((data) => {
-                if(data.status == 200){
+                if(data){
                     if(this.props.onSubmit){
                         this.props.onSubmit(data.body)
                     }
@@ -94,7 +95,7 @@ class ArtworkForm extends React.Component {
     
     handleInputChange = ({ name, value, error }) => {
         this.setState((prevState) => {
-            const {artwork, fieldErrors, selectedImage} = this.prevState;
+            const {artwork, fieldErrors, selectedImage} = prevState;
             const updatedArtwork = Object.assign({}, artwork)
             const updatedFieldErrors = Object.assign({}, fieldErrors)
 
@@ -144,6 +145,9 @@ class ArtworkForm extends React.Component {
     
     render() {
         const {artwork, selectedImage} = this.state;
+        if (this.state.toProjects === true) {
+            return <Redirect to='/artwork' />
+        }
         return (
             <div className="artwork-form">
                 <form 

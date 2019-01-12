@@ -23,6 +23,7 @@ class ProjectForm extends React.Component {
             project: DEFAULT_PROJECT,
             selectedTab: 'INFO',
             populatedGallery: [],
+            toProjects: false,
         }
         this.tabMap = {
             'INFO':'Project Information',
@@ -68,19 +69,19 @@ class ProjectForm extends React.Component {
 
         if(projectId.match(/new/i) == null){
             projectService.updateProject(projectId, project).then((data) => {
-                if(data.status == 200){
+                if(data){
                     if (this.props.onSubmit){
                         this.props.onSubmit(data.body)
                         return;
                     }
                     //if no submit handler then back to /projects
-                    window.history.pushState('/projects');
+                    this.setState({toProjects: true})
                     return;
                 }  
             })
         } else {
             projectService.createProject(project).then((data) => {
-                if(data.status == 200){
+                if(data){
                     if(this.props.onSubmit){
                         this.props.onSubmit(data.body)
                     }
@@ -173,7 +174,12 @@ class ProjectForm extends React.Component {
     render() {
         const {project, selectedTab, populatedGallery} = this.state;
         const formClasses = (selectedTab == "GALLERY") ? "project-form full-width" : "project-form"
+        if (this.state.toProjects === true) {
+            return <Redirect to='/projects' />
+        }
+
         return (
+
             <div className={formClasses}>
                 
                 <FormTabs

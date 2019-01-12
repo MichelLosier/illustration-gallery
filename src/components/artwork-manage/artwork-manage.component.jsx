@@ -3,7 +3,7 @@ import {Route, Link} from 'react-router-dom'
 
 import ArtworkSelection from '../artwork-selection/artwork-selection.component';
 import ArtworkForm from '../artwork-form/artwork-form.component';
-import ArtworkSelection from '../artwork-selection/artwork-selection.component';
+
 
 import ManagementBar from '../management-bar/management-bar.component';
 
@@ -48,7 +48,7 @@ class ArtworkManage extends React.Component {
                         render={(props)=>{
                             return(
                                 <ArtworkForm
-                                    artworkId={props.match.params.artworkId}
+                                    artworkId={props.match.params.id}
                                 />
                             )
                         }}

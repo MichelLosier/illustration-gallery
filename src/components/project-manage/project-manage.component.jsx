@@ -11,8 +11,6 @@ class ProjectManage extends React.Component {
     constructor(){
         super();
     }
-
-
     render(){
         return(
             <div className="project-manage-container">

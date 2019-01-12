@@ -102,6 +102,7 @@ class ProjectGalleryManage extends React.Component {
                         selectedArtwork={selectedArtwork}
                         onArtworkSelection={this.handleArtworkSelection}
                         onArtworkEdit={this.handleArtworkEdit}
+                        isEmbedded={true}
                     />
                 </div>
                 {this.artworkButtons()}

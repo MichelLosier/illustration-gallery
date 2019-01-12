@@ -5,6 +5,7 @@
     height: 75px;
     justify-content: flex-start;
     background-color: $color-background-white;
+    box-shadow: 3px 3px 8px $color-shadow-grey;
     &.selected{
         height: 225px;
         animation: 1s expand-to-content;

@@ -530,7 +530,8 @@ input[type='button'] {
   padding: 0.25rem;
   color: white;
   background-color: #666;
-  justify-content: space-between; }
+  justify-content: space-between;
+  box-shadow: 3px 3px 8px #989898; }
   .management-bar h2 {
     margin: 0.5rem; }
   .management-bar .actions {
@@ -845,7 +846,8 @@ input[type='button'] {
   display: flex;
   height: 75px;
   justify-content: flex-start;
-  background-color: white; }
+  background-color: white;
+  box-shadow: 3px 3px 8px #989898; }
   .project-card.selected {
     height: 225px;
     animation: 1s expand-to-content; }
@@ -1050,6 +1052,9 @@ input[type='button'] {
       border: 1px solid #666;
       list-style: none;
       flex-grow: 0; }
+      .gallery ul li div.actions {
+        display: flex;
+        justify-content: space-around; }
       .gallery ul li.selected {
         border: 1px solid #e26e26; }
       .gallery ul li:hover {
@@ -1074,7 +1079,9 @@ input[type='button'] {
   position: relative;
   padding: 1rem;
   background-color: white;
-  height: 250px; }
+  height: 250px;
+  width: 300px;
+  box-shadow: 3px 3px 8px #989898; }
 
 @keyframes slide-in {
   from {
