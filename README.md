@@ -10,6 +10,5 @@ Application for managing Illustration projects and artworks
   * Serves Client
   * Handles CRUD to database
   * Syncs changes between collections
-* MongoDB
-  * Stores Projects and Artworks collections
+  * Uses MongoDB client to store Projects and Artworks documents
   
