@@ -8,7 +8,13 @@ const mongoose = require('mongoose');
 
 
 //Connect to DB
-mongoose.connect(process.env.MLAB_DB_URI, {
+
+const DB_URI_MAP = {
+	"DEVELOPMENT" : process.env.MLAB_DEV_DB_URI,
+	"PRODUCTION" : process.env.MLAB_PROD_DB_URI,
+}
+
+mongoose.connect(DB_URI_MAP[process.env.ENVIRONMENT] || process.env.MLAB_DEV_DB_URI, {
 	useMongoClient: true
 });
 const db = mongoose.connection;

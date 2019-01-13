@@ -1051,7 +1051,8 @@ input[type='button'] {
       margin: 1rem;
       border: 1px solid #666;
       list-style: none;
-      flex-grow: 0; }
+      flex-grow: 0;
+      box-shadow: 3px 3px 8px #989898; }
       .gallery ul li div.actions {
         display: flex;
         justify-content: space-around; }
@@ -1080,8 +1081,7 @@ input[type='button'] {
   padding: 1rem;
   background-color: white;
   height: 250px;
-  width: 300px;
-  box-shadow: 3px 3px 8px #989898; }
+  width: 300px; }
 
 @keyframes slide-in {
   from {

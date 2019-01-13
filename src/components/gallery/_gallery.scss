@@ -19,6 +19,7 @@
             border: 1px solid $color-primary-grey;
             list-style: none;
             flex-grow: 0;
+            box-shadow: 3px 3px 8px $color-shadow-grey;
 
             div.actions{
                 display:flex;

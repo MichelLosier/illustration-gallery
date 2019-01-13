@@ -71,7 +71,7 @@ class ProjectForm extends React.Component {
             projectService.updateProject(projectId, project).then((data) => {
                 if(data){
                     if (this.props.onSubmit){
-                        this.props.onSubmit(data.body)
+                        this.props.onSubmit(data)
                         return;
                     }
                     //if no submit handler then back to /projects
@@ -83,7 +83,7 @@ class ProjectForm extends React.Component {
             projectService.createProject(project).then((data) => {
                 if(data){
                     if(this.props.onSubmit){
-                        this.props.onSubmit(data.body)
+                        this.props.onSubmit(data)
                     }
                     this.setState({
                         project: DEFAULT_PROJECT,
@@ -123,11 +123,12 @@ class ProjectForm extends React.Component {
     }
 
     handleArtworkChange = (artworkUpdate) => {
+        console.log(artworkUpdate)
         this.setState((prevState) => {
             const project = Object.assign({}, prevState.project);
             const populatedGallery = [...prevState.populatedGallery]
 
-            const index = project.gallery.findIndex((artwork) => {
+            const index = populatedGallery.findIndex((artwork) => {
                 return artworkUpdate._id == artwork._id
             })
 

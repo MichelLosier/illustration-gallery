@@ -64,11 +64,11 @@ class ArtworkForm extends React.Component {
     
         if (this.validate()) return;
 
-        if(artworkId.match(/new/i) == null){
+        if(artworkId && artworkId.match(/new/i) == null){
             artworkService.updateArtwork(artworkId, artwork).then((data) => {
                 if(data){
                     if (this.props.onSubmit){
-                        this.props.onSubmit(data.body)
+                        this.props.onSubmit(data)
                         return;
                     }
                     //if no submit handler then back to /artwork
@@ -80,7 +80,7 @@ class ArtworkForm extends React.Component {
             artworkService.createArtwork(artwork).then((data) => {
                 if(data){
                     if(this.props.onSubmit){
-                        this.props.onSubmit(data.body)
+                        this.props.onSubmit(data)
                     }
                     this.setState({
                         artwork: DEFAULT_ARTWORK,
@@ -187,7 +187,7 @@ class ArtworkForm extends React.Component {
                                 placeHolder='add new tag'
                                 name='tags'
                                 validate={null}
-                                onChange={this.handleCollectionChange}
+                                onTagChange={(value) => {this.handleCollectionChange('tags', value)}}
                                 label='Tags'
                             />
                         </div>
