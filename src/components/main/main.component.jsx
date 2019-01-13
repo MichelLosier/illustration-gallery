@@ -10,9 +10,6 @@ import ProjectManage from '../project-manage/project-manage.component';
 class Main extends React.Component {
     constructor(){
         super();
-        this.state = {
-            context: ''
-        }
         this.linkMap = {
             artwork: {
                 label:'Artwork',
@@ -29,9 +26,6 @@ class Main extends React.Component {
         }
     }
 
-    setContext = (context) => {
-        this.setState({context: context});
-    }
 
     feed(props){
         return(
@@ -61,11 +55,9 @@ class Main extends React.Component {
                         render={(props) => this.feed(props)}
                     />
                     <Route
-                        path="/artwork/"
+                        path="/artwork/:id?"
                         render={()=> {
-                            return(<ArtworkManage
-                                getContext={this.setContext}
-                            />)
+                            return(<ArtworkManage/>)
                         }}
                     />
                     <Route

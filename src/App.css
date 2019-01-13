@@ -55,8 +55,7 @@ a {
 .layout-container {
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
-  position: relative; }
+  justify-content: space-around; }
   .layout-container .col-1, .layout-container .col-3 {
     display: flex;
     justify-content: space-around;
@@ -338,11 +337,6 @@ img.contained {
   to {
     opacity: 100%; } }
 
-form {
-  padding: 1rem;
-  transition: color 2s, border 2s;
-  background-color: white; }
-
 .form-group {
   padding: .5em 0;
   display: flex; }
@@ -417,7 +411,6 @@ input[type='button'] {
 .main .body {
   background-color: #eee;
   margin: 0 auto;
-  position: relative;
   min-height: 100vh; }
   .main .body .col-1, .main .body .col-3 {
     display: flex;
@@ -537,7 +530,8 @@ input[type='button'] {
   padding: 0.25rem;
   color: white;
   background-color: #666;
-  justify-content: space-between; }
+  justify-content: space-between;
+  box-shadow: 3px 3px 8px #989898; }
   .management-bar h2 {
     margin: 0.5rem; }
   .management-bar .actions {
@@ -717,7 +711,9 @@ input[type='button'] {
   animation: 1s fade-in; }
   .project-form.full-width {
     width: 100%; }
-  .project-form form {
+  .project-form > form {
+    padding: 1rem;
+    background-color: white;
     border: 1px solid #666; }
   .project-form .padded-group {
     padding: 1rem; }
@@ -743,8 +739,7 @@ input[type='button'] {
     padding: 1rem;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
-    position: relative; }
+    justify-content: space-around; }
 
 @keyframes slide-in {
   from {
@@ -765,6 +760,35 @@ input[type='button'] {
   height: fit-content; }
   .project-gallery-manage .padded-group {
     padding: 1rem; }
+  .project-gallery-manage .gallery-container {
+    border: 1px solid #666;
+    height: 500px; }
+  .project-gallery-manage .transparent-overlay-container {
+    padding: 2rem 0rem;
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    position: absolute;
+    background: rgba(134, 134, 134, 0.77);
+    display: flex;
+    justify-content: center; }
+    .project-gallery-manage .transparent-overlay-container div.cancel {
+      font-size: 3rem;
+      font-weight: normal;
+      width: 3rem;
+      border-radius: 50%;
+      border: 3px solid white;
+      height: 3rem;
+      cursor: pointer;
+      line-height: 2.8rem;
+      color: white;
+      position: absolute;
+      right: 30px;
+      top: 10px;
+      z-index: 3; }
 
 @keyframes slide-in {
   from {
@@ -822,7 +846,8 @@ input[type='button'] {
   display: flex;
   height: 75px;
   justify-content: flex-start;
-  background-color: white; }
+  background-color: white;
+  box-shadow: 3px 3px 8px #989898; }
   .project-card.selected {
     height: 225px;
     animation: 1s expand-to-content; }
@@ -904,9 +929,14 @@ input[type='button'] {
     opacity: 100%; } }
 
 .artwork-form {
-  min-width: 40rem; }
-  .artwork-form form {
-    border: 1px solid #666; }
+  min-width: 40rem;
+  animation: 1s fade-in; }
+  .artwork-form.full-width {
+    width: 100%; }
+  .artwork-form form .artwork-fields {
+    background-color: white;
+    border: 1px solid #666;
+    border-top: none; }
   .artwork-form .padded-group {
     padding: 1rem; }
 
@@ -923,13 +953,34 @@ input[type='button'] {
     opacity: 100%; } }
 
 .artwork-manage-container {
-  flex-basis: 100%;
-  padding: 1rem; }
+  flex-basis: 100%; }
   .artwork-manage-container .layout-container {
+    padding: 1rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     position: relative; }
+
+@keyframes slide-in {
+  from {
+    margin-left: 100%; }
+  to {
+    margin-left: 0; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0%; }
+  to {
+    opacity: 100%; } }
+
+.artwork-selection {
+  width: 100%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  animation: 2s fade-in; }
 
 @keyframes slide-in {
   from {
@@ -950,6 +1001,7 @@ input[type='button'] {
   justify-content: center; }
   .image-form-container .image-form {
     border: 1px solid #666;
+    background-color: white;
     padding: 1rem;
     height: 500px;
     display: flex;
@@ -982,26 +1034,31 @@ input[type='button'] {
   to {
     opacity: 100%; } }
 
-.gallery-container {
+.gallery {
   width: 100%;
+  height: inherit;
   background-color: #eee; }
-  .gallery-container .gallery {
+  .gallery ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    height: 500px;
-    overflow-y: scroll;
+    height: inherit;
+    overflow-y: auto;
     padding: 1rem;
-    border: 1px solid #666; }
-    .gallery-container .gallery li {
+    margin: 0; }
+    .gallery ul li {
       margin: 1rem;
       border: 1px solid #666;
       list-style: none;
-      flex-grow: 0; }
-      .gallery-container .gallery li.selected {
+      flex-grow: 0;
+      box-shadow: 3px 3px 8px #989898; }
+      .gallery ul li div.actions {
+        display: flex;
+        justify-content: space-around; }
+      .gallery ul li.selected {
         border: 1px solid #e26e26; }
-      .gallery-container .gallery li:hover {
+      .gallery ul li:hover {
         border: 1px solid #e26e26;
         cursor: pointer; }
 
@@ -1023,7 +1080,8 @@ input[type='button'] {
   position: relative;
   padding: 1rem;
   background-color: white;
-  height: 250px; }
+  height: 250px;
+  width: 300px; }
 
 @keyframes slide-in {
   from {

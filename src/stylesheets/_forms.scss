@@ -1,11 +1,5 @@
 @import 'variables';
 
-form {
-	padding:1rem;
-	transition: color 2s, border 2s;
-	background-color:$color-background-white;
-}
-
 .form-group {
 	padding:.5em 0;
 	display: flex;

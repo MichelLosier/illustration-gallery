@@ -6,7 +6,9 @@
     &.full-width{
         width:100%;
     }
-    form{
+    &>form{
+        padding: 1rem;
+        background-color: $color-background-white;
         border:1px solid $color-primary-grey;
     }
     .padded-group{

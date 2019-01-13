@@ -41,8 +41,13 @@ class ProjectGalleryManage extends React.Component {
         })
     }
 
-    handleArtworkEdit = () =>{
+    handleNewArtworkCancel = () => {
+        this.setState({viewGallery: true})
+    }
+
+    handleArtworkEdit = (id) =>{
         this.setState({
+            selectedArtwork: id,
             viewGallery: false
         })
     }
@@ -53,15 +58,7 @@ class ProjectGalleryManage extends React.Component {
         })
     }
 
-    getSelectedArtwork = () => {
-        const id = this.state.selectedArtwork;
-        const artwork = this.props.gallery.findIndex((artwork) =>{
-            return artwork._id == id
-        })
-        return artwork;
-    }
-
-    addArtworkButtons = () => {
+    artworkButtons = () => {
         return(
             <div className='padded-group'>
                 <input 
@@ -78,30 +75,37 @@ class ProjectGalleryManage extends React.Component {
         )
     }
 
+    newArtworkFormOverlay = () => {
+        return(
+            <div className='transparent-overlay-container'>
+                <div className="cancel" onClick={this.handleNewArtworkCancel}>
+                    x
+                </div>
+                <ArtworkForm
+                    artworkId={this.state.selectedArtwork}
+                    onSubmit={this.handleArtworkChange}
+                />
+            </div>
+        )
+    }
+
     render() {
-        const {selectedArtwork, viewGallery, addArtwork} = this.state;
+        const {selectedArtwork, viewGallery} = this.state;
         const {gallery} = this.props
         return(
             <div className="project-gallery-manage">
-                {(!viewGallery) ? (
-                    <div>
-                        <ArtworkForm
-                            selectedArtwork={this.getSelectedArtwork()}
-                            onFormSubmit={this.handleArtworkChange}
-                        />
-                    </div>
-                ):(
-                    <div>
-                        <Gallery
-                            onArtworkDelete={this.onArtworkDelete}
-                            artworks={gallery}
-                            selectedArtwork={selectedArtwork}
-                            onArtworkSelection={this.handleArtworkSelection}
-                            onArtworkEdit={this.handleArtworkEdit}
-                        />
-                        {!addArtwork && this.addArtworkButtons()}
-                    </div>
-                )}
+                {!viewGallery && this.newArtworkFormOverlay()}
+                <div className="gallery-container">
+                    <Gallery
+                        onArtworkDelete={this.onArtworkDelete}
+                        artworks={gallery}
+                        selectedArtwork={selectedArtwork}
+                        onArtworkSelection={this.handleArtworkSelection}
+                        onArtworkEdit={this.handleArtworkEdit}
+                        isEmbedded={true}
+                    />
+                </div>
+                {this.artworkButtons()}
             </div>
         )
     }

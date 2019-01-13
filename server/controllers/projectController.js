@@ -53,7 +53,7 @@ exports.updateProject = function(req, res, next){
 	.then(function(project) {
 		_project = project;
 		return Sync.syncArtworksToProject(project);
-	}).then(function(updatedArtworks){
+	}).then(function(result){
 		return Project.populate(_project, 'featuredImage gallery');
 	}).then(function(populatedProject){
 		res.status(200).json(populatedProject);

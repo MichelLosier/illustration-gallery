@@ -23,6 +23,7 @@ class ProjectForm extends React.Component {
             project: DEFAULT_PROJECT,
             selectedTab: 'INFO',
             populatedGallery: [],
+            toProjects: false,
         }
         this.tabMap = {
             'INFO':'Project Information',
@@ -32,6 +33,8 @@ class ProjectForm extends React.Component {
     }
 
     static propTypes = {
+        //handler to return submitted data
+        onSubmit: PropTypes.func,
         projectId: PropTypes.string,
     }
 
@@ -57,7 +60,7 @@ class ProjectForm extends React.Component {
 
     handleFormSubmit = (evt) => { 
         const {project} = this.state
-        const projectId = this.props.project
+        const projectId = this.props.projectId
         
         evt.preventDefault();
     
@@ -66,17 +69,29 @@ class ProjectForm extends React.Component {
 
         if(projectId.match(/new/i) == null){
             projectService.updateProject(projectId, project).then((data) => {
-                if(data.status == 200){
-                    window.history.pushState('/projects');
+                if(data){
+                    if (this.props.onSubmit){
+                        this.props.onSubmit(data)
+                        return;
+                    }
+                    //if no submit handler then back to /projects
+                    this.setState({toProjects: true})
                     return;
                 }  
             })
         } else {
             projectService.createProject(project).then((data) => {
-                this.setState({
-                    project: DEFAULT_PROJECT,
-                    selectedTab: 'INFO',
-                })
+                if(data){
+                    if(this.props.onSubmit){
+                        this.props.onSubmit(data)
+                    }
+                    this.setState({
+                        project: DEFAULT_PROJECT,
+                        populatedGallery: [],
+                        selectedTab: 'INFO',
+                    })
+                }
+
             })
         }
     }
@@ -108,11 +123,12 @@ class ProjectForm extends React.Component {
     }
 
     handleArtworkChange = (artworkUpdate) => {
+        console.log(artworkUpdate)
         this.setState((prevState) => {
             const project = Object.assign({}, prevState.project);
             const populatedGallery = [...prevState.populatedGallery]
 
-            const index = project.gallery.findIndex((artwork) => {
+            const index = populatedGallery.findIndex((artwork) => {
                 return artworkUpdate._id == artwork._id
             })
 
@@ -159,7 +175,12 @@ class ProjectForm extends React.Component {
     render() {
         const {project, selectedTab, populatedGallery} = this.state;
         const formClasses = (selectedTab == "GALLERY") ? "project-form full-width" : "project-form"
+        if (this.state.toProjects === true) {
+            return <Redirect to='/projects' />
+        }
+
         return (
+
             <div className={formClasses}>
                 
                 <FormTabs

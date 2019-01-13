@@ -14,10 +14,23 @@ class ImageForm extends React.Component {
             showButtons: false
         }
     }
-    
-    componentWillMount(){
-        const p = this.props;
-        const image = p.images[p.selectedImage];
+
+    static propTypes = {
+        //handle input field change
+        onInputChange: PropTypes.func,
+        //handle selecting image
+        onImageSelect: PropTypes.func,
+        //selected image
+        selectedImage: PropTypes.string,
+        images: PropTypes.object,
+        //map of image types for tab selection
+        labelMap: PropTypes.object,
+    }
+
+
+    componentWillReceiveProps(newProps){
+        const {images, selectedImage} = newProps;
+        const image = images[selectedImage];
         if (!image.url.length > 0 ){
             this.setState({
                 showFields: true
@@ -25,23 +38,18 @@ class ImageForm extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        const p = this.props;
-        const image = p.images[p.selectedImage];
+    componentWillMount(){
+        const {images, selectedImage} = this.props;
+        const image = images[selectedImage];
         if (!image.url.length > 0 ){
             this.setState({
                 showFields: true
             });
         }
     }
-    
+
     handleEditClick = () => {
-        const p = this.props;
-        this.setState((prevState) => {
-            return {
-                showFields: true
-            }
-        });
+        this.setState({showFields: true});
     }
 
     handleDoneClick = () => {
@@ -54,15 +62,10 @@ class ImageForm extends React.Component {
     }
 
     handleMouse = (show) => {
-        return () => {
-            if(!this.state.showFields){
-                this.setState((prevState) => {
-                    return {
-                        showButtons: show
-                    }
-                })
-            }
+        if(!this.state.showFields){
+            this.setState({showButtons: show})
         }
+
     }
     handleImageSelection = (key) => {
         this.props.onImageSelect(key);
@@ -75,19 +78,18 @@ class ImageForm extends React.Component {
     }
 
     render(){
-        const selectedImage = this.props.selectedImage
-        const images = this.props.images
+        const {selectedImage, images, labelMap, onInputChange} = this.props;
         return(
             <div className="image-form-container">
                 <FormTabs
-                    tabMap={this.props.labelMap}
-                    selectedKey={this.props.selectedImage}
+                    tabMap={labelMap}
+                    selectedKey={selectedImage}
                     onSelection={this.handleImageSelection}
                 />
                 <div 
                     className="image-form"
-                    onMouseEnter={this.handleMouse(true)}
-                    onMouseLeave={this.handleMouse(false)}
+                    onMouseEnter={() => {this.handleMouse(true)}}
+                    onMouseLeave={() => {this.handleMouse(false)}}
                 >
                     <Image
                         altText={images[selectedImage].altText}
@@ -113,9 +115,9 @@ class ImageForm extends React.Component {
                                 <TextField
                                     placeholder='URL to Image'
                                     name='url'
-                                    label={this.props.labelMap[selectedImage]}
+                                    label={labelMap[selectedImage]}
                                     value={images[selectedImage].url}
-                                    onChange={this.props.onInputChange}
+                                    onChange={onInputChange}
                                     validate={false}
                                 />
                                 <TextField
@@ -123,7 +125,7 @@ class ImageForm extends React.Component {
                                     name='altText'
                                     label='Alt-Text'
                                     value={images[selectedImage].altText}
-                                    onChange={this.props.onInputChange}
+                                    onChange={onInputChange}
                                     validate={false}
                                 />
                             </div>
