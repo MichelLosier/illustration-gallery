@@ -25,6 +25,7 @@ class ProjectGalleryManage extends React.Component {
 
     handleArtworkChange = (artwork) => {
         this.props.onArtworkChange(artwork);
+        this.setState({selectedArtwork: false});
     }
 
     handleArtworkDelete = (artwork) => {

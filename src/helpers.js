@@ -22,3 +22,7 @@ export const deepMerge = (state, newValues) => {
     })
     return newState;
 }
+
+export const deepCopyObject = (sourceObj) => {
+    return JSON.parse(JSON.stringify(sourceObj));
+}

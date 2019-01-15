@@ -1046,7 +1046,8 @@ input[type='button'] {
     height: inherit;
     overflow-y: auto;
     padding: 1rem;
-    margin: 0; }
+    margin: 0;
+    box-sizing: border-box; }
     .gallery ul li {
       margin: 1rem;
       border: 1px solid #666;
