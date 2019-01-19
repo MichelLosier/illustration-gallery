@@ -9,15 +9,16 @@ import ImageForm from '../image-form/image-form.component';
 import ArtworkCard from '../artwork-card/artwork-card.component';
 
 import DEFAULT_ARTWORK from './defaultArtwork.model';
-import {deepMerge} from '../../helpers';
+import {deepCopyObject} from '../../helpers';
 
 const artworkService = new ArtworkService();
 
 class ArtworkForm extends React.Component {
     constructor(){
+        let defaultArtwork = deepCopyObject(DEFAULT_ARTWORK);
         super()
         this.state = {
-            artwork: DEFAULT_ARTWORK,
+            artwork: defaultArtwork,
             fieldErrors: {},
             populatedProjects:[],
             selectedImage: 'largeImage',
@@ -37,6 +38,14 @@ class ArtworkForm extends React.Component {
     }
 
     componentWillMount = () => {
+        this.fetchArtworkFromId();
+    }
+
+    componentWillReceiveProps = () => {
+        this.fetchArtworkFromId();
+    }
+
+    fetchArtworkFromId = () => {
         const {artworkId} = this.props;
 
         if(artworkId && artworkId.match(/new/i) == null){
@@ -55,6 +64,7 @@ class ArtworkForm extends React.Component {
             })
         } 
     }
+
     
     handleFormSubmit = (evt) => {
         const {artwork} = this.state
@@ -69,10 +79,14 @@ class ArtworkForm extends React.Component {
                 if(data){
                     if (this.props.onSubmit){
                         this.props.onSubmit(data)
-                        return;
                     }
                     //if no submit handler then back to /artwork
-                    this.setState({toArtwork: true})
+                    this.setState({
+                        artwork: deepCopyObject(DEFAULT_ARTWORK),
+                        populatedProjects: [],
+                        selectedImage: 'largeImage',
+                        toArtwork: true,
+                    })
                     return;
                 }  
             })
@@ -83,7 +97,7 @@ class ArtworkForm extends React.Component {
                         this.props.onSubmit(data)
                     }
                     this.setState({
-                        artwork: DEFAULT_ARTWORK,
+                        artwork: deepCopyObject(DEFAULT_ARTWORK),
                         populatedProjects: [],
                         selectedImage: 'largeImage',
                     })

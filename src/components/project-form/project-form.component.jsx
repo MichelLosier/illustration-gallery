@@ -20,7 +20,7 @@ class ProjectForm extends React.Component {
         super()
         this.state = {
             fieldErrors: {},
-            project: DEFAULT_PROJECT,
+            project: Object.assign({},DEFAULT_PROJECT),
             selectedTab: 'INFO',
             populatedGallery: [],
             toProjects: false,
@@ -72,10 +72,15 @@ class ProjectForm extends React.Component {
                 if(data){
                     if (this.props.onSubmit){
                         this.props.onSubmit(data)
-                        return;
                     }
                     //if no submit handler then back to /projects
-                    this.setState({toProjects: true})
+
+                    this.setState({
+                        project: Object.assign({},DEFAULT_PROJECT),
+                        populatedGallery: [],
+                        selectedTab: 'INFO',
+                        toProjects: true,
+                    })
                     return;
                 }  
             })
@@ -85,8 +90,9 @@ class ProjectForm extends React.Component {
                     if(this.props.onSubmit){
                         this.props.onSubmit(data)
                     }
+                    console.log("Project submission returned");
                     this.setState({
-                        project: DEFAULT_PROJECT,
+                        project: Object.assign({},DEFAULT_PROJECT),
                         populatedGallery: [],
                         selectedTab: 'INFO',
                     })
