@@ -48,9 +48,9 @@ exports.updateArtworks = function(req, res, next){ //TODO review params)
 
 //delete artwork
 exports.deleteArtwork = function(req, res, next){
-	Artwork.findOneAndRemove({_id: req.params.id}, function(err){
+	Artwork.findOneAndRemove({_id: req.params._id}, function(err, project){
 		if(err) return console.error(err);
-		res.status(200);
+		res.status(200).json(project);
 	});
 };
 
