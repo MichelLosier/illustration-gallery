@@ -4,7 +4,7 @@ const DEFAULT_PROJECT = {
     featuredImage: null,
     category: '',
     tags: [],
-    gallery: []
+    gallery: [],
 }
 
 export default DEFAULT_PROJECT;
