@@ -11,6 +11,7 @@ import ProjectGalleryManage from '../project-gallery-manage/project-gallery-mana
 import ProjectService from '../../services/project.service';
 import ArtworkService from '../../services/artwork.service';
 
+import {deepCopyObject} from '../../helpers';
 import DEFAULT_PROJECT from './defaultProject.model';
 
 const projectService = new ProjectService();
@@ -20,7 +21,7 @@ class ProjectForm extends React.Component {
         super()
         this.state = {
             fieldErrors: {},
-            project: Object.assign({},DEFAULT_PROJECT),
+            project: deepCopyObject(DEFAULT_PROJECT),
             selectedTab: 'INFO',
             populatedGallery: [],
             toProjects: false,
@@ -76,7 +77,7 @@ class ProjectForm extends React.Component {
                     //if no submit handler then back to /projects
 
                     this.setState({
-                        project: Object.assign({},DEFAULT_PROJECT),
+                        project: deepCopyObject(DEFAULT_PROJECT),
                         populatedGallery: [],
                         selectedTab: 'INFO',
                         toProjects: true,
@@ -90,9 +91,8 @@ class ProjectForm extends React.Component {
                     if(this.props.onSubmit){
                         this.props.onSubmit(data)
                     }
-                    console.log("Project submission returned");
                     this.setState({
-                        project: Object.assign({},DEFAULT_PROJECT),
+                        project: deepCopyObject(DEFAULT_PROJECT),
                         populatedGallery: [],
                         selectedTab: 'INFO',
                     })
