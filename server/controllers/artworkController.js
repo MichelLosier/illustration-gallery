@@ -1,4 +1,5 @@
 const Artwork = require('../models/artwork');
+const Sync = require('./collectionSync');
 
 exports.listAll = function(req, res, next){
 	Artwork.find(function(err, docs){
@@ -48,9 +49,17 @@ exports.updateArtworks = function(req, res, next){ //TODO review params)
 
 //delete artwork
 exports.deleteArtwork = function(req, res, next){
-	Artwork.findOneAndRemove({_id: req.params._id}, function(err, project){
-		if(err) return console.error(err);
-		res.status(200).json(project);
-	});
+	let _artwork;
+	Artwork.findOneAndRemove({_id: req.params._id})
+	.then(function(artwork){
+		_artwork = artwork;
+		return Sync.deleteArtworkFromProjects(artwork);
+	})
+	.then(function(result){
+		res.status(200).json(_artwork);
+	}).catch(function(err){
+		console.error(err);
+		res.status(500)
+	})
 };
 

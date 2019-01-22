@@ -65,8 +65,16 @@ exports.updateProject = function(req, res, next){
 
 //delete project
 exports.deleteProject = function(req, res, next){
-	Project.findOneAndRemove({_id: req.params._id}, function(err, project){
-		if(err) return console.log(err);
-		res.status(200).json(project);
-	});
+	let _project;
+	Project.findOneAndRemove({_id: req.params._id})
+	.then(function(project){
+		_project = project;
+		return Sync.deleteProjectFromArtworks(project);
+	})
+	.then(function(result){
+		res.status(200).json(_project);
+	}).catch(function(err){
+		console.error(err)
+		res.status(500)
+	})
 };
